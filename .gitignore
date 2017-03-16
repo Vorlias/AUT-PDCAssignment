@@ -15,6 +15,7 @@
 hs_err_pid*
 /RPG-Assignment-CUI/nbproject/private/
 /RPG-Assignment-CUI/build/
+/RPG-Assignment-GUI/lib/Slick2D/javadoc/
 
 
 
@@ -75,3 +76,4 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+/RPG-Assignment-GUI/nbproject/private/
