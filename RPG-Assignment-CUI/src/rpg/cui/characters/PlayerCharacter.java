@@ -14,8 +14,8 @@ import java.io.PrintWriter;
  */
 public class PlayerCharacter extends Character
 {
-    int xp = 0;
-	String name;
+    private int xp = 0;
+	private String name;
     
 	public void saveCharacter()
 	{
