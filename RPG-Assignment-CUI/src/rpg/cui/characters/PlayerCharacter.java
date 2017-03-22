@@ -12,12 +12,14 @@ package rpg.cui.characters;
 public class PlayerCharacter extends Character
 {
     int xp = 0;
+	String name;
     
-    public PlayerCharacter(float health, float stamina, float mana)
+    public PlayerCharacter(String name)
     {
-		this.health = health;
-		this.stamina = stamina;
-		this.mana = mana;
+		this.health = 100.f;
+		this.stamina = 100.f;
+		this.mana = 100.f;
+		this.name = name;
     }
     
     private int getLevelupXP()
