@@ -18,21 +18,21 @@ public class Character
     
     public int getLevel()
     {
-	return level;
+		return level;
     }
     
     public float getHealth()
     {
-	return health;
+		return health;
     }
     
     public float getStamina()
     {
-	return stamina;
+		return stamina;
     }
     
     public float getMana()
     {
-	return mana;
+		return mana;
     }
 }
