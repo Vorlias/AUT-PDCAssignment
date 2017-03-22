@@ -22,6 +22,7 @@ public class PlayerCharacter extends Character
 		try
 		{
 			PrintWriter out = new PrintWriter(name + ".save");
+			out.println("Name " + name);
 			this.writeStats(out);
 			out.println("XP " + xp);
 			
