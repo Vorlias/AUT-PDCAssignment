@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.HashSet;
 import rpg.cui.items.Item;
+import rpg.cui.items.Weapon;
 
 /**
  *
@@ -19,6 +20,7 @@ public class PlayerCharacter extends Character
     private int xp = 0;
 	private String name;
 	private final HashSet<Item> items = new HashSet<>();
+	private Weapon equippedWeapon;
     
 	public void saveCharacter()
 	{
@@ -110,5 +112,13 @@ public class PlayerCharacter extends Character
 	public void addItem(Item item)
 	{
 		this.items.add(item);
+	}
+	
+	public void equip(Item item)
+	{
+		if (item instanceof Weapon)
+		{
+			this.equippedWeapon = (Weapon) item;
+		}
 	}
 }
