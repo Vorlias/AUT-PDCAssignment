@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package assignment.rpg.cui;
+package rpg.cui.characters;
 
 /**
  *
@@ -11,15 +11,14 @@ package assignment.rpg.cui;
  */
 public class Character
 {
-    float health;
-    float stamina;
-    float mana;
+    protected float stamina;
+    protected float mana;
+    protected float health;
+    protected int level = 1;
     
-    public Character(float health, float stamina, float mana)
+    public int getLevel()
     {
-	this.health = health;
-	this.stamina = stamina;
-	this.mana = mana;
+	return level;
     }
     
     public float getHealth()
