@@ -16,15 +16,15 @@ public class PlayerCharacter extends Character
     
     public PlayerCharacter(String name)
     {
-		this.health = 100.f;
-		this.stamina = 100.f;
-		this.mana = 100.f;
+		this.setMaxHealth(100.f);
+		this.setMaxStamina(100.f);
+		this.setMaxMana(100.f);
 		this.name = name;
     }
     
     private int getLevelupXP()
     {
-		return (level * 50);
+		return (this.getLevel() * 50);
     }
     
     private boolean hasUserLevelledUp()
@@ -39,8 +39,8 @@ public class PlayerCharacter extends Character
 		if (hasUserLevelledUp())
 		{
 			xp -= getLevelupXP();
-			level += 1;
-			System.out.println("** You are now level " + level + "! **");
+			this.setLevel(this.getLevel() + 1);
+			System.out.println("** You are now level " + this.getLevel() + "! **");
 		}
     }
 }
