@@ -114,8 +114,18 @@ public class PlayerCharacter extends Character
 		this.items.add(item);
 	}
 	
+	/**
+	 * Attempts to equip the item to the player
+	 * @param item The item to equip
+	 */
 	public void equip(Item item)
 	{
+		if (!items.contains(item))
+		{
+			System.err.println("Cannot equip weapon the user does not have");
+			return;
+		}
+		
 		if (item instanceof Weapon)
 		{
 			this.equippedWeapon = (Weapon) item;
