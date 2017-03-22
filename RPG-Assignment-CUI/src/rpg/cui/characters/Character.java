@@ -41,7 +41,35 @@ public class Character
     {
 		return mana;
     }
-
+	
+	public void setMaxStamina(float value)
+	{
+		this.stamina = value;
+		this.maxStamina = value;
+	}
+	
+	public void setMaxMana(float value)
+	{
+		this.mana = value;
+		this.maxMana = value;
+	}
+	
+	public void setMaxHealth(float value)
+	{
+		this.health = value;
+		this.maxHealth = value;
+	}
+	
+	public void setMana(float value)
+	{
+		this.mana = value;
+	}
+	
+	public void setStamina(float value)
+	{
+		this.stamina = value;
+	}
+	
 	public void setHealth(float value)
 	{
 		this.health = value;
