@@ -11,17 +11,37 @@ package rpg.cui.characters;
  */
 public class Character
 {
-    protected float stamina;
-	protected float maxStamina;
+	private float stamina;
+	private float maxStamina;
 	
-    protected float mana;
-	protected float maxMana;
+    private float mana;
+	private float maxMana;
 	
-    protected float health;
-	protected float maxHealth;
+    private float health;
+	private float maxHealth;
 	
-    protected int level = 1;
-    
+    private int level = 1;
+	
+	protected void setLevel(int level)
+	{
+		this.level = level;
+	}
+
+	public float getMaxHealth()
+	{
+		return maxHealth;
+	}
+
+	public float getMaxMana()
+	{
+		return maxMana;
+	}
+
+	public float getMaxStamina()
+	{
+		return maxStamina;
+	}
+	
     public int getLevel()
     {
 		return level;
@@ -42,19 +62,19 @@ public class Character
 		return mana;
     }
 	
-	public void setMaxStamina(float value)
+	public final void setMaxStamina(float value)
 	{
 		this.stamina = value;
 		this.maxStamina = value;
 	}
 	
-	public void setMaxMana(float value)
+	public final void setMaxMana(float value)
 	{
 		this.mana = value;
 		this.maxMana = value;
 	}
 	
-	public void setMaxHealth(float value)
+	public final void setMaxHealth(float value)
 	{
 		this.health = value;
 		this.maxHealth = value;
