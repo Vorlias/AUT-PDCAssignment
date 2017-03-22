@@ -40,5 +40,6 @@ public class TestCharacters
 		System.out.println("Mana: " + pc.getMana() + "/" + pc.getMaxMana());
 		System.out.println("Stamina: " + pc.getStamina() + "/" + pc.getMaxStamina());
 		
+		pc.saveCharacter();
 	}
 }

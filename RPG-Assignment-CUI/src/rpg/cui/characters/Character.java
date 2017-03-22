@@ -5,6 +5,8 @@
  */
 package rpg.cui.characters;
 
+import java.io.PrintWriter;
+
 /**
  *
  * @author Jonathan
@@ -167,5 +169,14 @@ public class Character
 	public void setHealth(float value)
 	{
 		this.health = value;
+	}
+	
+	
+	protected void writeStats(PrintWriter writer)
+	{
+		writer.println("Level " + this.getLevel());
+		writer.println("Health " + this.getHealth() + " " + this.getMaxHealth());
+		writer.println("Mana " + this.getMana() + " " + this.getMaxMana());
+		writer.println("Stamina " + this.getStamina() + " " + this.getMaxStamina());
 	}
 }

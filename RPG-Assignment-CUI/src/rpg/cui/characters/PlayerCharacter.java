@@ -5,6 +5,9 @@
  */
 package rpg.cui.characters;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 /**
  *
  * @author Jonathan
@@ -14,6 +17,23 @@ public class PlayerCharacter extends Character
     int xp = 0;
 	String name;
     
+	public void saveCharacter()
+	{
+		try
+		{
+			PrintWriter out = new PrintWriter(name + ".save");
+			this.writeStats(out);
+			out.println("XP " + xp);
+			
+			out.flush();
+			out.close();
+		}
+		catch (FileNotFoundException e)
+		{
+			System.err.println("Failed to write to file " + name + ".save - " + e.getMessage());
+		}
+	}
+	
 	/**
 	 * Creates a new Player Character
 	 * @param name The name of the Player's Character
