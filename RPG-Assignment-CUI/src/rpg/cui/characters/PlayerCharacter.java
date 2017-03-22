@@ -19,15 +19,12 @@ public class PlayerCharacter extends Character
     
 	public void saveCharacter()
 	{
-		try
+		try (PrintWriter out = new PrintWriter(name + ".save"))
 		{
-			PrintWriter out = new PrintWriter(name + ".save");
 			out.println("Name " + name);
 			this.writeStats(out);
 			out.println("XP " + xp);
-			
 			out.flush();
-			out.close();
 		}
 		catch (FileNotFoundException e)
 		{
