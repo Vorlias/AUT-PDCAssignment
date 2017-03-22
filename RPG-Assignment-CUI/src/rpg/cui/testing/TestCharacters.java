@@ -25,6 +25,7 @@ public class TestCharacters
 		System.out.println("Character '" + pc.getName() + "'");
 		
 		pc.addXP(1000);
+		pc.takeDamage(50.f);
 		
 		System.out.println("Level: " + pc.getLevel());
 		System.out.println("Health: " + pc.getHealth() + "/" + pc.getMaxHealth());
