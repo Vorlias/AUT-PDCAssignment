@@ -17,14 +17,22 @@ public class TestCharacters
 	static Scanner scanner = new Scanner(System.in);
 	public static void main(String[] args)
 	{
-		System.out.println("Enter your name: ");
+		System.out.print("Enter your name: ");
 		String name = scanner.nextLine();
 		
-		PlayerCharacter pc = new PlayerCharacter("Jonathan");
+		System.out.print("Enter your level: ");
+		int level = scanner.nextInt();	
+		
+		PlayerCharacter pc = new PlayerCharacter(name);
+		for (int i = 0; i < level - 1; i++)
+		{
+			pc.addXP(pc.getLevel() * 50);
+		}
+		pc.setMaxHealth(level * 100.f);
+		pc.setMaxMana(level * 100.f);
+		pc.setMaxStamina(level * 100.f);
 		
 		System.out.println("Character '" + pc.getName() + "'");
-		
-		pc.addXP(1000);
 		pc.takeDamage(50.f);
 		
 		System.out.println("Level: " + pc.getLevel());
