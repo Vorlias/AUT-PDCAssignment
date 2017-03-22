@@ -31,16 +31,26 @@ public class PlayerCharacter extends Character
     {
 		return xp >= getLevelupXP();
     }
-    
-    public void addXP(int amount)
-    {
-		xp += amount;
-
+	
+	public void levelupCheck()
+	{
 		if (hasUserLevelledUp())
 		{
 			xp -= getLevelupXP();
 			this.setLevel(this.getLevel() + 1);
 			System.out.println("** You are now level " + this.getLevel() + "! **");
-		}
+			levelupCheck();
+		}		
+	}
+    
+    public void addXP(int amount)
+    {
+		xp += amount;
+		levelupCheck();
     }
+
+	public String getName()
+	{
+		return name;
+	}
 }
