@@ -15,30 +15,30 @@ public class PlayerCharacter extends Character
     
     public PlayerCharacter(float health, float stamina, float mana)
     {
-	this.health = health;
-	this.stamina = stamina;
-	this.mana = mana;
+		this.health = health;
+		this.stamina = stamina;
+		this.mana = mana;
     }
     
     private int getLevelupXP()
     {
-	return (level * 50);
+		return (level * 50);
     }
     
     private boolean hasUserLevelledUp()
     {
-	return xp >= getLevelupXP();
+		return xp >= getLevelupXP();
     }
     
     public void addXP(int amount)
     {
-	xp += amount;
-	
-	if (hasUserLevelledUp())
-	{
-	    xp -= getLevelupXP();
-	    level += 1;
-	    System.out.println("** You are now level " + level + "! **");
-	}
+		xp += amount;
+
+		if (hasUserLevelledUp())
+		{
+			xp -= getLevelupXP();
+			level += 1;
+			System.out.println("** You are now level " + level + "! **");
+		}
     }
 }
