@@ -1,4 +1,4 @@
-package assignment.rpg.cui;
+package rpg.cui.game;
 
 /**
  *
