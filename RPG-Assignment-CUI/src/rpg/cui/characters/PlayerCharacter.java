@@ -7,6 +7,8 @@ package rpg.cui.characters;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.HashSet;
+import rpg.cui.items.Item;
 
 /**
  *
@@ -16,6 +18,7 @@ public class PlayerCharacter extends Character
 {
     private int xp = 0;
 	private String name;
+	private final HashSet<Item> items = new HashSet<>();
     
 	public void saveCharacter()
 	{
@@ -30,6 +33,11 @@ public class PlayerCharacter extends Character
 		{
 			System.err.println("Failed to write to file " + name + ".save - " + e.getMessage());
 		}
+	}
+	
+	public final HashSet<Item> getItems()
+	{
+		return items;
 	}
 	
 	/**
@@ -93,5 +101,14 @@ public class PlayerCharacter extends Character
 	public String getName()
 	{
 		return name;
+	}
+	
+	/**
+	 * Adds the specified item to the player's inventory
+	 * @param item The item to add
+	 */
+	public void addItem(Item item)
+	{
+		this.items.add(item);
 	}
 }
