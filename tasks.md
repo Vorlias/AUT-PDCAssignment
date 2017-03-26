@@ -7,9 +7,9 @@ User Interaction
 
 User Character
 ----------------
-- [ ] Health
-- [ ] Mana
-- [ ] Stamina
+- [X] Health
+- [X] Mana
+- [X] Stamina
 - [ ] Items
 
 Combat 
