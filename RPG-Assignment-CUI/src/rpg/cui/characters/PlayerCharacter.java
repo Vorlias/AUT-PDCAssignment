@@ -7,6 +7,9 @@ package rpg.cui.characters;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.HashSet;
+import rpg.cui.items.Item;
+import rpg.cui.items.Weapon;
 
 /**
  *
@@ -14,25 +17,31 @@ import java.io.PrintWriter;
  */
 public class PlayerCharacter extends Character
 {
-    int xp = 0;
-	String name;
+	static final int FIST_DAMAGE = 1;
+	
+	private int xp = 0;
+	private String name;
+	private final HashSet<Item> items = new HashSet<>();
+	private Weapon equippedWeapon;
     
 	public void saveCharacter()
 	{
-		try
+		try (PrintWriter out = new PrintWriter(name + ".save"))
 		{
-			PrintWriter out = new PrintWriter(name + ".save");
 			out.println("Name " + name);
 			this.writeStats(out);
 			out.println("XP " + xp);
-			
 			out.flush();
-			out.close();
 		}
 		catch (FileNotFoundException e)
 		{
 			System.err.println("Failed to write to file " + name + ".save - " + e.getMessage());
 		}
+	}
+	
+	public final HashSet<Item> getItems()
+	{
+		return items;
 	}
 	
 	/**
@@ -96,5 +105,55 @@ public class PlayerCharacter extends Character
 	public String getName()
 	{
 		return name;
+	}
+	
+	/**
+	 * Adds the specified item to the player's inventory
+	 * @param item The item to add
+	 */
+	public void addItem(Item item)
+	{
+		this.items.add(item);
+	}
+	
+	/**
+	 * Attempts to equip the item to the player
+	 * @param item The item to equip
+	 */
+	public void equip(Item item)
+	{
+		if (!items.contains(item))
+		{
+			System.err.println("Cannot equip weapon the user does not have");
+			return;
+		}
+		
+		if (item instanceof Weapon)
+		{
+			this.equippedWeapon = (Weapon) item;
+		}
+	}
+	
+	/**
+	 * Attacks the target
+	 * @param target The target to attack
+	 */
+	public void attack(Character target)
+	{
+		if (target == this)
+		{
+			System.err.println("Player cannot attack themself.");
+		}
+		else 
+		{
+			if (equippedWeapon != null)
+			{
+				target.takeDamage(equippedWeapon.getDamage());
+			}
+			else
+			{
+				target.takeDamage(FIST_DAMAGE);
+			}
+		}
 	}
 }
