@@ -13,11 +13,23 @@ import rpg.cui.characters.PlayerCharacter;
  */
 public class Weapon extends Item
 {
+	private int damage;
 
-	public Weapon(String name)
+	public Weapon(String name, int damage)
 	{
 		super(name, ItemType.Weapon);
+		this.damage = damage;
 	}
+	
+	/**
+	 * Gets the damage this weapon does
+	 * @return The damage the weapon does
+	 */
+	public int getDamage()
+	{
+		return damage;
+	}
+	
 	
 	@Override
 	public void use(PlayerCharacter character)
