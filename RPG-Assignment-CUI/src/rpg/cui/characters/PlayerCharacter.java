@@ -17,6 +17,8 @@ import rpg.cui.items.Weapon;
  */
 public class PlayerCharacter extends Character
 {
+	static final int FIST_DAMAGE = 1;
+	
     private int xp = 0;
 	private String name;
 	private final HashSet<Item> items = new HashSet<>();
@@ -129,6 +131,29 @@ public class PlayerCharacter extends Character
 		if (item instanceof Weapon)
 		{
 			this.equippedWeapon = (Weapon) item;
+		}
+	}
+	
+	/**
+	 * Attacks the target
+	 * @param target The target to attack
+	 */
+	public void attack(Character target)
+	{
+		if (target == this)
+		{
+			System.err.println("Player cannot attack themself.");
+		}
+		else 
+		{
+			if (equippedWeapon != null)
+			{
+				target.takeDamage(equippedWeapon.getDamage());
+			}
+			else
+			{
+				target.takeDamage(FIST_DAMAGE);
+			}
 		}
 	}
 }
