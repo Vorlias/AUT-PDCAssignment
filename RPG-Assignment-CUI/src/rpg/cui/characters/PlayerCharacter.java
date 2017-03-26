@@ -19,7 +19,7 @@ public class PlayerCharacter extends Character
 {
 	static final int FIST_DAMAGE = 1;
 	
-    private int xp = 0;
+	private int xp = 0;
 	private String name;
 	private final HashSet<Item> items = new HashSet<>();
 	private Weapon equippedWeapon;
