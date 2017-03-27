@@ -23,6 +23,7 @@ public class Character
 	private float maxHealth;
 	
     private int level = 1;
+	private int gold = 0;
 	
 	/**
 	 * Takes away health from this character
@@ -50,7 +51,16 @@ public class Character
 	{
 		this.level = level;
 	}
-
+	
+	/**
+	 * Sets the character's amount of gold
+	 * @param gold The amount of  gold the character has
+	 */
+	protected void setGold(int gold)
+	{
+		this.gold = gold;
+	}
+	
 	/**
 	 * Gets the character's max health
 	 * @return The max health of this character
@@ -87,6 +97,15 @@ public class Character
 		return level;
     }
     
+	/**
+	 * Gets the amount of gold the character has
+	 * @return The gold amount of the character
+	 */
+    public int getGold()
+    {
+		return gold;
+    }
+	
 	/**
 	 * Gets the current health of this character
 	 * @return The current health of the character
@@ -178,5 +197,6 @@ public class Character
 		writer.println("Health " + this.getHealth() + " " + this.getMaxHealth());
 		writer.println("Mana " + this.getMana() + " " + this.getMaxMana());
 		writer.println("Stamina " + this.getStamina() + " " + this.getMaxStamina());
+		writer.println("Gold " + this.getGold());
 	}
 }
