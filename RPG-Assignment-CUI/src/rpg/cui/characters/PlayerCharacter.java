@@ -118,6 +118,7 @@ public class PlayerCharacter extends Character
 		System.out.println("\tMana: " + this.getMana() + "/" + this.getMaxMana());
 		System.out.println("\tStamina: " + this.getStamina() + "/" + this.getMaxStamina());
 		System.out.println("\tGold: " + this.getGold());
+		System.out.println("\tXP: " + this.xp);
 	}
 	
 	/**

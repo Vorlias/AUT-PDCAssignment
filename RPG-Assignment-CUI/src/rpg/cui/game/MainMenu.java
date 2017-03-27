@@ -6,6 +6,7 @@
 package rpg.cui.game;
 
 import java.util.Scanner;
+import rpg.cui.misc.Miscellaneous;
 
 /**
  * 
@@ -53,13 +54,13 @@ public class MainMenu
 	 */
 	private static void handleNewGame()
 	{
-		printBreak(41, '/');
+		Miscellaneous.printBreak(41, '/');
 		System.out.print("Stranger: Woah there! You over there, who are you?\nYou: ");
 		String name = scanner.nextLine();
 		System.out.println("Stranger: Ah I see, " + name + " is it? You shouldn't be walking around here without a weapon to protect you, here take this!");
 		System.out.println("System: " + name + " received a basic dagger!");
 		System.out.println("Stranger: There are powerful monsters lurking in this area so use that to protect yourself. I must go now, good luck out there " + name + "! *poof*");
-		printBreak(41, '/');
+		Miscellaneous.printBreak(41, '/');
 		rpg.cui.game.Main.startGame(name);
 	}
 	
@@ -69,17 +70,5 @@ public class MainMenu
 	private static void handleLoadGame()
 	{
 		
-	}
-	
-	/**
-	 * Print a specified amount of a character to console
-	 */
-	private static void printBreak(int amount, char character)
-	{
-		for(int i = 0; i < amount; i++)
-		{
-			System.out.print(character);
-		}
-		System.out.println();
 	}
 }

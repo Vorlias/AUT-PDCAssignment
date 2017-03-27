@@ -26,6 +26,7 @@ public class Main
 		pc = new PlayerCharacter(name);
 		//Add basic dagger
 		System.out.println("After the encounter with the strange person you find yourself at the entrance to a forest.");
+		System.out.println("The sign reads 'Kreahx Forest - Beware of Monsters! Enter at own risk!'");
 		pc.printStats();
 		chooseNextLocation();
 	}
@@ -49,10 +50,10 @@ public class Main
 		switch(nextLocation)
 		{
 			case "1":
-				//Handle going to town
+				handleTown();
 				break;
 			case "2":
-				//Handle exploration
+				handleExplore();
 				break;
 			case "3":
 				pc.saveCharacter();
@@ -63,7 +64,41 @@ public class Main
 				System.exit(0);
 				break;
 			default:
+				System.out.print("System: Please only use the numbers displayed to select an option e.g. 1\nSelect an option > ");
+				handleNextLocationOption();
 				break;
 		}
+	}
+	
+	/**
+	 * 
+	 */
+	private static void handleTown()
+	{
+		System.out.println("System: You have entered the town of Tarrin.");
+	}
+	
+	/**
+	 * 
+	 */
+	private static void handleTownOptions()
+	{
+		
+	}
+	
+	/**
+	 * 
+	 */
+	private static void handleExplore()
+	{
+		System.out.println("System: You have entered the forest of Kreahx.");
+	}
+	
+	/**
+	 * 
+	 */
+	private static void handleExploreOptions()
+	{
+		
 	}
 }
