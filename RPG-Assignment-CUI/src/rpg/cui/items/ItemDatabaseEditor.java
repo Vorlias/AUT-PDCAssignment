@@ -46,7 +46,7 @@ public class ItemDatabaseEditor
 			System.out.print("Name: ");		
 			String name = scanner.nextLine();
 			
-			System.out.println("Type (Health | Mana | Stamina): ");
+			System.out.print("Type (health | mana | stamina): ");
 			String type = scanner.next();
 			
 			System.out.print("Modifier: ");
