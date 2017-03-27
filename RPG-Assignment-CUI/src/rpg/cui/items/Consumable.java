@@ -42,7 +42,7 @@ public class Consumable extends Item implements Serializable
 	@Override
 	public String toString()
 	{
-		return " Consumable	| " + this.getName() + " <" + this.modifier + ">";
+		return "Consumable	| " + this.getName() + " <" + this.modifier + ">";
 	}
 
 	@Override
