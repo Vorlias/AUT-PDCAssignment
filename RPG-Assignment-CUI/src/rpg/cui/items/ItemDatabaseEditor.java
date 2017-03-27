@@ -21,7 +21,7 @@ public class ItemDatabaseEditor
 	public static void userAddItem()
 	{
 		System.out.println("=== ADD ITEM ===");
-		System.out.println("Options: weapon | cancel");
+		System.out.println("Options: weapon | consumable | cancel");
 		System.out.print("o==[ItemDatabase> Create> ");
 		
 		String option = scanner.next();
@@ -38,6 +38,39 @@ public class ItemDatabaseEditor
 			db.insert(new Weapon(name, damage));
 			
 			System.out.println("Added item '" + name + "' to database successfully.");
+		}
+		else if ("consumable".equals(option.toLowerCase()))
+		{
+			scanner.nextLine();
+			
+			System.out.print("Name: ");		
+			String name = scanner.nextLine();
+			
+			System.out.println("Type (Health | Mana | Stamina): ");
+			String type = scanner.next();
+			
+			System.out.print("Modifier: ");
+			int modifier = scanner.nextInt();
+
+			if (type.toLowerCase().equals("health"))
+			{
+				db.insert(new Consumable(name, Consumable.ConsumableType.Health, modifier));
+				System.out.println("Added item '" + name + "' to database successfully.");
+			}
+			else if (type.toLowerCase().equals("mana"))
+			{
+				db.insert(new Consumable(name, Consumable.ConsumableType.Mana, modifier));
+				System.out.println("Added item '" + name + "' to database successfully.");
+			}		
+			else if (type.toLowerCase().equals("stamina"))
+			{
+				db.insert(new Consumable(name, Consumable.ConsumableType.Stamina, modifier));
+				System.out.println("Added item '" + name + "' to database successfully.");
+			}
+			else
+			{
+				System.err.println("Failed to add item '" + name + "' - Invalid type.");
+			}
 		}
 	}
 	
