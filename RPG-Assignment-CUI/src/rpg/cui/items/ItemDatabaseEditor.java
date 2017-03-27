@@ -21,8 +21,8 @@ public class ItemDatabaseEditor
 	public static void userAddItem()
 	{
 		System.out.println("=== ADD ITEM ===");
-		System.out.println("Options: weapon | cancel");
-		System.out.print("o==[ItemDatabase> Create> ");
+		System.out.println("Options: weapon | consumable | cancel");
+		System.out.print("o==[ItemDatabase> Create># ");
 		
 		String option = scanner.next();
 		
@@ -30,14 +30,47 @@ public class ItemDatabaseEditor
 		{
 			scanner.nextLine();
 			
-			System.out.print("Name: ");
+			System.out.print("	Name: ");
 			String name = scanner.nextLine();
-			System.out.print("Damage: ");
+			System.out.print("	Damage: ");
 			int damage = scanner.nextInt();
 			
 			db.insert(new Weapon(name, damage));
 			
 			System.out.println("Added item '" + name + "' to database successfully.");
+		}
+		else if ("consumable".equals(option.toLowerCase()))
+		{
+			scanner.nextLine();
+			
+			System.out.print("	Name: ");		
+			String name = scanner.nextLine();
+			
+			System.out.print("	Type (health | mana | stamina): ");
+			String type = scanner.next();
+			
+			System.out.print("	Modifier: ");
+			int modifier = scanner.nextInt();
+
+			if (type.toLowerCase().equals("health"))
+			{
+				db.insert(new Consumable(name, Consumable.ConsumableType.Health, modifier));
+				System.out.println("Added item '" + name + "' to database successfully.");
+			}
+			else if (type.toLowerCase().equals("mana"))
+			{
+				db.insert(new Consumable(name, Consumable.ConsumableType.Mana, modifier));
+				System.out.println("Added item '" + name + "' to database successfully.");
+			}		
+			else if (type.toLowerCase().equals("stamina"))
+			{
+				db.insert(new Consumable(name, Consumable.ConsumableType.Stamina, modifier));
+				System.out.println("Added item '" + name + "' to database successfully.");
+			}
+			else
+			{
+				System.err.println("Failed to add item '" + name + "' - Invalid type.");
+			}
 		}
 	}
 	
@@ -55,10 +88,10 @@ public class ItemDatabaseEditor
 		scanner = new Scanner(System.in);
 		String action;
 		
-		do 
+		do
 		{
 			System.out.println("Options: add | list | save | exit");
-			System.out.print("o==[ItemDatabase> ");
+			System.out.print("o==[ItemDatabase># ");
 			action = scanner.next();
 			if (action.toLowerCase().equals("add"))
 			{
@@ -66,11 +99,11 @@ public class ItemDatabaseEditor
 			}
 			else if (action.toLowerCase().equals("list"))
 			{
-				System.out.println("=== ITEMS ======================================");
+				System.out.println("=== ITEMS ===================================================================");
 				System.out.println("Name	| Type		| Item");
-				System.out.println("------------------------------------------------");
+				System.out.println("-----------------------------------------------------------------------------");
 				System.out.println(db);
-				System.out.println("================================================");
+				System.out.println("=============================================================================");
 			}
 			else if (action.toLowerCase().equals("save"))
 			{
