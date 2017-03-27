@@ -38,6 +38,12 @@ public class Consumable extends Item implements Serializable
 		this.type = type;
 		this.modifier = modifier;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return " Consumable	| " + this.getName() + " <" + this.modifier + ">";
+	}
 
 	@Override
 	public void use(PlayerCharacter character)
