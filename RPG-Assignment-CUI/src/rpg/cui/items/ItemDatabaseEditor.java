@@ -22,7 +22,7 @@ public class ItemDatabaseEditor
 	{
 		System.out.println("=== ADD ITEM ===");
 		System.out.println("Options: weapon | consumable | cancel");
-		System.out.print("o==[ItemDatabase> Create> ");
+		System.out.print("o==[ItemDatabase> Create># ");
 		
 		String option = scanner.next();
 		
@@ -30,9 +30,9 @@ public class ItemDatabaseEditor
 		{
 			scanner.nextLine();
 			
-			System.out.print("Name: ");
+			System.out.print("	Name: ");
 			String name = scanner.nextLine();
-			System.out.print("Damage: ");
+			System.out.print("	Damage: ");
 			int damage = scanner.nextInt();
 			
 			db.insert(new Weapon(name, damage));
@@ -43,13 +43,13 @@ public class ItemDatabaseEditor
 		{
 			scanner.nextLine();
 			
-			System.out.print("Name: ");		
+			System.out.print("	Name: ");		
 			String name = scanner.nextLine();
 			
-			System.out.print("Type (health | mana | stamina): ");
+			System.out.print("	Type (health | mana | stamina): ");
 			String type = scanner.next();
 			
-			System.out.print("Modifier: ");
+			System.out.print("	Modifier: ");
 			int modifier = scanner.nextInt();
 
 			if (type.toLowerCase().equals("health"))
@@ -88,10 +88,10 @@ public class ItemDatabaseEditor
 		scanner = new Scanner(System.in);
 		String action;
 		
-		do 
+		do
 		{
 			System.out.println("Options: add | list | save | exit");
-			System.out.print("o==[ItemDatabase> ");
+			System.out.print("o==[ItemDatabase># ");
 			action = scanner.next();
 			if (action.toLowerCase().equals("add"))
 			{
@@ -99,11 +99,11 @@ public class ItemDatabaseEditor
 			}
 			else if (action.toLowerCase().equals("list"))
 			{
-				System.out.println("=== ITEMS ======================================");
+				System.out.println("=== ITEMS ===================================================================");
 				System.out.println("Name	| Type		| Item");
-				System.out.println("------------------------------------------------");
+				System.out.println("-----------------------------------------------------------------------------");
 				System.out.println(db);
-				System.out.println("================================================");
+				System.out.println("=============================================================================");
 			}
 			else if (action.toLowerCase().equals("save"))
 			{
