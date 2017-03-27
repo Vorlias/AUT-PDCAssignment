@@ -11,6 +11,6 @@ public class RPGAssignmentCUI
 	 */
 	public static void main(String[] args) 
 	{
-		System.out.println("Hello, World!");
+		rpg.cui.game.MainMenu.handleMainMenu();
 	}
 }
