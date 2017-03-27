@@ -5,14 +5,17 @@
  */
 package rpg.cui.items;
 
+import java.io.Serializable;
 import rpg.cui.characters.PlayerCharacter;
 
 /**
  *
  * @author Jonathan
  */
-public abstract class Item
+public abstract class Item implements Serializable
 {
+	static final long serialVersionUID = 0xD100;
+	
 	public enum ItemType 
 	{
 		Weapon,
@@ -49,6 +52,12 @@ public abstract class Item
 	public ItemType getType()
 	{
 		return type;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return getName();
 	}
 	
 	/**
