@@ -54,13 +54,6 @@ public class ItemDatabase implements Serializable
 		return returnString;
 	}
 	
-	@Deprecated
-	public void fillWithTestData()
-	{
-		insert(new Weapon("Piss Water", 100));
-		insert(new Weapon("Holy hand grenade", 100));
-	}
-	
 	public static ItemDatabase loadFromFile(String file)
 	{
 		ItemDatabase db = null;
