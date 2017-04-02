@@ -32,11 +32,21 @@ public class ItemDatabase implements Serializable
 		items.put(items.size(), item);
 	}
 	
+	/**
+	 * Updates the item at the index
+	 * @param itemId The item id
+	 * @param item The item
+	 */
 	public void update(int itemId, Item item)
 	{
 		items.put(itemId, item);
 	}
 	
+	/**
+	 * Get the item by it's ID
+	 * @param id The item ID
+	 * @return The Item with the specified id
+	 */
 	public Item getItemById(int id)
 	{
 		return items.get(id);
@@ -54,6 +64,11 @@ public class ItemDatabase implements Serializable
 		return returnString;
 	}
 	
+	/**
+	 * Load the ItemDatabase from a file
+	 * @param file The file to load the database from
+	 * @return The ItemDatabase
+	 */
 	public static ItemDatabase loadFromFile(String file)
 	{
 		ItemDatabase db = null;
@@ -73,6 +88,10 @@ public class ItemDatabase implements Serializable
 		return db;
 	}
 	
+	/**
+	 * Saves the ItemDatabase to a file
+	 * @param file The file to save the database to
+	 */
 	public void saveToFile(String file)
 	{
 		try 
