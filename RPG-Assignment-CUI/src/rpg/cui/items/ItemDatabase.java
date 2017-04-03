@@ -6,12 +6,8 @@
 package rpg.cui.items;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -121,11 +117,8 @@ public class ItemDatabase implements Serializable
 		{
 			HashMap<String, Object> attributeMap = new HashMap<>();
 			
-			//String test = scanner.nextLine();
-			
-			String nextLine = scanner.nextLine();
-			nextLine = nextLine.trim();
-			
+			String nextLine = scanner.nextLine().trim();
+
 			String[] attributes = nextLine.split(";");
 
 			for (String attribute : attributes)
@@ -186,12 +179,7 @@ public class ItemDatabase implements Serializable
 		{
 			Logger.getLogger(ItemDatabase.class.getName()).log(Level.SEVERE, null, ex);
 		}
-
-		//}
-		//catch (IOException | ClassNotFoundException i)
-		//{
-		//	System.err.println(i.getMessage());
-		//}
+		
 		return db;
 	}
 
