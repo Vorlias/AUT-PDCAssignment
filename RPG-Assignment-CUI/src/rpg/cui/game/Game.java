@@ -7,6 +7,7 @@ package rpg.cui.game;
 
 import java.util.Scanner;
 import rpg.cui.characters.PlayerCharacter;
+import rpg.cui.items.ItemDatabase;
 
 /**
  *
@@ -17,6 +18,7 @@ public class Game
 	static Scanner scanner = new Scanner(System.in);
 	private static PlayerCharacter pc;
 	private static boolean isPlayerInTown = false;
+	private static final int DAGGER_ID = 0;
 	
 	/**
 	 * Start the game
@@ -24,8 +26,10 @@ public class Game
 	 */
 	public static void startGame(String name)
 	{
+		ItemDatabase.database = ItemDatabase.loadFromFile(ItemDatabase.DATABASE_FILE);
 		pc = new PlayerCharacter(name);
-		//Add basic dagger
+		pc.addItem(ItemDatabase.database.getItemById(DAGGER_ID)); // Adding dagger to player inventory
+		pc.equip(ItemDatabase.database.getItemById(DAGGER_ID)); // Equiping dagger for player
 		System.out.println("After the encounter with the strange person you find yourself at the entrance to a forest.");
 		System.out.println("The sign reads 'Kreahx Forest - Beware of Monsters! Enter at own risk!'");
 		pc.printStats();

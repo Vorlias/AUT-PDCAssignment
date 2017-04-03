@@ -58,7 +58,7 @@ public class MainMenu
 		System.out.print("Stranger: Woah there! You over there, who are you?\nYou: ");
 		String name = scanner.nextLine();
 		System.out.println("Stranger: Ah I see, " + name + " is it? You shouldn't be walking around here without a weapon to protect you, here take this!");
-		System.out.println("System: " + name + " received a basic dagger!");
+		System.out.println("System: " + name + " received a dagger!");
 		System.out.println("Stranger: There are powerful monsters lurking in this area so use that to protect yourself. I must go now, good luck out there " + name + "! *poof*");
 		Miscellaneous.printBreak(41, '/');
 		rpg.cui.game.Game.startGame(name);
