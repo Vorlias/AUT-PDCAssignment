@@ -80,6 +80,13 @@ public class ItemDatabase implements Serializable
 	static final String REGEX_ATTRIBUTE_NUMBER = "([A-Za-z]+)\\s*=\\s*([0-9.]+)";
 	static final String REGEX_ATTRIBUTE = " ([A-Za-z]+)\\s*=\\s*(.*);";
 
+	/** 
+	 * Gets an attribute pair from the text
+	 * Used for parsing item database attributes
+	 * @param text The text to parse and get the attributes from
+	 * @param pattern The pattern to match
+	 * @return The key and value
+	 */
 	private static String[] getAttributePair(String text, String pattern)
 	{
 		if (text.matches(pattern))
@@ -97,6 +104,11 @@ public class ItemDatabase implements Serializable
 		return null;
 	}
 	
+	/**
+	 * Parses the next entry in the item database file
+	 * @param scanner The scanner to use to parse it
+	 * @param db The database to insert results into
+	 */
 	private static void parseEntry(Scanner scanner, ItemDatabase db)
 	{
 		scanner.next(); // remove 'item'
