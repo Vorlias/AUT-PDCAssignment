@@ -13,7 +13,10 @@ import rpg.cui.characters.PlayerCharacter;
  */
 public class Weapon extends Item
 {
+	static final long serialVersionUID = 0xD101;
+	
 	private int damage;
+	private String fiddle;
 
 	public Weapon(String name, int damage)
 	{
@@ -30,6 +33,11 @@ public class Weapon extends Item
 		return damage;
 	}
 	
+	@Override
+	public String toString()
+	{
+		return "Weapon	| " + this.getName() + " <" + this.getDamage() + ">";
+	}
 	
 	@Override
 	public void use(PlayerCharacter character)
