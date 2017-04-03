@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 public class ItemDatabase implements Serializable
 {
 
-	static final String DATABASE_FILE = "data/ItemDatabase.data";
+	public static final String DATABASE_FILE = "data/ItemDatabase.data";
 
 	private LinkedHashMap<Integer, Item> items = new LinkedHashMap<>();
 

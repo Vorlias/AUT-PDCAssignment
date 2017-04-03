@@ -7,15 +7,18 @@ package rpg.cui.game;
 
 import java.util.Scanner;
 import rpg.cui.characters.PlayerCharacter;
+import rpg.cui.items.ItemDatabase;
 
 /**
  *
  * @author Nathan
  */
-public class Main
+public class Game
 {
 	static Scanner scanner = new Scanner(System.in);
 	private static PlayerCharacter pc;
+	private static boolean isPlayerInTown = false;
+	private static final int DAGGER_ID = 0;
 	
 	/**
 	 * Start the game
@@ -23,8 +26,10 @@ public class Main
 	 */
 	public static void startGame(String name)
 	{
+		ItemDatabase.database = ItemDatabase.loadFromFile(ItemDatabase.DATABASE_FILE);
 		pc = new PlayerCharacter(name);
-		//Add basic dagger
+		pc.addItem(ItemDatabase.database.getItemById(DAGGER_ID)); // Adding dagger to player inventory
+		pc.equipItemById(DAGGER_ID); // Equiping dagger for player
 		System.out.println("After the encounter with the strange person you find yourself at the entrance to a forest.");
 		System.out.println("The sign reads 'Kreahx Forest - Beware of Monsters! Enter at own risk!'");
 		pc.printStats();
@@ -34,10 +39,10 @@ public class Main
 	/**
 	 * Ask player where they would like to go
 	 */
-	private static void chooseNextLocation()
+	public static void chooseNextLocation()
 	{
 		System.out.println("System: What would you like to do next?");
-		System.out.print("\t1. Go to Town\n\t2. Explore\n\t3. Save Game\n\t4. Exit Game\n> ");
+		System.out.print("\t1. Go to Town\n\t2. Explore\n\t3. Open Inventory\n\t4. Save Game\n\t5. Exit Game\n> ");
 		handleNextLocationOption();
 	}
 	
@@ -46,21 +51,24 @@ public class Main
 	 */
 	private static void handleNextLocationOption()
 	{
-		String nextLocation = scanner.nextLine();
-		switch(nextLocation)
+		String nextOption = scanner.nextLine();
+		switch(nextOption)
 		{
 			case "1":
-				handleTown();
+				setPlayerInTown(true);
+				Town.handleTown();
 				break;
 			case "2":
-				handleExplore();
+				Explore.handleExplore();
 				break;
 			case "3":
-				pc.saveCharacter();
-				System.out.println("Save successful!");
-				chooseNextLocation();
+				Inventory.handleInventory();
 				break;
 			case "4":
+				handleSaveGame();
+				chooseNextLocation();
+				break;
+			case "5":
 				System.exit(0);
 				break;
 			default:
@@ -72,33 +80,46 @@ public class Main
 	
 	/**
 	 * 
+	 * @return 
 	 */
-	private static void handleTown()
+	public static PlayerCharacter getPlayerCharacter()
 	{
-		System.out.println("System: You have entered the town of Tarrin.");
+		return pc;
+	}
+	
+	/**
+	 * 
+	 * @return 
+	 */
+	public static boolean getPlayerInTown()
+	{
+		return isPlayerInTown;
+	}
+	
+	/**
+	 * 
+	 * @param state
+	 * @return 
+	 */
+	public static boolean setPlayerInTown(boolean state)
+	{
+		return isPlayerInTown = state;
 	}
 	
 	/**
 	 * 
 	 */
-	private static void handleTownOptions()
+	public static void handleSaveGame()
 	{
-		
-	}
-	
-	/**
-	 * 
-	 */
-	private static void handleExplore()
-	{
-		System.out.println("System: You have entered the forest of Kreahx.");
-	}
-	
-	/**
-	 * 
-	 */
-	private static void handleExploreOptions()
-	{
-		
+		pc.saveCharacter();
+		System.out.println("Save successful!");
+		if(!isPlayerInTown)
+		{
+			chooseNextLocation();
+		}
+		else
+		{
+			Town.handleTown();
+		}
 	}
 }
