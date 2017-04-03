@@ -6,6 +6,7 @@
 package rpg.cui.items;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import rpg.cui.characters.PlayerCharacter;
 
 /**
@@ -22,7 +23,7 @@ public abstract class Item implements Serializable
 		Consumable,
 	}
 	
-	private String name;
+	protected String name;
 	private final ItemType type;
 	
 	/**
@@ -65,4 +66,25 @@ public abstract class Item implements Serializable
 	 * @param character The character to use the item on
 	 */
 	public abstract void use(PlayerCharacter character);
+	
+	public abstract HashMap<String, Object> getAttributes();
+	public abstract void setAttributes(HashMap<String, Object> attributes);
+	
+	public String encode()
+	{
+		StringBuilder builder = new StringBuilder();
+		builder.append("item ");
+		builder.append(type.toString()).append(" ");
+		
+		builder.append("Name = \"").append(this.getName()).append("\"; ");
+		
+		this.getAttributes().forEach((String key, Object value) -> {
+			if (value instanceof String)
+				builder.append(key).append(" = \"").append(value).append("\"; ");
+			else if (value instanceof Integer || value instanceof Double)
+				builder.append(key).append(" = ").append(value).append("; ");
+		});
+		
+		return builder.toString();
+	}
 }

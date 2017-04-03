@@ -5,6 +5,7 @@
  */
 package rpg.cui.items;
 
+import java.util.HashMap;
 import rpg.cui.characters.PlayerCharacter;
 
 /**
@@ -22,6 +23,12 @@ public class Weapon extends Item
 	{
 		super(name, ItemType.Weapon);
 		this.damage = damage;
+	}
+	
+	public Weapon()
+	{
+		super("", ItemType.Weapon);
+		this.damage = 0;
 	}
 	
 	/**
@@ -43,6 +50,30 @@ public class Weapon extends Item
 	public void use(PlayerCharacter character)
 	{
 		character.equip(this);
+	}
+
+	@Override
+	public HashMap<String, Object> getAttributes()
+	{
+		HashMap<String, Object> attributes = new HashMap<>();
+		attributes.put("Damage", damage);
+		
+		return attributes;
+	}
+
+	@Override
+	public void setAttributes(HashMap<String, Object> attributes)
+	{
+		attributes.forEach((String key, Object value) -> {
+			if (key.equals("Name"))
+			{
+				this.name = value.toString();
+			}
+			else if (key.equals("Damage"))
+			{
+				this.damage = (Integer) value;
+			}
+		});
 	}
 	
 }
