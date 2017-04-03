@@ -29,7 +29,7 @@ public class Game
 		ItemDatabase.database = ItemDatabase.loadFromFile(ItemDatabase.DATABASE_FILE);
 		pc = new PlayerCharacter(name);
 		pc.addItem(ItemDatabase.database.getItemById(DAGGER_ID)); // Adding dagger to player inventory
-		pc.equip(ItemDatabase.database.getItemById(DAGGER_ID)); // Equiping dagger for player
+		pc.equipItemById(DAGGER_ID); // Equiping dagger for player
 		System.out.println("After the encounter with the strange person you find yourself at the entrance to a forest.");
 		System.out.println("The sign reads 'Kreahx Forest - Beware of Monsters! Enter at own risk!'");
 		pc.printStats();
@@ -80,6 +80,7 @@ public class Game
 	
 	/**
 	 * 
+	 * @return 
 	 */
 	public static PlayerCharacter getPlayerCharacter()
 	{
@@ -88,6 +89,7 @@ public class Game
 	
 	/**
 	 * 
+	 * @return 
 	 */
 	public static boolean getPlayerInTown()
 	{
@@ -96,6 +98,8 @@ public class Game
 	
 	/**
 	 * 
+	 * @param state
+	 * @return 
 	 */
 	public static boolean setPlayerInTown(boolean state)
 	{

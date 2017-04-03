@@ -5,12 +5,15 @@
  */
 package rpg.cui.game;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Nate
  */
 public class Explore
 {
+	static Scanner scanner = new Scanner(System.in);
 	/**
 	 * 
 	 */
