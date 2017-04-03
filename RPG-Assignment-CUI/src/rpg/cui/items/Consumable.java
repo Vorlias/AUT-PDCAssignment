@@ -6,6 +6,7 @@
 package rpg.cui.items;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import rpg.cui.characters.PlayerCharacter;
 
 /**
@@ -39,10 +40,46 @@ public class Consumable extends Item implements Serializable
 		this.modifier = modifier;
 	}
 	
+	public Consumable()
+	{
+		super("", ItemType.Consumable);
+	}	
+	
 	@Override
 	public String toString()
 	{
 		return "Consumable	| " + this.getName() + ", type: " + this.type.toString() + ", modifier: " + this.modifier;
+	}
+	
+	@Override
+	public HashMap<String, Object> getAttributes()
+	{
+		HashMap<String, Object> attributes = new HashMap<>();
+		attributes.put("Modifier", modifier);
+		attributes.put("Type", type.toString());
+		
+		return attributes;
+	}
+
+	@Override
+	public void setAttributes(HashMap<String, Object> attributes)
+	{
+		attributes.forEach((String key, Object value) -> {
+			switch (key)
+			{
+				case "Name":
+					this.name = value.toString();
+					break;
+				case "Modifier":
+					this.modifier = (Integer) value;
+					break;
+				case "Type":
+					this.type = ConsumableType.valueOf((String) value);
+					break;
+				default:
+					break;
+			}
+		});
 	}
 
 	@Override
