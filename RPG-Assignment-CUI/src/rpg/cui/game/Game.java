@@ -12,10 +12,11 @@ import rpg.cui.characters.PlayerCharacter;
  *
  * @author Nathan
  */
-public class Main
+public class Game
 {
 	static Scanner scanner = new Scanner(System.in);
 	private static PlayerCharacter pc;
+	private static boolean isPlayerInTown = false;
 	
 	/**
 	 * Start the game
@@ -34,10 +35,10 @@ public class Main
 	/**
 	 * Ask player where they would like to go
 	 */
-	private static void chooseNextLocation()
+	public static void chooseNextLocation()
 	{
 		System.out.println("System: What would you like to do next?");
-		System.out.print("\t1. Go to Town\n\t2. Explore\n\t3. Save Game\n\t4. Exit Game\n> ");
+		System.out.print("\t1. Go to Town\n\t2. Explore\n\t3. Open Inventory\n\t4. Save Game\n\t5. Exit Game\n> ");
 		handleNextLocationOption();
 	}
 	
@@ -46,21 +47,24 @@ public class Main
 	 */
 	private static void handleNextLocationOption()
 	{
-		String nextLocation = scanner.nextLine();
-		switch(nextLocation)
+		String nextOption = scanner.nextLine();
+		switch(nextOption)
 		{
 			case "1":
-				handleTown();
+				setPlayerInTown(true);
+				Town.handleTown();
 				break;
 			case "2":
-				handleExplore();
+				Explore.handleExplore();
 				break;
 			case "3":
-				pc.saveCharacter();
-				System.out.println("Save successful!");
-				chooseNextLocation();
+				Inventory.handleInventory();
 				break;
 			case "4":
+				handleSaveGame();
+				chooseNextLocation();
+				break;
+			case "5":
 				System.exit(0);
 				break;
 			default:
@@ -73,32 +77,41 @@ public class Main
 	/**
 	 * 
 	 */
-	private static void handleTown()
+	public static PlayerCharacter getPlayerCharacter()
 	{
-		System.out.println("System: You have entered the town of Tarrin.");
+		return pc;
 	}
 	
 	/**
 	 * 
 	 */
-	private static void handleTownOptions()
+	public static boolean getPlayerInTown()
 	{
-		
+		return isPlayerInTown;
 	}
 	
 	/**
 	 * 
 	 */
-	private static void handleExplore()
+	public static boolean setPlayerInTown(boolean state)
 	{
-		System.out.println("System: You have entered the forest of Kreahx.");
+		return isPlayerInTown = state;
 	}
 	
 	/**
 	 * 
 	 */
-	private static void handleExploreOptions()
+	public static void handleSaveGame()
 	{
-		
+		pc.saveCharacter();
+		System.out.println("Save successful!");
+		if(!isPlayerInTown)
+		{
+			chooseNextLocation();
+		}
+		else
+		{
+			Town.handleTown();
+		}
 	}
 }
