@@ -37,6 +37,7 @@ public class ItemDatabase implements Serializable
 	 */
 	public void insert(Item item)
 	{
+		item.setId(items.size());
 		items.put(items.size(), item);
 	}
 
@@ -48,6 +49,7 @@ public class ItemDatabase implements Serializable
 	 */
 	public void update(int itemId, Item item)
 	{
+		item.setId(itemId);
 		items.put(itemId, item);
 	}
 

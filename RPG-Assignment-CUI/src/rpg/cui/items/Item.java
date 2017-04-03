@@ -16,6 +16,7 @@ import rpg.cui.characters.PlayerCharacter;
 public abstract class Item implements Serializable
 {
 	static final long serialVersionUID = 0xD100;
+	public static final int INVALID_ID = -1;
 	
 	public enum ItemType 
 	{
@@ -25,6 +26,26 @@ public abstract class Item implements Serializable
 	
 	protected String name;
 	private final ItemType type;
+	
+	protected int id = INVALID_ID;
+	
+	/**
+	 * Gets the item's ID
+	 * @return The item id
+	 */
+	public int getId()
+	{
+		return id;
+	}
+	
+	/**
+	 * Set the item Id
+	 * @param id The id of the item
+	 */
+	public void setId(int id)
+	{
+		this.id = id;
+	}
 	
 	/**
 	 * Creates a new item

@@ -49,7 +49,7 @@ public class Weapon extends Item
 	@Override
 	public void use(PlayerCharacter character)
 	{
-		character.equip(this);
+		character.equipItem(this);
 	}
 
 	@Override
