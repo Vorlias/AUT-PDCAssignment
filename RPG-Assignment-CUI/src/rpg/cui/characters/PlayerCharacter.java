@@ -131,10 +131,21 @@ public class PlayerCharacter extends Character
 	}
 	
 	/**
+	 * Equips an item by a specified id
+	 * @param id 
+	 */
+	public void equipItemById(int id)
+	{
+		for (Item i : items)
+			if (i.getId() == id)
+				equipItem(i);
+	}
+	
+	/**
 	 * Attempts to equip the item to the player
 	 * @param item The item to equip
 	 */
-	public void equip(Item item)
+	public void equipItem(Item item)
 	{
 		if (!items.contains(item))
 		{
