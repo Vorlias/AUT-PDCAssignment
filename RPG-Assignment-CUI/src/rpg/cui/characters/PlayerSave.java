@@ -43,7 +43,7 @@ public class PlayerSave
 			writer.println("Level " + character.getLevel());
 			
 			Weapon equippedWeapon = character.getEquippedWeapon();
-			if (equippedWeapon.getId() != Item.INVALID_ID)
+			if (equippedWeapon != null && equippedWeapon.getId() != Item.INVALID_ID)
 				writer.println("EquippedWeapon " + equippedWeapon.getId());
 			
 			// Now we print the inventory
