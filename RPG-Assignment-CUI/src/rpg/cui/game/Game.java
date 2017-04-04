@@ -7,7 +7,7 @@ package rpg.cui.game;
 
 import java.util.Scanner;
 import rpg.cui.characters.PlayerCharacter;
-import rpg.cui.items.ItemDatabase;
+import rpg.cui.characters.PlayerSave;
 
 /**
  *
@@ -17,8 +17,8 @@ public class Game
 {
 	static Scanner scanner = new Scanner(System.in);
 	private static PlayerCharacter pc;
-	static boolean isPlayerInTown = false;
-	static boolean isPlayerInForest = false;
+	static boolean playerInTown = false;
+	static boolean playerInForest = false;
 	private static final int DAGGER_ID = 0;
 	
 	/**
@@ -27,15 +27,12 @@ public class Game
 	 */
 	public static void startGame(String name)
 	{
-		ItemDatabase.database = ItemDatabase.loadFromFile(ItemDatabase.DATABASE_FILE);
 		pc = new PlayerCharacter(name);
 		pc.addItemById(DAGGER_ID); // Adding dagger to player inventory
 		pc.equipItemById(DAGGER_ID); // Equiping dagger for player
 		System.out.println("After the encounter with the strange person you find yourself at the entrance to a forest.");
 		System.out.println("The sign reads 'Kreahx Forest - Beware of Monsters! Enter at own risk!'");
 		pc.printStats();
-		setIsPlayerInTown(false);
-		setIsPlayerInForest(false);
 		chooseNextLocation();
 	}
 	
@@ -58,13 +55,11 @@ public class Game
 		switch(nextOption)
 		{
 			case "1":
-				setIsPlayerInTown(true);
-				setIsPlayerInForest(false);
+				setPlayerInTown(true);
 				Town.handleTown();
 				break;
 			case "2":
-				setIsPlayerInTown(false);
-				setIsPlayerInForest(true);
+				setPlayerInForest(true);
 				Explore.handleExplore();
 				break;
 			case "3":
@@ -92,41 +87,50 @@ public class Game
 	{
 		return pc;
 	}
-
+	
 	/**
 	 * 
-	 * @return 
+	 * @param pc 
 	 */
-	public static boolean getIsPlayerInTown()
+	public static void setPlayerCharacter(PlayerCharacter pc)
 	{
-		return isPlayerInTown;
+		Game.pc = pc;
 	}
 	
 	/**
 	 * 
-	 * @param isPlayerInTown 
+	 * @return 
 	 */
-	public static void setIsPlayerInTown(boolean isPlayerInTown)
+	public static boolean isPlayerInTown()
 	{
-		Game.isPlayerInTown = isPlayerInTown;
+		return playerInTown;
+	}
+	
+	/**
+	 * 
+	 * @param playerInTown 
+	 */
+	public static void setPlayerInTown(boolean playerInTown)
+	{
+		Game.playerInTown = playerInTown;
 	}
 
 	/**
 	 * 
 	 * @return 
 	 */
-	public static boolean getIsPlayerInForest()
+	public static boolean isPlayerInForest()
 	{
-		return isPlayerInForest;
+		return playerInForest;
 	}
 
 	/**
 	 * 
-	 * @param isPlayerInForest 
+	 * @param playerInForest 
 	 */
-	public static void setIsPlayerInForest(boolean isPlayerInForest)
+	public static void setPlayerInForest(boolean playerInForest)
 	{
-		Game.isPlayerInForest = isPlayerInForest;
+		Game.playerInForest = playerInForest;
 	}
 	
 	/**
@@ -134,7 +138,7 @@ public class Game
 	 */
 	public static void handleSaveGame()
 	{
-		pc.saveCharacter();
+		PlayerSave.save(pc);
 		System.out.println("Save successful!");
 	}
 }
