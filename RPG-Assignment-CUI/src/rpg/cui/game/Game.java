@@ -29,7 +29,7 @@ public class Game
 	{
 		ItemDatabase.database = ItemDatabase.loadFromFile(ItemDatabase.DATABASE_FILE);
 		pc = new PlayerCharacter(name);
-		pc.addItem(ItemDatabase.database.getItemById(DAGGER_ID)); // Adding dagger to player inventory
+		pc.addItemById(DAGGER_ID); // Adding dagger to player inventory
 		pc.equipItemById(DAGGER_ID); // Equiping dagger for player
 		System.out.println("After the encounter with the strange person you find yourself at the entrance to a forest.");
 		System.out.println("The sign reads 'Kreahx Forest - Beware of Monsters! Enter at own risk!'");
