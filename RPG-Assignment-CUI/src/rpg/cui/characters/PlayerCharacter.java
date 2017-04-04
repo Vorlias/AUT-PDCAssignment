@@ -18,16 +18,17 @@ import rpg.cui.items.Weapon;
  */
 public class PlayerCharacter extends Character
 {
+
 	static final int FIST_DAMAGE = 1;
-	
+
 	private int xp = 0;
 	private String name;
 	private final HashSet<Item> items = new HashSet<>();
 	private Weapon equippedWeapon;
-    
+	
+	@Deprecated
 	public void saveCharacter()
 	{
-		try (PrintWriter out = new PrintWriter(name + ".save"))
 		{
 			out.println("Name " + name);
 			this.writeStats(out);
@@ -44,37 +45,24 @@ public class PlayerCharacter extends Character
 	{
 		return items;
 	}
-	
 	/**
 	 * Creates a new Player Character
 	 * @param name The name of the Player's Character
 	 */
-    public PlayerCharacter(String name)
-    {
 		this.setMaxHealth(100.f);
 		this.setMaxStamina(100.f);
 		this.setMaxMana(100.f);
 		this.name = name;
-    }
-    
 	/**
 	 * Gets the amount of XP to the next level
 	 * @return The amount of XP to the next level
 	 */
-    private int getLevelupXP()
-    {
 		return (this.getLevel() * 50);
-    }
-    
 	/**
 	 * Returns whether or not the user has leveled up
 	 * @return True if the user has leveled up
 	 */
-    private boolean hasUserLevelledUp()
-    {
 		return xp >= getLevelupXP();
-    }
-	
 	/**
 	 * Handles leveling up
 	 */
@@ -86,18 +74,13 @@ public class PlayerCharacter extends Character
 			this.setLevel(this.getLevel() + 1);
 			System.out.println("** You are now level " + this.getLevel() + "! **");
 			levelupCheck();
-		}		
 	}
-    
 	/**
 	 * Adds XP to this character
 	 * @param amount The amount of XP to add
 	 */
-    public void addXP(int amount)
-    {
 		xp += amount;
 		levelupCheck();
-    }
 
 	/**
 	 * Gets the name of this character
@@ -107,7 +90,6 @@ public class PlayerCharacter extends Character
 	{
 		return name;
 	}
-	
 	/**
 	 *
 	 */
@@ -121,7 +103,6 @@ public class PlayerCharacter extends Character
 		System.out.println("\tGold: " + this.getGold());
 		System.out.println("\tXP: " + this.xp);
 	}
-	
 	/**
 	 * Adds the specified item to the player's inventory
 	 * @param item The item to add
@@ -130,7 +111,6 @@ public class PlayerCharacter extends Character
 	{
 		this.items.add(item);
 	}
-	
 	/**
 	 * Adds the specified item to the player by id
 	 * @param id The id of the item to add
@@ -139,10 +119,8 @@ public class PlayerCharacter extends Character
 	{
 		this.items.add(ItemDatabase.database.getItemById(id));
 	}
-	
 	/**
 	 * Equips an item by a specified id
-	 * @param id 
 	 */
 	public void equipItemById(int id)
 	{
@@ -150,7 +128,6 @@ public class PlayerCharacter extends Character
 			if (i.getId() == id)
 				equipItem(i);
 	}
-	
 	/**
 	 * Attempts to equip the item to the player
 	 * @param item The item to equip
@@ -162,13 +139,11 @@ public class PlayerCharacter extends Character
 			System.err.println("Cannot equip weapon the user does not have");
 			return;
 		}
-		
 		if (item instanceof Weapon)
 		{
 			this.equippedWeapon = (Weapon) item;
 		}
 	}
-	
 	/**
 	 * Attacks the target
 	 * @param target The target to attack
@@ -179,7 +154,6 @@ public class PlayerCharacter extends Character
 		{
 			System.err.println("Player cannot attack themself.");
 		}
-		else 
 		{
 			if (equippedWeapon != null)
 			{

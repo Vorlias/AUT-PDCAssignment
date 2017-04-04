@@ -40,6 +40,7 @@ public class PlayerSave
 			writer.println("Gold " + character.getGold());
 			writer.println("XP " + character.getXP());
 			writer.println("Level " + character.getLevel());
+			writer.println("Weapon " +);
 			
 			// Now we print the inventory
 			writer.print("Inventory ");
