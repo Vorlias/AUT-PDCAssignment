@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.HashSet;
 import rpg.cui.items.Item;
+import rpg.cui.items.ItemDatabase;
 import rpg.cui.items.Weapon;
 
 /**
@@ -128,6 +129,15 @@ public class PlayerCharacter extends Character
 	public void addItem(Item item)
 	{
 		this.items.add(item);
+	}
+	
+	/**
+	 * Adds the specified item to the player by id
+	 * @param id The id of the item to add
+	 */
+	public void addItemById(int id)
+	{
+		this.items.add(ItemDatabase.database.getItemById(id));
 	}
 	
 	/**
