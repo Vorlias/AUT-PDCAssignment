@@ -6,10 +6,11 @@
 package rpg.cui.game;
 
 import java.util.Scanner;
+import rpg.cui.misc.Miscellaneous;
 
 /**
  *
- * @author Nate
+ * @author Nathan
  */
 public class Town
 {
@@ -20,6 +21,7 @@ public class Town
 	 */
 	public static void handleTown()
 	{
+		Miscellaneous.printBreak(41, '/');
 		System.out.println("System: You have entered the town of Tarrin.");
 		Game.getPlayerCharacter().printStats();
 		System.out.println("System: You see store signs along the street, what would you like to do?");
@@ -47,7 +49,8 @@ public class Town
 				break;
 			case "4":
 				System.out.println("System: You have left the town of Tarrin.");
-				Game.setPlayerInTown(false);
+				Miscellaneous.printBreak(41, '/');
+				Game.setIsPlayerInTown(false);
 				Game.chooseNextLocation();
 				break;
 			case "5":
@@ -69,8 +72,8 @@ public class Town
 	 */
 	private static void handleBlacksmith()
 	{
-		System.out.println("Welcome to Lorhamri Orcbuster's smithery!");
-		System.out.println("What would you like to do player?");
+		System.out.println("Lorhamri: Welcome to Lorhamri Orcbuster's smithery!");
+		System.out.println("Lorhamri: What would you like to do player?");
 		System.out.print("\t1. Purchase a Weapon\n\t2. Leave Blacksmith\n> ");
 		handleBlacksmithOptions();
 	}
@@ -110,8 +113,8 @@ public class Town
 	 */
 	private static void handlePotionStore()
 	{
-		System.out.println("Welcome to Hocru's magical potion store!");
-		System.out.println("What would you like to do player?");
+		System.out.println("Hocru: Welcome to Hocru's magical potion store!");
+		System.out.println("Hocru: What would you like to do player?");
 		System.out.print("\t1. Purchase Potions\n\t2. Leave Potion Store\n> ");
 		handlePotionStoreOptions();
 	}
@@ -132,6 +135,8 @@ public class Town
 				handleTown();
 				break;
 			default:
+				System.out.print("System: Please only use the numbers displayed to select an option e.g. 1\nSelect an option > ");
+				handlePotionStoreOptions();
 				break;
 		}
 	}

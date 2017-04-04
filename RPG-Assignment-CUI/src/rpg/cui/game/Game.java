@@ -17,7 +17,8 @@ public class Game
 {
 	static Scanner scanner = new Scanner(System.in);
 	private static PlayerCharacter pc;
-	private static boolean isPlayerInTown = false;
+	static boolean isPlayerInTown = false;
+	static boolean isPlayerInForest = false;
 	private static final int DAGGER_ID = 0;
 	
 	/**
@@ -33,6 +34,8 @@ public class Game
 		System.out.println("After the encounter with the strange person you find yourself at the entrance to a forest.");
 		System.out.println("The sign reads 'Kreahx Forest - Beware of Monsters! Enter at own risk!'");
 		pc.printStats();
+		setIsPlayerInTown(false);
+		setIsPlayerInForest(false);
 		chooseNextLocation();
 	}
 	
@@ -42,7 +45,7 @@ public class Game
 	public static void chooseNextLocation()
 	{
 		System.out.println("System: What would you like to do next?");
-		System.out.print("\t1. Go to Town\n\t2. Explore\n\t3. Open Inventory\n\t4. Save Game\n\t5. Exit Game\n> ");
+		System.out.print("\t1. Go to Town\n\t2. Enter the Forest\n\t3. Open Inventory\n\t4. Save Game\n\t5. Exit Game\n> ");
 		handleNextLocationOption();
 	}
 	
@@ -55,10 +58,13 @@ public class Game
 		switch(nextOption)
 		{
 			case "1":
-				setPlayerInTown(true);
+				setIsPlayerInTown(true);
+				setIsPlayerInForest(false);
 				Town.handleTown();
 				break;
 			case "2":
+				setIsPlayerInTown(false);
+				setIsPlayerInForest(true);
 				Explore.handleExplore();
 				break;
 			case "3":
@@ -86,24 +92,41 @@ public class Game
 	{
 		return pc;
 	}
-	
+
 	/**
 	 * 
 	 * @return 
 	 */
-	public static boolean getPlayerInTown()
+	public static boolean isIsPlayerInTown()
 	{
 		return isPlayerInTown;
 	}
 	
 	/**
 	 * 
-	 * @param state
+	 * @param isPlayerInTown 
+	 */
+	public static void setIsPlayerInTown(boolean isPlayerInTown)
+	{
+		Game.isPlayerInTown = isPlayerInTown;
+	}
+
+	/**
+	 * 
 	 * @return 
 	 */
-	public static boolean setPlayerInTown(boolean state)
+	public static boolean isIsPlayerInForest()
 	{
-		return isPlayerInTown = state;
+		return isPlayerInForest;
+	}
+
+	/**
+	 * 
+	 * @param isPlayerInForest 
+	 */
+	public static void setIsPlayerInForest(boolean isPlayerInForest)
+	{
+		Game.isPlayerInForest = isPlayerInForest;
 	}
 	
 	/**
@@ -113,13 +136,5 @@ public class Game
 	{
 		pc.saveCharacter();
 		System.out.println("Save successful!");
-		if(!isPlayerInTown)
-		{
-			chooseNextLocation();
-		}
-		else
-		{
-			Town.handleTown();
-		}
 	}
 }

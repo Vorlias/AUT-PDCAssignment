@@ -56,9 +56,9 @@ public class Character
 	 * Sets the character's amount of gold
 	 * @param gold The amount of  gold the character has
 	 */
-	protected void setGold(int gold)
+	public void setGold(int gold)
 	{
-		this.gold = gold;
+		this.gold += gold;
 	}
 	
 	/**
