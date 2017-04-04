@@ -47,7 +47,7 @@ public class Character
 	 * Sets the character's level
 	 * @param level The level of the character
 	 */
-	protected void setLevel(int level)
+	public void setLevel(int level)
 	{
 		this.level = level;
 	}
@@ -188,15 +188,5 @@ public class Character
 	public void setHealth(float value)
 	{
 		this.health = value;
-	}
-	
-	
-	protected void writeStats(PrintWriter writer)
-	{
-		writer.println("Level " + this.getLevel());
-		writer.println("Health " + this.getHealth() + " " + this.getMaxHealth());
-		writer.println("Mana " + this.getMana() + " " + this.getMaxMana());
-		writer.println("Stamina " + this.getStamina() + " " + this.getMaxStamina());
-		writer.println("Gold " + this.getGold());
 	}
 }
