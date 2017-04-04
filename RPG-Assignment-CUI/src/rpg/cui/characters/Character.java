@@ -189,14 +189,4 @@ public class Character
 	{
 		this.health = value;
 	}
-	
-	
-	protected void writeStats(PrintWriter writer)
-	{
-		writer.println("Level " + this.getLevel());
-		writer.println("Health " + this.getHealth() + " " + this.getMaxHealth());
-		writer.println("Mana " + this.getMana() + " " + this.getMaxMana());
-		writer.println("Stamina " + this.getStamina() + " " + this.getMaxStamina());
-		writer.println("Gold " + this.getGold());
-	}
 }
