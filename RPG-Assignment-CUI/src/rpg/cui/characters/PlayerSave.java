@@ -170,6 +170,8 @@ public class PlayerSave
 			{
 				parseLine(inputScanner.nextLine());
 			}
+			
+			inputScanner.close();
 		}
 		catch (FileNotFoundException ex)
 		{
