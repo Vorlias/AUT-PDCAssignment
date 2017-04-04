@@ -29,6 +29,12 @@ public class PlayerSave
 		this.character = character;
 	}
 	
+	/**
+	 * Parses a string attribute
+	 * E.g. 'Name Test'
+	 * @param attribute The attribute's name
+	 * @param scanner The scanner parsing the line
+	 */
 	private void parseStringAttribute(String attribute, Scanner scanner)
 	{
 		String value = scanner.nextLine();
@@ -38,6 +44,12 @@ public class PlayerSave
 		}
 	}
 	
+	/**
+	 * Parses an integer array attribute
+	 * E.g. 'Inventory 0 1 2 3'
+	 * @param attribute The attribute's name
+	 * @param scanner The scanner parsing the line
+	 */
 	private void parseIntArray(String attribute, Scanner scanner)
 	{
 		ArrayList<Integer> theArray = new ArrayList<>();
@@ -55,6 +67,12 @@ public class PlayerSave
 		}
 	}
 	
+	/**
+	 * Parses a constrained float attribute
+	 * E.g. 'Health 50.0 100.0'
+	 * @param attribute The attribute's name
+	 * @param scanner The scanner parsing the line
+	 */
 	private void parseConstrainedFloatAttribute(String attribute, Scanner scanner)
 	{
 		float value = scanner.nextFloat();
@@ -79,6 +97,12 @@ public class PlayerSave
 		}
 	}
 	
+	/**
+	 * Parses an integer attribute
+	 * E.g. 'Gold 100'
+	 * @param attribute The attribute's name
+	 * @param scanner The scanner parsing the line
+	 */
 	private void parseIntAttribute(String attribute, Scanner scanner)
 	{
 		int value = scanner.nextInt();
@@ -102,6 +126,10 @@ public class PlayerSave
 		}
 	}
 	
+	/**
+	 * Parses a save file line
+	 * @param line The line to parse
+	 */
 	private void parseLine(String line)
 	{
 		Scanner lineScanner = new Scanner(line);
