@@ -47,7 +47,7 @@ public class Character
 	 * Sets the character's level
 	 * @param level The level of the character
 	 */
-	protected void setLevel(int level)
+	public void setLevel(int level)
 	{
 		this.level = level;
 	}
