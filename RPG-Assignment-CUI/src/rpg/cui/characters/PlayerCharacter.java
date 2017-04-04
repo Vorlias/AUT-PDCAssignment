@@ -33,6 +33,15 @@ public class PlayerCharacter extends Character
 	}
 	
 	/**
+	 * Set the name of the character
+	 * @param name The name of the character
+	 */
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+	
+	/**
 	 * Gets the equipped weapon
 	 * @return The equipped weapon
 	 */
