@@ -97,7 +97,7 @@ public class Game
 	 * 
 	 * @return 
 	 */
-	public static boolean isIsPlayerInTown()
+	public static boolean getIsPlayerInTown()
 	{
 		return isPlayerInTown;
 	}
@@ -115,7 +115,7 @@ public class Game
 	 * 
 	 * @return 
 	 */
-	public static boolean isIsPlayerInForest()
+	public static boolean getIsPlayerInForest()
 	{
 		return isPlayerInForest;
 	}
