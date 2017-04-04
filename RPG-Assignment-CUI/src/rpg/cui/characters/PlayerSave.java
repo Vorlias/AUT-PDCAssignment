@@ -5,8 +5,11 @@
  */
 package rpg.cui.characters;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import rpg.cui.items.Item;
@@ -19,10 +22,131 @@ import rpg.cui.items.Weapon;
 public class PlayerSave
 {
 	PlayerCharacter character;
+	Scanner inputScanner;
 	
 	private PlayerSave(PlayerCharacter character)
 	{
 		this.character = character;
+	}
+	
+	private void parseStringAttribute(String attribute, Scanner scanner)
+	{
+		String value = scanner.nextLine();
+		if (attribute.equals("Name"))
+		{
+			character.setName(value);
+		}
+	}
+	
+	private void parseIntArray(String attribute, Scanner scanner)
+	{
+		ArrayList<Integer> theArray = new ArrayList<>();
+		while (scanner.hasNextInt())
+		{
+			theArray.add(scanner.nextInt());
+		}
+		
+		if (attribute.equals("Inventory"))
+		{
+			for (int i : theArray)
+			{
+				character.addItemById(i);
+			}
+		}
+	}
+	
+	private void parseConstrainedFloatAttribute(String attribute, Scanner scanner)
+	{
+		float value = scanner.nextFloat();
+		float maxValue = scanner.nextFloat();
+		
+		switch (attribute)
+		{
+			case "Health":
+				character.setMaxHealth(maxValue);
+				character.setHealth(value);
+				break;
+			case "Mana":
+				character.setMaxMana(maxValue);
+				character.setMana(value);
+				break;
+			case "Stamina":
+				character.setMaxStamina(maxValue);
+				character.setStamina(value);
+				break;
+			default:
+				break;
+		}
+	}
+	
+	private void parseIntAttribute(String attribute, Scanner scanner)
+	{
+		int value = scanner.nextInt();
+		
+		switch (attribute)
+		{
+			case "Gold":
+				character.setGold(value);
+				break;
+			case "XP":
+				character.addXP(value);
+				break;
+			case "EquippedWeapon":
+				character.equipItemById(value);
+				break;
+			case "Level":
+				character.setLevel(value);
+				break;
+			default:
+				break;
+		}
+	}
+	
+	private void parseLine(String line)
+	{
+		Scanner lineScanner = new Scanner(line);
+		String attribName = lineScanner.next();
+		
+		switch (attribName)
+		{
+			case "Name":
+				parseStringAttribute(attribName, lineScanner);
+				break;
+			case "Gold":
+			case "XP":
+			case "Level":
+			case "EquippedWeapon":
+				parseIntAttribute(attribName, lineScanner);
+				break;
+			case "Health":
+			case "Mana":
+			case "Stamina":
+				parseConstrainedFloatAttribute(attribName, lineScanner);
+				break;
+			case "Inventory":
+				parseIntArray(attribName, lineScanner);
+				break;
+		}
+	}
+	
+	/**
+	 * Loads the character from a file
+	 * @param file The file path
+	 */
+	public void loadFromFile(String file)
+	{
+		try
+		{
+			inputScanner = new Scanner(new File(file));
+			while (inputScanner.hasNextLine())
+			{
+				parseLine(inputScanner.nextLine());
+			}
+		}
+		catch (FileNotFoundException ex)
+		{
+			Logger.getLogger(PlayerSave.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 	
 	/**
@@ -42,10 +166,6 @@ public class PlayerSave
 			writer.println("XP " + character.getXP());
 			writer.println("Level " + character.getLevel());
 			
-			Weapon equippedWeapon = character.getEquippedWeapon();
-			if (equippedWeapon != null && equippedWeapon.getId() != Item.INVALID_ID)
-				writer.println("EquippedWeapon " + equippedWeapon.getId());
-			
 			// Now we print the inventory
 			writer.print("Inventory ");
 			
@@ -57,6 +177,12 @@ public class PlayerSave
 				}
 			}
 			writer.println();
+			
+			Weapon equippedWeapon = character.getEquippedWeapon();
+			if (equippedWeapon != null && equippedWeapon.getId() != Item.INVALID_ID)
+				writer.println("EquippedWeapon " + equippedWeapon.getId());
+			
+
 			
 			writer.flush();
 		}
@@ -83,6 +209,7 @@ public class PlayerSave
 	 */
 	public static void load(PlayerCharacter character, String saveName)
 	{
-		
+		PlayerSave playerSave = new PlayerSave(character);
+		playerSave.loadFromFile(saveName + ".save");
 	}
 }
