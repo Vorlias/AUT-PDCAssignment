@@ -17,19 +17,43 @@ public class Monster extends Character
 	private String name;
 	private int maxDamage;
 	
+	/**
+	 * 
+	 * @param name
+	 * @param maxHealth
+	 * @param maxDamage
+	 * @param maxGold 
+	 */
 	public Monster(String name, float maxHealth, int maxDamage, int maxGold)
 	{
 		this.setMaxHealth(maxHealth);
-		this.maxDamage = maxDamage;
+		this.setMaxDamage(maxDamage);
 		this.setGold(random.nextInt(maxGold));
 		this.name = name;
 	}
 	
+	/**
+	 * 
+	 * @return 
+	 */
 	public int getMaxDamage()
 	{
 		return maxDamage;
 	}
+
+	/**
+	 * 
+	 * @param maxDamage 
+	 */
+	public void setMaxDamage(int maxDamage)
+	{
+		this.maxDamage = maxDamage;
+	}
 	
+	/**
+	 * 
+	 * @return 
+	 */
 	public String getName()
 	{
 		return name;

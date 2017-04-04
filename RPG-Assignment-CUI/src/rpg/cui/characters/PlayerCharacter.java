@@ -77,7 +77,7 @@ public class PlayerCharacter extends Character
 		this.setMaxMana(100.f);
 		this.name = name;
 	}
-
+	
 	/**
 	 * Gets the amount of XP to the next level
 	 *

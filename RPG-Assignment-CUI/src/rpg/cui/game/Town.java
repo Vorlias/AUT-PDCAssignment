@@ -50,7 +50,7 @@ public class Town
 			case "4":
 				System.out.println("System: You have left the town of Tarrin.");
 				Miscellaneous.printBreak(41, '/');
-				Game.setIsPlayerInTown(false);
+				Game.setPlayerInTown(false);
 				Game.chooseNextLocation();
 				break;
 			case "5":
