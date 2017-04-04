@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import rpg.cui.items.Item;
+import rpg.cui.items.Weapon;
 
 /**
  *
@@ -40,7 +41,10 @@ public class PlayerSave
 			writer.println("Gold " + character.getGold());
 			writer.println("XP " + character.getXP());
 			writer.println("Level " + character.getLevel());
-			writer.println("Weapon " +);
+			
+			Weapon equippedWeapon = character.getEquippedWeapon();
+			if (equippedWeapon.getId() != Item.INVALID_ID)
+				writer.println("EquippedWeapon " + equippedWeapon.getId());
 			
 			// Now we print the inventory
 			writer.print("Inventory ");
