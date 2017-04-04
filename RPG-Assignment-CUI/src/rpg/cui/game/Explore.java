@@ -87,6 +87,7 @@ public class Explore
 			case "3":
 				System.out.println("System: You have left the forest of Kreahx.");
 				Miscellaneous.printBreak(41, '/');
+				Game.setPlayerInForest(false);
 				Game.chooseNextLocation();
 				break;
 			case "4":
