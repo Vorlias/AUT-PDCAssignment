@@ -7,7 +7,7 @@ package rpg.cui.misc;
 
 /**
  *
- * @author Nate
+ * @author Nathan
  */
 public class Miscellaneous
 {

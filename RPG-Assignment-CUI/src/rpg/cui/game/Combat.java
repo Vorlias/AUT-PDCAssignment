@@ -5,28 +5,27 @@
  */
 package rpg.cui.game;
 
-import java.util.Scanner;
+import rpg.cui.characters.Monster;
 
 /**
  *
  * @author Nathan
  */
-public class Inventory
+public class Combat
 {
-	static Scanner scanner = new Scanner(System.in);
-	
 	/**
 	 * 
 	 */
-	public static void handleInventory()
+	public static void handleCombat()
 	{
-		
+		Monster goblin = new Monster("Goblin", 50.f, 10, 5);
+		System.out.println(goblin.isAlive()); // Goblins alive!
 	}
 	
 	/**
 	 * 
 	 */
-	private static void handleInventoryOptions()
+	private static void handleCombatOptions()
 	{
 		
 	}

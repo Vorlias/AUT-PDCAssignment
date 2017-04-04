@@ -11,6 +11,6 @@ public class RPGAssignmentCUI
 	 */
 	public static void main(String[] args) 
 	{
-		rpg.cui.game.MainMenu.handleMainMenu();
+		MainMenu.handleMainMenu(); // Load main menu
 	}
 }
