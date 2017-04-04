@@ -37,7 +37,7 @@ public class PlayerSave
 	 */
 	private void parseStringAttribute(String attribute, Scanner scanner)
 	{
-		String value = scanner.nextLine();
+		String value = scanner.nextLine().trim();
 		if (attribute.equals("Name"))
 		{
 			character.setName(value);
