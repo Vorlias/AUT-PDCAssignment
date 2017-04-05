@@ -55,6 +55,14 @@ public class PlayerCharacter extends Character
 		return xp;
 	}
 
+	public PlayerCharacter()
+	{
+		super("");
+		this.setMaxHealth(100.f);
+		this.setMaxStamina(100.f);
+		this.setMaxMana(100.f);		
+	}
+	
 	/**
 	 * Creates a new Player Character
 	 *
