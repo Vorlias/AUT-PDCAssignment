@@ -11,7 +11,7 @@ import java.io.PrintWriter;
  *
  * @author Jonathan
  */
-public class Character
+public abstract class Character
 {
 	private float stamina;
 	private float maxStamina;
@@ -24,6 +24,35 @@ public class Character
 	
     private int level = 1;
 	private int gold = 0;
+	
+	private String name;
+	
+	/**
+	 * Gets the name of the character
+	 * @return The name of the character
+	 */
+	public String getName()
+	{
+		return name;
+	}
+	
+	/**
+	 * Sets the name of this character
+	 * @param name The name of this character
+	 */
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+	
+	/**
+	 * Creates a character
+	 * @param name The name of the character
+	 */
+	protected Character(String name)
+	{
+		this.name = name;
+	}
 	
 	/**
 	 * Takes away health from this character

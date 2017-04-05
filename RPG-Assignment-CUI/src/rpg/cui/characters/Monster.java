@@ -26,10 +26,10 @@ public class Monster extends Character
 	 */
 	public Monster(String name, float maxHealth, int maxDamage, int maxGold)
 	{
+		super(name);
 		this.setMaxHealth(maxHealth);
 		this.setMaxDamage(maxDamage);
 		this.setGold(random.nextInt(maxGold));
-		this.name = name;
 	}
 	
 	/**
@@ -48,14 +48,5 @@ public class Monster extends Character
 	public void setMaxDamage(int maxDamage)
 	{
 		this.maxDamage = maxDamage;
-	}
-	
-	/**
-	 * 
-	 * @return 
-	 */
-	public String getName()
-	{
-		return name;
 	}
 }

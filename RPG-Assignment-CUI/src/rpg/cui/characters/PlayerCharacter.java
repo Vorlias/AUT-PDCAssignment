@@ -22,7 +22,6 @@ public class PlayerCharacter extends Character
 	static final int FIST_DAMAGE = 1;
 
 	private int xp = 0;
-	private String name;
 	private final HashSet<Item> items = new HashSet<>();
 	private Weapon equippedWeapon;
 	
@@ -31,16 +30,7 @@ public class PlayerCharacter extends Character
 	{
 		PlayerSave.save(this);
 	}
-	
-	/**
-	 * Set the name of the character
-	 * @param name The name of the character
-	 */
-	public void setName(String name)
-	{
-		this.name = name;
-	}
-	
+
 	/**
 	 * Gets the equipped weapon
 	 * @return The equipped weapon
@@ -72,10 +62,10 @@ public class PlayerCharacter extends Character
 	 */
 	public PlayerCharacter(String name)
 	{
+		super(name);
 		this.setMaxHealth(100.f);
 		this.setMaxStamina(100.f);
 		this.setMaxMana(100.f);
-		this.name = name;
 	}
 	
 	/**
@@ -121,16 +111,6 @@ public class PlayerCharacter extends Character
 	{
 		xp += amount;
 		levelupCheck();
-	}
-
-	/**
-	 * Gets the name of this character
-	 *
-	 * @return The name of the character
-	 */
-	public String getName()
-	{
-		return name;
 	}
 
 	/**
