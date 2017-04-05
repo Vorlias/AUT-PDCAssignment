@@ -9,7 +9,7 @@ package rpg.cui.misc;
  *
  * @author Nathan
  */
-public class Miscellaneous
+public class Utility
 {
 	/**
 	 * Print a specified amount of a character to console
