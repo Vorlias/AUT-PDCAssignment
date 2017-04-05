@@ -73,11 +73,9 @@ public class MainMenu
 	 */
 	private static void handleLoadGame()
 	{
-		PlayerCharacter pc = new PlayerCharacter("");
 		System.out.print("System: Enter the name of the save file you want to load > ");
 		String saveName = scanner.nextLine();
-		PlayerSave.load(pc, saveName);
-		Game.setPlayerCharacter(pc);
+		PlayerSave.loadCharacter(saveName);
 		Game.setPlayerInTown(false);
 		Game.setPlayerInForest(false);
 		Game.chooseNextLocation();

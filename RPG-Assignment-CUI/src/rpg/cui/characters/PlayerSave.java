@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import rpg.cui.game.Game;
 import rpg.cui.items.Item;
 import rpg.cui.items.Weapon;
 
@@ -230,6 +231,17 @@ public class PlayerSave
 	{
 		PlayerSave playerSave = new PlayerSave(character);
 		playerSave.writeToFile(character.getName() + ".save");
+	}
+	
+	/**
+	 * Loads a character into the game
+	 * @param saveName The name of the save to load
+	 */
+	public static void loadCharacter(String saveName)
+	{
+		PlayerCharacter character = new PlayerCharacter();
+		PlayerSave.load(character, saveName);
+		Game.setPlayerCharacter(character);
 	}
 	
 	/**
