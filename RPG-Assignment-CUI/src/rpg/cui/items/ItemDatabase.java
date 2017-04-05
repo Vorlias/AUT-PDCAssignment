@@ -89,7 +89,7 @@ public class ItemDatabase implements Serializable
 	 * @param pattern The pattern to match
 	 * @return The key and value
 	 */
-	private static String[] getAttributePair(String text, String pattern)
+	private String[] getAttributePair(String text, String pattern)
 	{
 		if (text.matches(pattern))
 		{
@@ -111,7 +111,7 @@ public class ItemDatabase implements Serializable
 	 * @param scanner The scanner to use to parse it
 	 * @param db The database to insert results into
 	 */
-	private static void parseEntry(Scanner scanner, ItemDatabase db)
+	private void parseEntry(Scanner scanner)
 	{
 		scanner.next(); // remove 'item'
 		String type = scanner.next(); // get declared type
@@ -156,7 +156,7 @@ public class ItemDatabase implements Serializable
 			}
 			
 			item.setAttributes(attributeMap);
-			db.insert(item);
+			this.insert(item);
 		}
 		else 
 		{
@@ -168,31 +168,14 @@ public class ItemDatabase implements Serializable
 	 * Load the ItemDatabase from a file
 	 *
 	 * @param file The file to load the database from
+	 * @deprecated ItemDatabase is created by default now
 	 * @return The ItemDatabase
 	 */
+	@Deprecated
 	public static ItemDatabase loadFromFile(String file)
 	{
-		ItemDatabase db = new ItemDatabase();
-		Scanner input;
-		try
-		{
-			input = new Scanner(new File(file));
-			while (input.hasNextLine())
-			{
-				if (input.hasNext("item"))
-				{
-					parseEntry(input, db);
-				}
-				else
-				{
-					System.err.println("Syntax error [0x1]: " + input.nextLine());
-				}
-			}
-		}
-		catch (FileNotFoundException ex)
-		{
-			Logger.getLogger(ItemDatabase.class.getName()).log(Level.SEVERE, null, ex);
-		}
+		ItemDatabase db = new ItemDatabase(file);
+
 		
 		return db;
 	}
@@ -220,9 +203,29 @@ public class ItemDatabase implements Serializable
 		}
 	}
 
-	private ItemDatabase()
+	public ItemDatabase(String file)
 	{
+		Scanner input;
+		try
+		{
+			input = new Scanner(new File(file));
+			while (input.hasNextLine())
+			{
+				if (input.hasNext("item"))
+				{
+					parseEntry(input);
+				}
+				else
+				{
+					System.err.println("Syntax error [0x1]: " + input.nextLine());
+				}
+			}
+		}
+		catch (FileNotFoundException ex)
+		{
+			Logger.getLogger(ItemDatabase.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 
-	public static ItemDatabase database = new ItemDatabase();
+	public static ItemDatabase database = new ItemDatabase(ItemDatabase.DATABASE_FILE);
 }

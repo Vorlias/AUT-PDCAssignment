@@ -6,7 +6,7 @@
 package rpg.cui.game;
 
 import java.util.Scanner;
-import rpg.cui.misc.Miscellaneous;
+import rpg.cui.misc.Utility;
 
 /**
  *
@@ -21,7 +21,7 @@ public class Town
 	 */
 	public static void handleTown()
 	{
-		Miscellaneous.printBreak(41, '/');
+		Utility.printBreak(41, '/');
 		System.out.println("System: You have entered the town of Tarrin.");
 		Game.getPlayerCharacter().printStats();
 		System.out.println("System: You see store signs along the street, what would you like to do?");
@@ -49,7 +49,7 @@ public class Town
 				break;
 			case "4":
 				System.out.println("System: You have left the town of Tarrin.");
-				Miscellaneous.printBreak(41, '/');
+				Utility.printBreak(41, '/');
 				Game.setPlayerInTown(false);
 				Game.chooseNextLocation();
 				break;

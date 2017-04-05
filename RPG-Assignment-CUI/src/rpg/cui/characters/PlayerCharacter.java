@@ -11,6 +11,7 @@ import java.util.HashSet;
 import rpg.cui.items.Item;
 import rpg.cui.items.ItemDatabase;
 import rpg.cui.items.Weapon;
+import rpg.cui.misc.Utility;
 
 /**
  *
@@ -22,7 +23,6 @@ public class PlayerCharacter extends Character
 	static final int FIST_DAMAGE = 1;
 
 	private int xp = 0;
-	private String name;
 	private final HashSet<Item> items = new HashSet<>();
 	private Weapon equippedWeapon;
 	
@@ -31,16 +31,7 @@ public class PlayerCharacter extends Character
 	{
 		PlayerSave.save(this);
 	}
-	
-	/**
-	 * Set the name of the character
-	 * @param name The name of the character
-	 */
-	public void setName(String name)
-	{
-		this.name = name;
-	}
-	
+
 	/**
 	 * Gets the equipped weapon
 	 * @return The equipped weapon
@@ -65,6 +56,14 @@ public class PlayerCharacter extends Character
 		return xp;
 	}
 
+	public PlayerCharacter()
+	{
+		super("");
+		this.setMaxHealth(100.f);
+		this.setMaxStamina(100.f);
+		this.setMaxMana(100.f);		
+	}
+	
 	/**
 	 * Creates a new Player Character
 	 *
@@ -72,10 +71,10 @@ public class PlayerCharacter extends Character
 	 */
 	public PlayerCharacter(String name)
 	{
+		super(name);
 		this.setMaxHealth(100.f);
 		this.setMaxStamina(100.f);
 		this.setMaxMana(100.f);
-		this.name = name;
 	}
 	
 	/**
@@ -121,16 +120,6 @@ public class PlayerCharacter extends Character
 	{
 		xp += amount;
 		levelupCheck();
-	}
-
-	/**
-	 * Gets the name of this character
-	 *
-	 * @return The name of the character
-	 */
-	public String getName()
-	{
-		return name;
 	}
 
 	/**
@@ -217,7 +206,9 @@ public class PlayerCharacter extends Character
 		{
 			if (equippedWeapon != null)
 			{
-				target.takeDamage(equippedWeapon.getDamage());
+				float max = equippedWeapon.getDamage();
+				float min = max * 0.75f;
+				target.takeDamage(Utility.randomFloat(min, max));
 			}
 			else
 			{
