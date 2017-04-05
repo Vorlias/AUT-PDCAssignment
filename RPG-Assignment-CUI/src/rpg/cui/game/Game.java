@@ -16,7 +16,7 @@ import rpg.cui.characters.PlayerSave;
 public class Game
 {
 	static Scanner scanner = new Scanner(System.in);
-	private static PlayerCharacter pc;
+	private static PlayerCharacter playerCharacter;
 	static boolean playerInTown = false;
 	static boolean playerInForest = false;
 	private static final int DAGGER_ID = 0;
@@ -27,12 +27,12 @@ public class Game
 	 */
 	public static void startGame(String name)
 	{
-		pc = new PlayerCharacter(name);
-		pc.addItemById(DAGGER_ID); // Adding dagger to player inventory
-		pc.equipItemById(DAGGER_ID); // Equiping dagger for player
+		playerCharacter = new PlayerCharacter(name);
+		playerCharacter.addItemById(DAGGER_ID); // Adding dagger to player inventory
+		playerCharacter.equipItemById(DAGGER_ID); // Equiping dagger for player
 		System.out.println("After the encounter with the strange person you find yourself at the entrance to a forest.");
 		System.out.println("The sign reads 'Kreahx Forest - Beware of Monsters! Enter at own risk!'");
-		pc.printStats();
+		playerCharacter.printStats();
 		chooseNextLocation();
 	}
 	
@@ -85,16 +85,16 @@ public class Game
 	 */
 	public static PlayerCharacter getPlayerCharacter()
 	{
-		return pc;
+		return playerCharacter;
 	}
 	
 	/**
 	 * 
-	 * @param pc 
+	 * @param playerCharacter 
 	 */
-	public static void setPlayerCharacter(PlayerCharacter pc)
+	public static void setPlayerCharacter(PlayerCharacter playerCharacter)
 	{
-		Game.pc = pc;
+		Game.playerCharacter = playerCharacter;
 	}
 	
 	/**
@@ -138,7 +138,7 @@ public class Game
 	 */
 	public static void handleSaveGame()
 	{
-		PlayerSave.save(pc);
+		PlayerSave.save(playerCharacter);
 		System.out.println("Save successful!");
 	}
 }
