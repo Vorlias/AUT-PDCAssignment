@@ -14,7 +14,6 @@ import java.util.Random;
 public class Monster extends Character
 {
 	static Random random = new Random();
-	private String name;
 	private int maxDamage;
 	
 	/**
