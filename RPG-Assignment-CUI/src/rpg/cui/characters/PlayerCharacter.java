@@ -11,6 +11,7 @@ import java.util.HashSet;
 import rpg.cui.items.Item;
 import rpg.cui.items.ItemDatabase;
 import rpg.cui.items.Weapon;
+import rpg.cui.misc.Utility;
 
 /**
  *
@@ -205,7 +206,9 @@ public class PlayerCharacter extends Character
 		{
 			if (equippedWeapon != null)
 			{
-				target.takeDamage(equippedWeapon.getDamage());
+				float max = equippedWeapon.getDamage();
+				float min = max * 0.75f;
+				target.takeDamage(Utility.randomFloat(min, max));
 			}
 			else
 			{
