@@ -5,8 +5,11 @@
  */
 package rpg.cui.testing;
 
+import java.util.HashSet;
 import java.util.Scanner;
 import rpg.cui.characters.PlayerCharacter;
+import rpg.cui.characters.PlayerSave;
+import rpg.cui.items.Item;
 
 /**
  * Class for testing the Player Character stuff
@@ -35,11 +38,14 @@ public class TestCharacters
 		System.out.println("Character '" + pc.getName() + "'");
 		pc.takeDamage(50.f);
 		
-		System.out.println("Level: " + pc.getLevel());
-		System.out.println("Health: " + pc.getHealth() + "/" + pc.getMaxHealth());
-		System.out.println("Mana: " + pc.getMana() + "/" + pc.getMaxMana());
-		System.out.println("Stamina: " + pc.getStamina() + "/" + pc.getMaxStamina());
+		PlayerSave.load(pc, "Vorlias");
 		
-		pc.saveCharacter();
+		HashSet<Item> items = pc.getItems();
+		
+		for (Item item : items)
+		{
+			System.out.println(item.getName());
+		}
+		
 	}
 }
