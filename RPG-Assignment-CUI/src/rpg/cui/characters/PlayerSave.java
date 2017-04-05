@@ -216,6 +216,7 @@ public class PlayerSave
 
 			
 			writer.flush();
+			writer.close();
 		}
 		catch (FileNotFoundException ex)
 		{
@@ -230,7 +231,7 @@ public class PlayerSave
 	public static void save(PlayerCharacter character)
 	{
 		PlayerSave playerSave = new PlayerSave(character);
-		playerSave.writeToFile(character.getName() + ".save");
+		playerSave.writeToFile("playersaves/" + character.getName().toLowerCase() + ".save");
 	}
 	
 	/**
@@ -252,6 +253,6 @@ public class PlayerSave
 	public static void load(PlayerCharacter character, String saveName)
 	{
 		PlayerSave playerSave = new PlayerSave(character);
-		playerSave.loadFromFile(saveName + ".save");
+		playerSave.loadFromFile("playersaves/" + saveName.toLowerCase() + ".save");
 	}
 }
