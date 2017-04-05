@@ -213,8 +213,6 @@ public class PlayerSave
 			if (equippedWeapon != null && equippedWeapon.getId() != Item.INVALID_ID)
 				writer.println("EquippedWeapon " + equippedWeapon.getId());
 			
-
-			
 			writer.flush();
 			writer.close();
 		}
