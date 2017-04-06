@@ -7,6 +7,7 @@ package rpg.cui.game;
 
 import java.util.Scanner;
 import java.util.Random;
+import rpg.cui.characters.PlayerLocation;
 import rpg.cui.misc.Utility;
 
 /**
@@ -87,7 +88,7 @@ public class Explore
 			case "3":
 				System.out.println("System: You have left the forest of Kreahx.");
 				Utility.printBreak(41, '/');
-				Game.setPlayerInForest(false);
+				Game.getPlayerCharacter().setLocation(PlayerLocation.Wilds);
 				Game.chooseNextLocation();
 				break;
 			case "4":

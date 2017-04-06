@@ -23,6 +23,25 @@ public class PlayerCharacter extends Character
 	private int xp = 0;
 	private final ArrayList<Item> items = new ArrayList<>();
 	private Weapon equippedWeapon;
+	private PlayerLocation location = PlayerLocation.Wilds;
+	
+	/**
+	 * Sets the location of the player
+	 * @param location The location of the player
+	 */
+	public void setLocation(PlayerLocation location)
+	{
+		this.location = location;
+	}
+	
+	/**
+	 * Gets the location of the player
+	 * @return The location of the player
+	 */
+	public PlayerLocation getLocation()
+	{
+		return location;
+	}
 
 	/**
 	 * Gets the equipped weapon

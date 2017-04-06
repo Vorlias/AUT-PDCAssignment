@@ -7,6 +7,7 @@ package rpg.cui.game;
 
 import java.util.Scanner;
 import rpg.cui.characters.PlayerCharacter;
+import rpg.cui.characters.PlayerLocation;
 import rpg.cui.characters.PlayerSave;
 
 /**
@@ -17,8 +18,6 @@ public class Game
 {
 	static Scanner scanner = new Scanner(System.in);
 	private static PlayerCharacter playerCharacter;
-	static boolean playerInTown = false;
-	static boolean playerInForest = false;
 	private static final int DAGGER_ID = 0;
 	
 	/**
@@ -55,11 +54,11 @@ public class Game
 		switch(nextOption)
 		{
 			case "1":
-				setPlayerInTown(true);
+				playerCharacter.setLocation(PlayerLocation.Town);
 				Town.handleTown();
 				break;
 			case "2":
-				setPlayerInForest(true);
+				playerCharacter.setLocation(PlayerLocation.Forest);
 				Explore.handleExplore();
 				break;
 			case "3":
@@ -103,16 +102,8 @@ public class Game
 	 */
 	public static boolean isPlayerInTown()
 	{
-		return playerInTown;
-	}
-	
-	/**
-	 * 
-	 * @param playerInTown 
-	 */
-	public static void setPlayerInTown(boolean playerInTown)
-	{
-		Game.playerInTown = playerInTown;
+		//return playerInTown;
+		return playerCharacter.getLocation() == PlayerLocation.Town;
 	}
 
 	/**
@@ -121,16 +112,8 @@ public class Game
 	 */
 	public static boolean isPlayerInForest()
 	{
-		return playerInForest;
-	}
-
-	/**
-	 * 
-	 * @param playerInForest 
-	 */
-	public static void setPlayerInForest(boolean playerInForest)
-	{
-		Game.playerInForest = playerInForest;
+		return playerCharacter.getLocation() == PlayerLocation.Forest;
+		//return playerInForest;
 	}
 	
 	/**

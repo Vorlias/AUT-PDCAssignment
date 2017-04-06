@@ -6,6 +6,7 @@
 package rpg.cui.game;
 
 import java.util.Scanner;
+import rpg.cui.characters.PlayerLocation;
 import rpg.cui.misc.Utility;
 
 /**
@@ -50,7 +51,7 @@ public class Town
 			case "4":
 				System.out.println("System: You have left the town of Tarrin.");
 				Utility.printBreak(41, '/');
-				Game.setPlayerInTown(false);
+				Game.getPlayerCharacter().setLocation(PlayerLocation.Wilds);
 				Game.chooseNextLocation();
 				break;
 			case "5":
