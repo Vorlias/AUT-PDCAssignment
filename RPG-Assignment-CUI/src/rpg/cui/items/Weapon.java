@@ -14,8 +14,6 @@ import rpg.cui.characters.PlayerCharacter;
  */
 public class Weapon extends Item
 {
-	static final long serialVersionUID = 0xD101;
-	
 	private int damage;
 
 	public Weapon(String name, int damage)
