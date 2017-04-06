@@ -223,6 +223,27 @@ public class PlayerSave
 	}
 	
 	/**
+	 * Get all the available player saves
+	 * @return A list of the player saves
+	 */
+	public static String[] getPlayerSaveList()
+	{
+		ArrayList<String> saveFiles = new ArrayList<>();
+		
+		File folder = new File("playersaves");
+		File[] fileList = folder.listFiles();
+		for (File file : fileList)
+		{
+			if (file.isFile() && file.getName().endsWith(".save"))
+			{
+				saveFiles.add(file.getName().replace(".save", ""));
+			}
+		}
+		
+		return saveFiles.toArray(new String[0]);
+	}
+	
+	/**
 	 * Saves the character
 	 * @param character The character to save
 	 */
