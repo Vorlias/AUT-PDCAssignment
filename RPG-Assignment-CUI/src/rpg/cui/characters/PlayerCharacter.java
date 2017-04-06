@@ -25,12 +25,6 @@ public class PlayerCharacter extends Character
 	private int xp = 0;
 	private final HashSet<Item> items = new HashSet<>();
 	private Weapon equippedWeapon;
-	
-	@Deprecated
-	public void saveCharacter()
-	{
-		PlayerSave.save(this);
-	}
 
 	/**
 	 * Gets the equipped weapon
