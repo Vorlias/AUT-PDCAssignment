@@ -5,9 +5,7 @@
  */
 package rpg.cui.characters;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.HashSet;
+import java.util.ArrayList;
 import rpg.cui.items.Item;
 import rpg.cui.items.ItemDatabase;
 import rpg.cui.items.Weapon;
@@ -23,14 +21,8 @@ public class PlayerCharacter extends Character
 	static final int FIST_DAMAGE = 1;
 
 	private int xp = 0;
-	private final HashSet<Item> items = new HashSet<>();
+	private final ArrayList<Item> items = new ArrayList<>();
 	private Weapon equippedWeapon;
-	
-	@Deprecated
-	public void saveCharacter()
-	{
-		PlayerSave.save(this);
-	}
 
 	/**
 	 * Gets the equipped weapon
@@ -41,7 +33,7 @@ public class PlayerCharacter extends Character
 		return equippedWeapon;
 	}
 
-	public final HashSet<Item> getItems()
+	public final ArrayList<Item> getItems()
 	{
 		return items;
 	}
