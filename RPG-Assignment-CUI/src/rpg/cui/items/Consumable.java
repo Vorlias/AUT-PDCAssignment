@@ -85,6 +85,17 @@ public class Consumable extends Item implements Serializable
 	@Override
 	public void use(PlayerCharacter character)
 	{
-		
+		switch (type)
+		{
+			case Health:
+				character.setHealth(character.getHealth() + modifier);
+				break;
+			case Mana:
+				character.setMana(character.getMana() + modifier);
+				break;
+			case Stamina:
+				character.setStamina(character.getStamina() + modifier);
+				break;
+		}
 	}
 }
