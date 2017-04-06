@@ -5,7 +5,6 @@
  */
 package rpg.cui.items;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import rpg.cui.characters.PlayerCharacter;
 
@@ -13,9 +12,8 @@ import rpg.cui.characters.PlayerCharacter;
  *
  * @author Jonathan
  */
-public abstract class Item implements Serializable
+public abstract class Item
 {
-	static final long serialVersionUID = 0xD100;
 	public static final int INVALID_ID = -1;
 	
 	public enum ItemType 
