@@ -5,8 +5,6 @@
  */
 package rpg.cui.characters;
 
-import java.io.PrintWriter;
-
 /**
  *
  * @author Jonathan

@@ -6,7 +6,6 @@
 package rpg.cui.game;
 
 import java.util.Scanner;
-import rpg.cui.characters.PlayerCharacter;
 import rpg.cui.characters.PlayerLocation;
 import rpg.cui.characters.PlayerSave;
 import rpg.cui.misc.Utility;
