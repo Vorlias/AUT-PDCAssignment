@@ -5,7 +5,10 @@
  */
 package rpg.cui.game;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+import rpg.cui.characters.PlayerCharacter;
+import rpg.cui.items.Item;
 
 /**
  *
@@ -20,7 +23,17 @@ public class Inventory
 	 */
 	public static void handleInventory()
 	{
+		PlayerCharacter character = Game.getPlayerCharacter();
+		ArrayList<Item> items = character.getItems();
 		
+		System.out.println("=== Inventory ===");
+		for (int i = 0; i < items.size(); i++)
+		{
+			Item item = items.get(i);
+			System.out.println((i + 1) + ". " + item.getName());
+		}
+		
+		handleInventoryOptions();
 	}
 	
 	/**
