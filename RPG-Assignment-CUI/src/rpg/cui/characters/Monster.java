@@ -14,7 +14,6 @@ import java.util.Random;
 public class Monster extends Character
 {
 	static Random random = new Random();
-	private String name;
 	private int maxDamage;
 	
 	/**
@@ -26,10 +25,10 @@ public class Monster extends Character
 	 */
 	public Monster(String name, float maxHealth, int maxDamage, int maxGold)
 	{
+		super(name);
 		this.setMaxHealth(maxHealth);
 		this.setMaxDamage(maxDamage);
 		this.setGold(random.nextInt(maxGold));
-		this.name = name;
 	}
 	
 	/**
@@ -40,6 +39,15 @@ public class Monster extends Character
 	{
 		return maxDamage;
 	}
+	
+	/**
+	 * Attack the player's character
+	 * @param character The player character
+	 */
+	public void attack(PlayerCharacter character)
+	{
+		character.takeDamage(random.nextInt(maxDamage));
+	}
 
 	/**
 	 * 
@@ -48,14 +56,5 @@ public class Monster extends Character
 	public void setMaxDamage(int maxDamage)
 	{
 		this.maxDamage = maxDamage;
-	}
-	
-	/**
-	 * 
-	 * @return 
-	 */
-	public String getName()
-	{
-		return name;
 	}
 }

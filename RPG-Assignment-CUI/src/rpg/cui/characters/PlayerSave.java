@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import rpg.cui.game.Game;
 import rpg.cui.items.Item;
 import rpg.cui.items.Weapon;
 
@@ -212,14 +213,34 @@ public class PlayerSave
 			if (equippedWeapon != null && equippedWeapon.getId() != Item.INVALID_ID)
 				writer.println("EquippedWeapon " + equippedWeapon.getId());
 			
-
-			
 			writer.flush();
+			writer.close();
 		}
 		catch (FileNotFoundException ex)
 		{
 			Logger.getLogger(PlayerSave.class.getName()).log(Level.SEVERE, null, ex);
 		}
+	}
+	
+	/**
+	 * Get all the available player saves
+	 * @return A list of the player saves
+	 */
+	public static String[] getPlayerSaveList()
+	{
+		ArrayList<String> saveFiles = new ArrayList<>();
+		
+		File folder = new File("playersaves");
+		File[] fileList = folder.listFiles();
+		for (File file : fileList)
+		{
+			if (file.isFile() && file.getName().endsWith(".save"))
+			{
+				saveFiles.add(file.getName().replace(".save", ""));
+			}
+		}
+		
+		return saveFiles.toArray(new String[0]);
 	}
 	
 	/**
@@ -229,7 +250,18 @@ public class PlayerSave
 	public static void save(PlayerCharacter character)
 	{
 		PlayerSave playerSave = new PlayerSave(character);
-		playerSave.writeToFile(character.getName() + ".save");
+		playerSave.writeToFile("playersaves/" + character.getName().toLowerCase() + ".save");
+	}
+	
+	/**
+	 * Loads a character into the game
+	 * @param saveName The name of the save to load
+	 */
+	public static void loadCharacter(String saveName)
+	{
+		PlayerCharacter character = new PlayerCharacter();
+		PlayerSave.load(character, saveName);
+		Game.setPlayerCharacter(character);
 	}
 	
 	/**
@@ -240,6 +272,6 @@ public class PlayerSave
 	public static void load(PlayerCharacter character, String saveName)
 	{
 		PlayerSave playerSave = new PlayerSave(character);
-		playerSave.loadFromFile(saveName + ".save");
+		playerSave.loadFromFile("playersaves/" + saveName.toLowerCase() + ".save");
 	}
 }

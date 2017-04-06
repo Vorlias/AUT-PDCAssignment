@@ -8,7 +8,7 @@ package rpg.cui.game;
 import java.util.Scanner;
 import rpg.cui.characters.PlayerCharacter;
 import rpg.cui.characters.PlayerSave;
-import rpg.cui.misc.Miscellaneous;
+import rpg.cui.misc.Utility;
 
 /**
  * 
@@ -56,13 +56,13 @@ public class MainMenu
 	 */
 	private static void handleNewGame()
 	{
-		Miscellaneous.printBreak(41, '/');
+		Utility.printBreak(41, '/');
 		System.out.print("Stranger: Woah there! You over there, who are you?\nYou: ");
 		String name = scanner.nextLine();
 		System.out.println("Stranger: Ah I see, " + name + " is it? You shouldn't be walking around here without a weapon to protect you, here take this!");
 		System.out.println("System: " + name + " received a dagger!");
 		System.out.println("Stranger: There are powerful monsters lurking in this area so use that to protect yourself. I must go now, good luck out there " + name + "! *poof*");
-		Miscellaneous.printBreak(41, '/');
+		Utility.printBreak(41, '/');
 		Game.setPlayerInTown(false);
 		Game.setPlayerInForest(false);
 		Game.startGame(name);
@@ -73,11 +73,9 @@ public class MainMenu
 	 */
 	private static void handleLoadGame()
 	{
-		PlayerCharacter pc = new PlayerCharacter("");
 		System.out.print("System: Enter the name of the save file you want to load > ");
 		String saveName = scanner.nextLine();
-		PlayerSave.load(pc, saveName);
-		Game.setPlayerCharacter(pc);
+		PlayerSave.loadCharacter(saveName);
 		Game.setPlayerInTown(false);
 		Game.setPlayerInForest(false);
 		Game.chooseNextLocation();

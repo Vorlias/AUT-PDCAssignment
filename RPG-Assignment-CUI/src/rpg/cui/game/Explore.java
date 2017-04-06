@@ -7,7 +7,7 @@ package rpg.cui.game;
 
 import java.util.Scanner;
 import java.util.Random;
-import rpg.cui.misc.Miscellaneous;
+import rpg.cui.misc.Utility;
 
 /**
  *
@@ -23,7 +23,7 @@ public class Explore
 	 */
 	public static void handleExplore()
 	{
-		Miscellaneous.printBreak(41, '/');
+		Utility.printBreak(41, '/');
 		System.out.println("System: You have entered the forest of Kreahx.");
 		Game.getPlayerCharacter().printStats();
 		handleExploreOptions();
@@ -86,7 +86,7 @@ public class Explore
 				break;
 			case "3":
 				System.out.println("System: You have left the forest of Kreahx.");
-				Miscellaneous.printBreak(41, '/');
+				Utility.printBreak(41, '/');
 				Game.setPlayerInForest(false);
 				Game.chooseNextLocation();
 				break;

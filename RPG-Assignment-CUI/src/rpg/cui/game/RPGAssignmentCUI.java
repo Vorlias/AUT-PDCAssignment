@@ -13,7 +13,6 @@ public class RPGAssignmentCUI
 	 */
 	public static void main(String[] args) 
 	{
-		ItemDatabase.database = ItemDatabase.loadFromFile(ItemDatabase.DATABASE_FILE);
 		MainMenu.handleMainMenu(); // Load main menu
 	}
 }
