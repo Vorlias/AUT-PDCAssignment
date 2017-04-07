@@ -63,7 +63,7 @@ public class PlayerCharacter extends Character
 		return location;
 	}
 
-	public boolean hasConsumable(Consumable.ConsumableType type)
+	public boolean hasConsumable(ConsumableType type)
 	{
 		for (Item i : items)
 		{
@@ -173,13 +173,14 @@ public class PlayerCharacter extends Character
 	 */
 	public void printStats()
 	{
-		System.out.println("Current Stats -");
+		/*System.out.println("Current Stats -");
 		System.out.println("\tLevel: " + this.getLevel());
 		System.out.println("\tHealth: " + this.getHealth() + "/" + this.getMaxHealth());
 		System.out.println("\tMana: " + this.getMana() + "/" + this.getMaxMana());
 		System.out.println("\tStamina: " + this.getStamina() + "/" + this.getMaxStamina());
 		System.out.println("\tGold: " + this.getGold());
-		System.out.println("\tXP: " + this.xp);
+		System.out.println("\tXP: " + this.xp);*/
+		printHealth();
 	}
 
 	/**
