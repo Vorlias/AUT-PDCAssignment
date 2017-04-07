@@ -97,11 +97,11 @@ public class Inventory
 		
 		System.out.println("System: You close your inventory.");
 		
-		if (Game.playerInForest)
+		if (Game.isPlayerInForest())
 		{
 			Explore.handleExplore();
 		}
-		else if (Game.playerInTown)
+		else if (Game.isPlayerInTown())
 		{
 			Town.handleTown();
 		}

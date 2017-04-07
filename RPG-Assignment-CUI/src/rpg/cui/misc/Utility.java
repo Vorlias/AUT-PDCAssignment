@@ -17,6 +17,8 @@ public class Utility
 	
 	/**
 	 * Print a specified amount of a character to console
+	 * @param amount The amount to print
+	 * @param character The character to print
 	 */
 	public static void printBreak(int amount, char character)
 	{

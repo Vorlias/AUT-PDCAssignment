@@ -14,26 +14,34 @@ import java.util.Random;
 public class Monster extends Character
 {
 	static Random random = new Random();
-	private int maxDamage;
+	private final int maxDamage;
+	private final MonsterType type;
 	
 	/**
-	 * 
-	 * @param name
-	 * @param maxHealth
-	 * @param maxDamage
-	 * @param maxGold 
+	 * Gets the type of monster this is
+	 * @return The type of monster
 	 */
-	public Monster(String name, float maxHealth, int maxDamage, int maxGold)
+	public MonsterType getType()
 	{
-		super(name);
-		this.setMaxHealth(maxHealth);
-		this.setMaxDamage(maxDamage);
-		this.setGold(random.nextInt(maxGold));
+		return type;
 	}
 	
 	/**
-	 * 
-	 * @return 
+	 * Creates a new monster of the specified type
+	 * @param type The type of monster
+	 */
+	public Monster(MonsterType type)
+	{
+		super(type.name);
+		this.setMaxHealth(type.maxHealth);
+		this.maxDamage = type.maxDamage;
+		this.setGold(random.nextInt(type.maxGold));
+		this.type = type;
+	}
+	
+	/**
+	 * Gets the max damage this monster does
+	 * @return The maximum damage the monster does
 	 */
 	public int getMaxDamage()
 	{
@@ -47,14 +55,5 @@ public class Monster extends Character
 	public void attack(PlayerCharacter character)
 	{
 		character.takeDamage(random.nextInt(maxDamage));
-	}
-
-	/**
-	 * 
-	 * @param maxDamage 
-	 */
-	public void setMaxDamage(int maxDamage)
-	{
-		this.maxDamage = maxDamage;
 	}
 }

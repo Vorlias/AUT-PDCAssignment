@@ -6,7 +6,7 @@
 package rpg.cui.game;
 
 import java.util.Scanner;
-import rpg.cui.characters.PlayerCharacter;
+import rpg.cui.characters.PlayerLocation;
 import rpg.cui.characters.PlayerSave;
 import rpg.cui.misc.Utility;
 
@@ -63,8 +63,7 @@ public class MainMenu
 		System.out.println("System: " + name + " received a dagger!");
 		System.out.println("Stranger: There are powerful monsters lurking in this area so use that to protect yourself. I must go now, good luck out there " + name + "! *poof*");
 		Utility.printBreak(41, '/');
-		Game.setPlayerInTown(false);
-		Game.setPlayerInForest(false);
+		Game.getPlayerCharacter().setLocation(PlayerLocation.Wilds);
 		Game.startGame(name);
 	}
 	
@@ -76,8 +75,17 @@ public class MainMenu
 		System.out.print("System: Enter the name of the save file you want to load > ");
 		String saveName = scanner.nextLine();
 		PlayerSave.loadCharacter(saveName);
-		Game.setPlayerInTown(false);
-		Game.setPlayerInForest(false);
-		Game.chooseNextLocation();
+		PlayerLocation location = Game.getPlayerCharacter().getLocation();
+		switch (location)
+		{
+			case Town:
+				Town.handleTown();
+				break;
+			case Forest:
+				Explore.handleExplore();
+				break;
+			default:
+				Game.chooseNextLocation();
+		}
 	}
 }

@@ -24,6 +24,11 @@ public class Consumable extends Item
 	private ConsumableType type;
 	private int modifier;
 	
+	public ConsumableType getConsumableType()
+	{
+		return type;
+	}
+	
 	/**
 	 * Creates a new Consumable Item
 	 * @param name The name of the consumable
@@ -82,6 +87,17 @@ public class Consumable extends Item
 	@Override
 	public void use(PlayerCharacter character)
 	{
-		
+		switch (type)
+		{
+			case Health:
+				character.setHealth(character.getHealth() + modifier);
+				break;
+			case Mana:
+				character.setMana(character.getMana() + modifier);
+				break;
+			case Stamina:
+				character.setStamina(character.getStamina() + modifier);
+				break;
+		}
 	}
 }

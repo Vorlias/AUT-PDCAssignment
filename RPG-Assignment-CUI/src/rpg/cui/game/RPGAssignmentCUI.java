@@ -1,7 +1,5 @@
 package rpg.cui.game;
 
-import rpg.cui.items.ItemDatabase;
-
 /**
  *
  * @author Jonathan Holmes & Nathan Cross
