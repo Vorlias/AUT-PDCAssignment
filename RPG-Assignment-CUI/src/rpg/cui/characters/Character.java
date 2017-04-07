@@ -216,4 +216,29 @@ public abstract class Character
 	{
 		this.health = value;
 	}
+	
+	/**
+	 * Writes the health to the console
+	 */
+	public void printHealth()
+	{
+		System.out.print(this.getName() + " [");
+		
+		float percentage = this.health / this.maxHealth;
+		
+		int first = (int) (percentage * 10);
+		int second = 10 - first;
+		
+		for (int i = 0; i < first; i++)
+		{
+			System.out.print("|");
+		}
+		
+		for (int i = 0; i < second; i++)
+		{
+			System.out.print(" ");
+		}
+		
+		System.out.println("] (" + this.getHealth() + "/" + this.getMaxHealth() + ")");
+	}
 }

@@ -39,7 +39,6 @@ public class Explore
 		switch(locationValue)
 		{
 			case 1:
-				System.out.println("System: As you explore tha forest you see a pair of red eyes in the bushes in front of you... get ready for combat!");
 				Combat.handleCombat();
 				break;
 			case 2:

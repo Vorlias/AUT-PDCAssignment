@@ -15,6 +15,16 @@ public class Monster extends Character
 {
 	static Random random = new Random();
 	private final int maxDamage;
+	private final MonsterType type;
+	
+	/**
+	 * Gets the type of monster this is
+	 * @return The type of monster
+	 */
+	public MonsterType getType()
+	{
+		return type;
+	}
 	
 	/**
 	 * Creates a new monster of the specified type
@@ -26,6 +36,7 @@ public class Monster extends Character
 		this.setMaxHealth(type.maxHealth);
 		this.maxDamage = type.maxDamage;
 		this.setGold(random.nextInt(type.maxGold));
+		this.type = type;
 	}
 	
 	/**

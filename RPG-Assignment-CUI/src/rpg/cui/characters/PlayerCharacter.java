@@ -6,6 +6,7 @@
 package rpg.cui.characters;
 
 import java.util.ArrayList;
+import rpg.cui.items.Consumable;
 import rpg.cui.items.Item;
 import rpg.cui.items.ItemDatabase;
 import rpg.cui.items.Weapon;
@@ -43,6 +44,21 @@ public class PlayerCharacter extends Character
 		return location;
 	}
 
+	public boolean hasConsumable(Consumable.ConsumableType type)
+	{
+		for (Item i : items)
+		{
+			if (i instanceof Consumable)
+			{
+				Consumable c = (Consumable) i;
+				if (c.getConsumableType() == type)
+					return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	/**
 	 * Gets the equipped weapon
 	 * @return The equipped weapon

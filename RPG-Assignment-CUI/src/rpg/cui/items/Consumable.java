@@ -27,6 +27,11 @@ public class Consumable extends Item implements Serializable
 	private ConsumableType type;
 	private int modifier;
 	
+	public ConsumableType getConsumableType()
+	{
+		return type;
+	}
+	
 	/**
 	 * Creates a new Consumable Item
 	 * @param name The name of the consumable
