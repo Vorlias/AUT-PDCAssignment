@@ -25,6 +25,25 @@ public class PlayerCharacter extends Character
 	private final ArrayList<Item> items = new ArrayList<>();
 	private Weapon equippedWeapon;
 	private PlayerLocation location = PlayerLocation.Wilds;
+	private boolean combat = false;
+	
+	/**
+	 * Returns whether or not the player is in combat
+	 * @return True if the player is in combat
+	 */
+	public boolean inCombat()
+	{
+		return combat;
+	}
+	
+	/**
+	 * Sets whether or not the player is in combat
+	 * @param combat True if the player is in combat
+	 */
+	public void setInCombat(boolean combat)
+	{
+		this.combat = combat;
+	}
 	
 	/**
 	 * Sets the location of the player
