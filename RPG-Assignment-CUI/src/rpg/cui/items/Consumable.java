@@ -14,12 +14,6 @@ import rpg.cui.characters.PlayerCharacter;
  */
 public class Consumable extends Item
 {
-	public enum ConsumableType
-	{
-		Health,
-		Mana,
-		Stamina,
-	}
 	
 	private ConsumableType type;
 	private int modifier;
