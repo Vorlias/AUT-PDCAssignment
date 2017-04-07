@@ -17,25 +17,27 @@ import rpg.cui.misc.WeightedRandom;
  */
 public enum MonsterType
 {
-	Goblin(50.f, 10, 5, 25),
-	Snake(10.f, 3, 2, 25),
-	Elf(75.f, 15, 15, 15),
-	Bandit(75.f, 15, 15, 15),
-	Dragon(200.f, 50, 50, 5);
+	Goblin(2, 10, 5, 25),
+	Snake(1, 3, 2, 25),
+	Elf(3, 15, 15, 15),
+	Bandit(3, 15, 15, 15),
+	Dragon(10, 50, 50, 5);
 
 	final String name;
 	final float maxHealth;
 	final int maxDamage;
 	final int maxGold;
 	final float weight;
+	final int level;
 
-	MonsterType(float maxHealth, int maxDamage, int maxGold, float weight)
+	MonsterType(int level, int maxDamage, int maxGold, float weight)
 	{
 		this.name = this.toString();
-		this.maxHealth = maxHealth;
+		this.maxHealth = level * 25.f;
 		this.maxDamage = maxDamage;
 		this.maxGold = maxGold;
 		this.weight = weight;
+		this.level = level;
 	}
 	
 	// TODO: Weighted random instead of regular random
