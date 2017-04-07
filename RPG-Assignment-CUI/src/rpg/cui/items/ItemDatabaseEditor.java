@@ -54,17 +54,17 @@ public class ItemDatabaseEditor
 
 			if (type.toLowerCase().equals("health"))
 			{
-				db.insert(new Consumable(name, Consumable.ConsumableType.Health, modifier));
+				db.insert(new Consumable(name, ConsumableType.Health, modifier));
 				System.out.println("Added item '" + name + "' to database successfully.");
 			}
 			else if (type.toLowerCase().equals("mana"))
 			{
-				db.insert(new Consumable(name, Consumable.ConsumableType.Mana, modifier));
+				db.insert(new Consumable(name, ConsumableType.Mana, modifier));
 				System.out.println("Added item '" + name + "' to database successfully.");
 			}		
 			else if (type.toLowerCase().equals("stamina"))
 			{
-				db.insert(new Consumable(name, Consumable.ConsumableType.Stamina, modifier));
+				db.insert(new Consumable(name, ConsumableType.Stamina, modifier));
 				System.out.println("Added item '" + name + "' to database successfully.");
 			}
 			else
