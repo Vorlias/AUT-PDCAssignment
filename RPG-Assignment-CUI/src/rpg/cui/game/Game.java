@@ -32,6 +32,7 @@ public class Game
 		System.out.println("After the encounter with the strange person you find yourself at the entrance to a forest.");
 		System.out.println("The sign reads 'Kreahx Forest - Beware of Monsters! Enter at own risk!'");
 		playerCharacter.printStats();
+		playerCharacter.setLocation(PlayerLocation.Forest);
 		chooseNextLocation();
 	}
 	

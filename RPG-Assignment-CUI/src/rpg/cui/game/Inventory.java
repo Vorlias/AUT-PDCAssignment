@@ -19,41 +19,41 @@ import rpg.cui.items.Weapon;
  */
 public class Inventory
 {
+
 	static Scanner scanner = new Scanner(System.in);
-	
+
 	/**
-	 * 
+	 *
 	 */
 	public static void handleInventory()
 	{
-		
+
 		handleInventoryOptions();
 	}
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private static void handleInventoryOptions()
 	{
 		PlayerCharacter character = Game.getPlayerCharacter();
 		ArrayList<Item> items = character.getItems();
-		
-		
+
 		System.out.println("System: You open your inventory, these are the items you have:");
-		
+
 		System.out.println("\t-- Your Inventory --");
 		for (int i = 0; i < items.size(); i++)
 		{
 			Item item = items.get(i);
 			System.out.println("\t   " + (i + 1) + ". " + item.getName());
 		}
-		
+
 		System.out.println("System: What would you like to do?");
 		System.out.println("	use <index> - equip the item");
 		System.out.println("	close - close your inventory");
-		
+
 		String action = "";
-		do 
+		do
 		{
 			try
 			{
@@ -80,13 +80,13 @@ public class Inventory
 								}
 							}
 						}
-						
+
 						break;
 					case "close":
 						break;
 					default:
 						System.out.println("Unknown command '" + action + "'");
-				}				
+				}
 			}
 			catch (InputMismatchException e)
 			{
@@ -94,20 +94,23 @@ public class Inventory
 			}
 		}
 		while (!action.equals("close"));
-		
+
 		System.out.println("System: You close your inventory.");
-		
-		if (Game.isPlayerInForest())
+
+		if (!Game.getPlayerCharacter().inCombat())
 		{
-			Explore.handleExplore();
-		}
-		else if (Game.isPlayerInTown())
-		{
-			Town.handleTown();
-		}
-		else
-		{
-			Game.chooseNextLocation();
+			if (Game.isPlayerInForest())
+			{
+				Explore.handleExplore();
+			}
+			else if (Game.isPlayerInTown())
+			{
+				Town.handleTown();
+			}
+			else
+			{
+				Game.chooseNextLocation();
+			}
 		}
 	}
 }

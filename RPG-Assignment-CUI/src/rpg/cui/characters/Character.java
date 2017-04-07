@@ -5,6 +5,8 @@
  */
 package rpg.cui.characters;
 
+import rpg.cui.misc.TextColor;
+
 /**
  *
  * @author Jonathan
@@ -222,7 +224,7 @@ public abstract class Character
 	 */
 	public void printHealth()
 	{
-		System.out.print(this.getName() + " [");
+		System.out.print(TextColor.Default + this.getName() + " (Lv. " + this.getLevel() +") [");
 		
 		float percentage = this.health / this.maxHealth;
 		
@@ -231,14 +233,14 @@ public abstract class Character
 		
 		for (int i = 0; i < first; i++)
 		{
-			System.out.print("|");
+			System.out.print(TextColor.Green + "|");
 		}
 		
 		for (int i = 0; i < second; i++)
 		{
-			System.out.print(" ");
+			System.out.print(TextColor.Red + "|");
 		}
 		
-		System.out.println("] (" + this.getHealth() + "/" + this.getMaxHealth() + ")");
+		System.out.println(TextColor.Default + "] (" + this.getHealth() + "/" + this.getMaxHealth() + ")");
 	}
 }

@@ -63,7 +63,6 @@ public class MainMenu
 		System.out.println("System: " + name + " received a dagger!");
 		System.out.println("Stranger: There are powerful monsters lurking in this area so use that to protect yourself. I must go now, good luck out there " + name + "! *poof*");
 		Utility.printBreak(41, '/');
-		Game.getPlayerCharacter().setLocation(PlayerLocation.Wilds);
 		Game.startGame(name);
 	}
 	
