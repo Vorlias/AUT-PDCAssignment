@@ -5,7 +5,6 @@
  */
 package rpg.cui.items;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import rpg.cui.characters.PlayerCharacter;
 
@@ -13,19 +12,16 @@ import rpg.cui.characters.PlayerCharacter;
  *
  * @author Jonathan
  */
-public class Consumable extends Item implements Serializable
+public class Consumable extends Item
 {
-	static final long serialVersionUID = 0xD102;
-	
-	public enum ConsumableType
-	{
-		Health,
-		Mana,
-		Stamina,
-	}
 	
 	private ConsumableType type;
 	private int modifier;
+	
+	public ConsumableType getConsumableType()
+	{
+		return type;
+	}
 	
 	/**
 	 * Creates a new Consumable Item
@@ -85,6 +81,17 @@ public class Consumable extends Item implements Serializable
 	@Override
 	public void use(PlayerCharacter character)
 	{
-		
+		switch (type)
+		{
+			case Health:
+				character.setHealth(character.getHealth() + modifier);
+				break;
+			case Mana:
+				character.setMana(character.getMana() + modifier);
+				break;
+			case Stamina:
+				character.setStamina(character.getStamina() + modifier);
+				break;
+		}
 	}
 }

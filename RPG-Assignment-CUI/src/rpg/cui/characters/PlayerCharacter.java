@@ -6,6 +6,7 @@
 package rpg.cui.characters;
 
 import java.util.ArrayList;
+import rpg.cui.items.Consumable;
 import rpg.cui.items.Item;
 import rpg.cui.items.ItemDatabase;
 import rpg.cui.items.Weapon;
@@ -23,7 +24,60 @@ public class PlayerCharacter extends Character
 	private int xp = 0;
 	private final ArrayList<Item> items = new ArrayList<>();
 	private Weapon equippedWeapon;
+	private PlayerLocation location = PlayerLocation.Wilds;
+	private boolean combat = false;
+	
+	/**
+	 * Returns whether or not the player is in combat
+	 * @return True if the player is in combat
+	 */
+	public boolean inCombat()
+	{
+		return combat;
+	}
+	
+	/**
+	 * Sets whether or not the player is in combat
+	 * @param combat True if the player is in combat
+	 */
+	public void setInCombat(boolean combat)
+	{
+		this.combat = combat;
+	}
+	
+	/**
+	 * Sets the location of the player
+	 * @param location The location of the player
+	 */
+	public void setLocation(PlayerLocation location)
+	{
+		this.location = location;
+	}
+	
+	/**
+	 * Gets the location of the player
+	 * @return The location of the player
+	 */
+	public PlayerLocation getLocation()
+	{
+		return location;
+	}
 
+	public boolean hasConsumable(ConsumableType type)
+	{
+		for (Item i : items)
+		{
+			if (i instanceof Consumable)
+			{
+				Consumable c = (Consumable) i;
+				if (c.getConsumableType() == type)
+					return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	/**
 	 * Gets the equipped weapon
 	 * @return The equipped weapon
@@ -119,13 +173,14 @@ public class PlayerCharacter extends Character
 	 */
 	public void printStats()
 	{
-		System.out.println("Current Stats -");
+		/*System.out.println("Current Stats -");
 		System.out.println("\tLevel: " + this.getLevel());
 		System.out.println("\tHealth: " + this.getHealth() + "/" + this.getMaxHealth());
 		System.out.println("\tMana: " + this.getMana() + "/" + this.getMaxMana());
 		System.out.println("\tStamina: " + this.getStamina() + "/" + this.getMaxStamina());
 		System.out.println("\tGold: " + this.getGold());
-		System.out.println("\tXP: " + this.xp);
+		System.out.println("\tXP: " + this.xp);*/
+		printHealth();
 	}
 
 	/**
