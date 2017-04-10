@@ -43,6 +43,10 @@ public class PlayerSave
 		{
 			character.setName(value);
 		}
+		else if (attribute.equals("Location"))
+		{
+			character.setLocation(PlayerLocation.valueOf(value));
+		}
 	}
 	
 	/**
@@ -139,6 +143,7 @@ public class PlayerSave
 		switch (attribName)
 		{
 			case "Name":
+			case "Location":
 				parseStringAttribute(attribName, lineScanner);
 				break;
 			case "Gold":
@@ -196,6 +201,7 @@ public class PlayerSave
 			writer.println("Gold " + character.getGold());
 			writer.println("XP " + character.getXP());
 			writer.println("Level " + character.getLevel());
+			writer.println("Location " + character.getLocation());
 			
 			// Now we print the inventory
 			writer.print("Inventory ");

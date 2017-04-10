@@ -5,7 +5,7 @@
  */
 package rpg.cui.characters;
 
-import java.io.PrintWriter;
+import rpg.cui.misc.TextColor;
 
 /**
  *
@@ -217,5 +217,30 @@ public abstract class Character
 	public void setHealth(float value)
 	{
 		this.health = value;
+	}
+	
+	/**
+	 * Writes the health to the console
+	 */
+	public void printHealth()
+	{
+		System.out.print(TextColor.Default + this.getName() + " (Lv. " + this.getLevel() +") [");
+		
+		float percentage = this.health / this.maxHealth;
+		
+		int first = (int) (percentage * 10);
+		int second = 10 - first;
+		
+		for (int i = 0; i < first; i++)
+		{
+			System.out.print(TextColor.Green + "|");
+		}
+		
+		for (int i = 0; i < second; i++)
+		{
+			System.out.print(TextColor.Red + "|");
+		}
+		
+		System.out.println(TextColor.Default + "] (" + this.getHealth() + "/" + this.getMaxHealth() + ")");
 	}
 }
