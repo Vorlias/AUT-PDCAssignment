@@ -27,8 +27,6 @@ public class Combat
 	 */
 	public static void handleCombat()
 	{
-		//Monster goblin = new Monster("Goblin", 50.f, 10, 5);
-		//System.out.println(goblin.isAlive()); // Goblins alive!
 		enemy = new Monster(MonsterType.random());
 		
 		switch (enemy.getType())
