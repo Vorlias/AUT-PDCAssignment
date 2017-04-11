@@ -57,7 +57,7 @@ public class Inventory
 		{
 			try
 			{
-				System.out.print("Inventory> ");
+				System.out.print("Inventory: > ");
 				action = scanner.next().toLowerCase();
 				switch (action)
 				{
@@ -77,6 +77,7 @@ public class Inventory
 								{
 									item.use(character);
 									System.out.println("Used " + item.getName());
+									character.removeItem(item);
 								}
 							}
 						}
@@ -85,12 +86,12 @@ public class Inventory
 					case "close":
 						break;
 					default:
-						System.out.println("Unknown command '" + action + "'");
+						System.out.println("System: Unknown command '" + action + "'");
 				}
 			}
 			catch (InputMismatchException e)
 			{
-				System.out.println("Invalid input entered, try again.");
+				System.out.println("System: Invalid input entered, try again.");
 			}
 		}
 		while (!action.equals("close"));

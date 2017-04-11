@@ -1,10 +1,10 @@
 Name Salvon
-Health 150.0 100.0
+Health 200.0 100.0
 Mana 100.0 100.0
 Stamina 100.0 100.0
-Gold 1327
+Gold 949
 XP 0
 Level 1
 Location Town
-Inventory 0 8 
+Inventory 0 8 8 
 EquippedWeapon 0
