@@ -77,7 +77,6 @@ public class Inventory
 								{
 									item.use(character);
 									System.out.println("Used " + item.getName());
-									character.removeItem(item);
 								}
 							}
 						}
