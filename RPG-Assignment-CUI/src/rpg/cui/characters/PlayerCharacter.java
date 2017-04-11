@@ -11,6 +11,7 @@ import rpg.cui.items.ConsumableType;
 import rpg.cui.items.Item;
 import rpg.cui.items.ItemDatabase;
 import rpg.cui.items.Weapon;
+import rpg.cui.misc.TextColor;
 import rpg.cui.misc.Utility;
 
 /**
@@ -278,7 +279,10 @@ public class PlayerCharacter extends Character
 			{
 				float max = equippedWeapon.getDamage();
 				float min = max * 0.75f;
-				target.takeDamage(Utility.randomFloat(min, max));
+				float damage = Utility.randomFloat(min, max);
+				
+				System.out.println(TextColor.Yellow + "** " + this.getName() + " attacked " + target.getName() + " for " + (int)damage + " damage **");
+				target.takeDamage(damage);
 			}
 			else
 			{

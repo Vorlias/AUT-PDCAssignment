@@ -78,7 +78,10 @@ public class Combat
 			switch (command)
 			{
 				case "attack":
-					System.out.println("attack");
+					
+					playerCharacter.attack(enemy);
+					enemy.attack(playerCharacter);
+					
 					break;
 				case "flee":
 					hasFled = true;
@@ -110,7 +113,9 @@ public class Combat
 		}
 		else 
 		{
+			System.out.println(TextColor.Green + "System: You successfully defeated " + enemy.getName());
 			enemy = null;
+			Explore.handleExplore();
 		}
 	}
 }
