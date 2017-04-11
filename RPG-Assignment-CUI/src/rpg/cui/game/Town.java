@@ -88,16 +88,16 @@ public class Town
 	 */
 	private static void handleBlacksmithOptions()
 	{
-		String blacksmithOption = scanner.nextLine();
+		int blacksmithOption = scanner.nextInt();
 		
 		switch(blacksmithOption)
 		{
-			case "1":
+			case 1:
 				System.out.println("Lorhamri: What weapon would you like to purchase player?");
 				System.out.println("System: \n\t1. Dagger (5 Gold)\n\t2. Shortsword (15 Gold)\n\t3. Longsword (30 Gold)\n\t4. Broadsword (50 Gold)\n\t5. Mace (15 Gold)\n\t6. Bow (10 Gold)\n\t7. Crossbow (15 Gold)\n\t8. Staff (15 Gold)\n\t9. Exit Weapon Purchasing");
 				handleWeaponPurchase();
 				break;
-			case "2":
+			case 2:
 				handleTown();
 				break;
 			default:
