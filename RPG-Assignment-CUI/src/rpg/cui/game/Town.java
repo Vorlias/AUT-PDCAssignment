@@ -118,49 +118,73 @@ public class Town
 		{
 			case 1:
 				if(player.getGold() >= 5)
+				{
+					player.setGold(player.getGold() - 5);
 					handleSuccessfulWeaponPurchase(purchaseWeapon);
+				}
 				else
 					handleFailedWeaponPurchase();
 				break;
 			case 2:
 				if(player.getGold() >= 15)
+				{
+					player.setGold(player.getGold() - 15);
 					handleSuccessfulWeaponPurchase(purchaseWeapon);
+				}
 				else
 					handleFailedWeaponPurchase();
 				break;
 			case 3:
 				if(player.getGold() >= 30)
+				{
+					player.setGold(player.getGold() - 30);
 					handleSuccessfulWeaponPurchase(purchaseWeapon);
+				}
 				else
 					handleFailedWeaponPurchase();
 				break;
 			case 4:
 				if(player.getGold() >= 50)
+				{
+					player.setGold(player.getGold() - 50);
 					handleSuccessfulWeaponPurchase(purchaseWeapon);
+				}
 				else
 					handleFailedWeaponPurchase();
 				break;
 			case 5:
 				if(player.getGold() >= 15)
+				{
+					player.setGold(player.getGold() - 15);
 					handleSuccessfulWeaponPurchase(purchaseWeapon);
+				}
 				else
 					handleFailedWeaponPurchase();
 				break;
 			case 6:
 				if(player.getGold() >= 10)
+				{
+					player.setGold(player.getGold() - 10);
 					handleSuccessfulWeaponPurchase(purchaseWeapon);
+				}
 				else
 					handleFailedWeaponPurchase();
 				break;
 			case 7:
 				if(player.getGold() >= 15)
+				{
+					player.setGold(player.getGold() - 15);
 					handleSuccessfulWeaponPurchase(purchaseWeapon);
+				}
 				else
 					handleFailedWeaponPurchase();
 				break;
 			case 8:
 				if(player.getGold() >= 15)
+				{
+					player.setGold(player.getGold() - 15);
 					handleSuccessfulWeaponPurchase(purchaseWeapon);
+				}
 				else
 					handleFailedWeaponPurchase();
 				break;
