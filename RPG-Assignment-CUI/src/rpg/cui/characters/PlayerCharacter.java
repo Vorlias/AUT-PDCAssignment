@@ -66,11 +66,24 @@ public class PlayerCharacter extends Character
 	
 	/**
 	 * Removes the item from the player's inventory
-	 * @param item 
+	 * @param item The item to remove
+	 * @param amount The amount to remove
 	 */
-	public void removeItem(Item item)
+	public void removeItem(Item item, int amount)
 	{
-		items.remove(item);
+		int removedAmount = 0;
+		for (int i = 0; i < items.size(); i++)
+		{
+			Item currentItem = items.get(i);
+			if (currentItem == item)
+			{
+				items.remove(i);
+				removedAmount ++;
+			}
+			
+			if (amount == removedAmount)
+				break;
+		}
 	}
 
 	public boolean hasConsumable(ConsumableType type)
