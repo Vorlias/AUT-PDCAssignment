@@ -20,7 +20,7 @@ public class Explore
 	static Random random = new Random();
 	
 	/**
-	 * 
+	 * Handles entering explore mode
 	 */
 	public static void handleExplore()
 	{
@@ -31,8 +31,44 @@ public class Explore
 	}
 	
 	/**
-	 * 
-	 * @param locationValue 
+	 * Handles player selection
+	 */
+	private static void handleExploreOptions()
+	{
+		System.out.println("System: What would you like to do next?");
+		System.out.print("\t1. Explore the Forest\n\t2. Open Inventory\n\t3. Leave Forest\n\t4. Save Game\n\t5. Exit Game\nYou: > ");
+		String nextExploreOption = scanner.nextLine();
+		
+		switch(nextExploreOption)
+		{
+			case "1":
+				handleExploreLocations(random.nextInt(5));
+				break;
+			case "2":
+				Inventory.handleInventory();
+				break;
+			case "3":
+				System.out.println("System: You have left the forest of Kreahx.");
+				Utility.printBreak(41, '/');
+				Game.getPlayerCharacter().setLocation(PlayerLocation.Wilds);
+				Game.chooseNextLocation();
+				break;
+			case "4":
+				Game.handleSaveGame();
+				handleExploreOptions();
+				break;
+			case "5":
+				System.exit(0);
+				break;
+			default:
+				System.out.print("System: Please only use the numbers displayed to select an option e.g. 1\nSelect an option > ");
+				handleExploreOptions();
+		}
+	}
+	
+	/**
+	 * Handles where the player goes based on the random locationValue
+	 * @param locationValue value to use in switch statement
 	 */
 	private static void handleExploreLocations(int locationValue)
 	{
@@ -62,43 +98,6 @@ public class Explore
 				}
 				System.out.println("System: You find 5 gold from a dead goblin corpse.");
 				Game.getPlayerCharacter().setGold(5);
-				handleExploreOptions();
-				break;
-		}
-	}
-	
-	/**
-	 * 
-	 */
-	private static void handleExploreOptions()
-	{
-		System.out.println("System: What would you like to do next?");
-		System.out.print("\t1. Explore the Forest\n\t2. Open Inventory\n\t3. Leave Forest\n\t4. Save Game\n\t5. Exit Game\n> ");
-		String nextExploreOption = scanner.nextLine();
-		
-		switch(nextExploreOption)
-		{
-			case "1":
-				handleExploreLocations(random.nextInt(5));
-				break;
-			case "2":
-				Inventory.handleInventory();
-				break;
-			case "3":
-				System.out.println("System: You have left the forest of Kreahx.");
-				Utility.printBreak(41, '/');
-				Game.getPlayerCharacter().setLocation(PlayerLocation.Wilds);
-				Game.chooseNextLocation();
-				break;
-			case "4":
-				Game.handleSaveGame();
-				handleExploreOptions();
-				break;
-			case "5":
-				System.exit(0);
-				break;
-			default:
-				System.out.print("System: Please only use the numbers displayed to select an option e.g. 1\nSelect an option > ");
 				handleExploreOptions();
 				break;
 		}
