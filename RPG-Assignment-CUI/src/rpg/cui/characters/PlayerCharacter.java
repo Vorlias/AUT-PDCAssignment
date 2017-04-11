@@ -63,6 +63,15 @@ public class PlayerCharacter extends Character
 	{
 		return location;
 	}
+	
+	/**
+	 * Removes the item from the player's inventory
+	 * @param item 
+	 */
+	public void removeItem(Item item)
+	{
+		items.remove(item);
+	}
 
 	public boolean hasConsumable(ConsumableType type)
 	{

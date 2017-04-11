@@ -93,5 +93,7 @@ public class Consumable extends Item
 				character.setStamina(character.getStamina() + modifier);
 				break;
 		}
+		
+		character.removeItem(this);
 	}
 }
