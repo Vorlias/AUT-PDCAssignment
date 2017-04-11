@@ -94,6 +94,6 @@ public class Consumable extends Item
 				break;
 		}
 		
-		character.removeItem(this);
+		character.removeItem(this, 1);
 	}
 }
