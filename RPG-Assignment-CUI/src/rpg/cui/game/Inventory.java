@@ -23,7 +23,7 @@ public class Inventory
 	static Scanner scanner = new Scanner(System.in);
 
 	/**
-	 *
+	 * 
 	 */
 	public static void handleInventory()
 	{
@@ -57,7 +57,7 @@ public class Inventory
 		{
 			try
 			{
-				System.out.print("Inventory> ");
+				System.out.print("Inventory: > ");
 				action = scanner.next().toLowerCase();
 				switch (action)
 				{
@@ -85,12 +85,12 @@ public class Inventory
 					case "close":
 						break;
 					default:
-						System.out.println("Unknown command '" + action + "'");
+						System.out.println("System: Unknown command '" + action + "'");
 				}
 			}
 			catch (InputMismatchException e)
 			{
-				System.out.println("Invalid input entered, try again.");
+				System.out.println("System: Invalid input entered, try again.");
 			}
 		}
 		while (!action.equals("close"));

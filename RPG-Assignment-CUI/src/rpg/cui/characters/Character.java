@@ -87,7 +87,7 @@ public abstract class Character
 	 */
 	public void setGold(int gold)
 	{
-		this.gold += gold;
+		this.gold = gold;
 	}
 	
 	/**
