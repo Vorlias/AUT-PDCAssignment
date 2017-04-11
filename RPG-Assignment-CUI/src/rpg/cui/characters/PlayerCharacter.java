@@ -7,6 +7,7 @@ package rpg.cui.characters;
 
 import java.util.ArrayList;
 import rpg.cui.items.Consumable;
+import rpg.cui.items.ConsumableType;
 import rpg.cui.items.Item;
 import rpg.cui.items.ItemDatabase;
 import rpg.cui.items.Weapon;
