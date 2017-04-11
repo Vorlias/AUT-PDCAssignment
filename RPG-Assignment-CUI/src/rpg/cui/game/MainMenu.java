@@ -57,7 +57,7 @@ public class MainMenu
 	private static void handleNewGame()
 	{
 		Utility.printBreak(41, '/');
-		System.out.print("Stranger: Woah there! You over there, who are you?\nYou: ");
+		System.out.print("Stranger: Woah there! You over there, who are you?\nYou: > ");
 		String name = scanner.nextLine();
 		System.out.println("Stranger: Ah I see, " + name + " is it? You shouldn't be walking around here without a weapon to protect you, here take this!");
 		System.out.println("System: " + name + " received a dagger!");
