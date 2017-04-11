@@ -42,7 +42,7 @@ public class Game
 	public static void chooseNextLocation()
 	{
 		System.out.println("System: What would you like to do next?");
-		System.out.print("\t1. Go to Town\n\t2. Enter the Forest\n\t3. Open Inventory\n\t4. Save Game\n\t5. Exit Game\n> ");
+		System.out.print("\t1. Go to Town\n\t2. Enter the Forest\n\t3. Open Inventory\n\t4. Save Game\n\t5. Exit Game\nYou: > ");
 		handleNextLocationOption();
 	}
 	
@@ -75,13 +75,12 @@ public class Game
 			default:
 				System.out.print("System: Please only use the numbers displayed to select an option e.g. 1\nSelect an option > ");
 				handleNextLocationOption();
-				break;
 		}
 	}
 	
 	/**
-	 * 
-	 * @return 
+	 * Returns the playerCharacter
+	 * @return playerChracter
 	 */
 	public static PlayerCharacter getPlayerCharacter()
 	{
@@ -89,8 +88,8 @@ public class Game
 	}
 	
 	/**
-	 * 
-	 * @param playerCharacter 
+	 * Sets the playerCharacter object
+	 * @param playerCharacter the playerCharacter object
 	 */
 	public static void setPlayerCharacter(PlayerCharacter playerCharacter)
 	{
@@ -98,27 +97,25 @@ public class Game
 	}
 	
 	/**
-	 * 
-	 * @return 
+	 * Check if player is in town
+	 * @return true if player in town
 	 */
 	public static boolean isPlayerInTown()
 	{
-		//return playerInTown;
 		return playerCharacter.getLocation() == PlayerLocation.Town;
 	}
 
 	/**
-	 * 
-	 * @return 
+	 * Check if player is in forest
+	 * @return true if player in forest
 	 */
 	public static boolean isPlayerInForest()
 	{
 		return playerCharacter.getLocation() == PlayerLocation.Forest;
-		//return playerInForest;
 	}
 	
 	/**
-	 * 
+	 * Saves the game
 	 */
 	public static void handleSaveGame()
 	{
