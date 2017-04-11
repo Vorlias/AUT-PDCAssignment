@@ -7,6 +7,7 @@ package rpg.cui.characters;
 
 import java.util.ArrayList;
 import rpg.cui.items.Consumable;
+import rpg.cui.items.ConsumableType;
 import rpg.cui.items.Item;
 import rpg.cui.items.ItemDatabase;
 import rpg.cui.items.Weapon;
@@ -61,6 +62,15 @@ public class PlayerCharacter extends Character
 	public PlayerLocation getLocation()
 	{
 		return location;
+	}
+	
+	/**
+	 * Removes the item from the player's inventory
+	 * @param item 
+	 */
+	public void removeItem(Item item)
+	{
+		items.remove(item);
 	}
 
 	public boolean hasConsumable(ConsumableType type)
