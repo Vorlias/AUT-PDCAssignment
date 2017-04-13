@@ -5,6 +5,7 @@
  */
 package rpg.cui.game;
 
+import java.util.Random;
 import java.util.Scanner;
 import rpg.cui.characters.Monster;
 import rpg.cui.characters.MonsterType;
@@ -51,6 +52,7 @@ public class Combat
 	{
 		boolean hasFled = false;
 		PlayerCharacter playerCharacter = Game.getPlayerCharacter();
+		Random random = new Random();
 		playerCharacter.setInCombat(true);
 		
 		while (enemy.isAlive() && !hasFled && playerCharacter.isAlive())
@@ -66,12 +68,6 @@ public class Combat
 			System.out.println("	flee - flee to town (you will lose health)");
 			System.out.println("	inventory - access your inventory");
 			
-			boolean hasHealthPotion = playerCharacter.hasConsumable(ConsumableType.Health);
-			if (hasHealthPotion)
-			{
-				System.out.println("	heal - use a health potion");
-			}
-			
 			System.out.print(TextColor.Red + "Combat> " + TextColor.Default);
 			String command = scanner.next().toLowerCase();
 			
@@ -86,13 +82,6 @@ public class Combat
 				case "flee":
 					hasFled = true;
 					playerCharacter.setInCombat(false);
-					break;
-				case "heal":
-					if (hasHealthPotion)
-					{
-					}
-					else
-						System.err.println("You do not have any health potions.");
 					break;
 				case "inventory":
 					Inventory.handleInventory();
@@ -121,6 +110,12 @@ public class Combat
 		{
 			System.out.println(TextColor.Green + "System: You successfully defeated " + enemy.getName());
 			playerCharacter.addXP(enemy.getLevel() * 10);
+			
+			int goldToAdd = random.nextInt(9) + 1;
+			playerCharacter.setGold(playerCharacter.getGold() + goldToAdd);
+			
+			System.out.println(TextColor.Green + "System: You find " + goldToAdd + " from the enemy corpse.");
+			
 			enemy = null;
 			Explore.handleExplore();
 		}
