@@ -42,7 +42,7 @@ public class Explore
 		switch(nextExploreOption)
 		{
 			case "1":
-				handleExploreLocations(random.nextInt(5));
+				handleExploreLocations(random.nextInt(4) + 1);
 				break;
 			case "2":
 				Inventory.handleInventory();

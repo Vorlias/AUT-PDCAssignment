@@ -101,6 +101,7 @@ public class Combat
 			
 		}
 		
+		playerCharacter.setInCombat(false);
 		if (hasFled) 
 		{
 			playerCharacter.takeDamage(enemy.getMaxDamage());
@@ -113,7 +114,8 @@ public class Combat
 		}
 		else if (!playerCharacter.isAlive())
 		{
-			
+			System.out.println(TextColor.Red + "System: Unfortunately " + playerCharacter.getName() + " dies to " + enemy.getName() + ", a tragic death.");
+			System.out.println(TextColor.Red + "** GAME OVER **");
 		}
 		else 
 		{
