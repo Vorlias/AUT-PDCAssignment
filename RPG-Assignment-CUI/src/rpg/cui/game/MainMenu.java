@@ -71,7 +71,7 @@ public class MainMenu
 	 */
 	private static void handleLoadGame()
 	{
-		boolean isValidSave = false;
+		boolean isValidSave;
 		
 		do
 		{
