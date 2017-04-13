@@ -216,7 +216,7 @@ public abstract class Character
 	 */
 	public void setHealth(float value)
 	{
-		this.health = value;
+		this.health = Math.min(maxHealth, value);
 	}
 	
 	/**
