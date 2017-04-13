@@ -53,7 +53,7 @@ public class Combat
 		PlayerCharacter playerCharacter = Game.getPlayerCharacter();
 		playerCharacter.setInCombat(true);
 		
-		while (enemy.isAlive() && !hasFled)
+		while (enemy.isAlive() && !hasFled && playerCharacter.isAlive())
 		{
 			playerCharacter.printHealth();
 			System.out.print("\t");
@@ -62,7 +62,7 @@ public class Combat
 			
 			System.out.println(TextColor.Yellow + "System: What would you like to do?");
 			
-			System.out.println("	attack - attack the target with your " + playerCharacter.getEquippedWeapon() + "");
+			System.out.println("	attack - attack the target with your " + playerCharacter.getEquippedWeapon().getName() + "");
 			System.out.println("	flee - flee to town (you will lose health)");
 			System.out.println("	inventory - access your inventory");
 			
@@ -111,9 +111,14 @@ public class Combat
 			playerCharacter.printHealth();
 			Town.handleTown();
 		}
+		else if (!playerCharacter.isAlive())
+		{
+			
+		}
 		else 
 		{
 			System.out.println(TextColor.Green + "System: You successfully defeated " + enemy.getName());
+			playerCharacter.addXP(enemy.getLevel() * 10);
 			enemy = null;
 			Explore.handleExplore();
 		}
