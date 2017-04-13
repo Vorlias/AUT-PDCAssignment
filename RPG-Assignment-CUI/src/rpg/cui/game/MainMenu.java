@@ -72,29 +72,43 @@ public class MainMenu
 	private static void handleLoadGame()
 	{
 		boolean isValidSave;
+		boolean isCancelled = false;
 		
 		do
 		{
 			System.out.print("System: Enter the name of the save file you want to load or 'cancel' to return > ");
 			String saveName = scanner.nextLine();
 			
-			isValidSave = PlayerSave.loadCharacter(saveName);
-		
-			if (isValidSave)
+			if (!saveName.toLowerCase().equals("cancel"))
 			{
-				PlayerLocation location = Game.getPlayerCharacter().getLocation();
-				switch (location)
+				isValidSave = PlayerSave.loadCharacter(saveName);
+		
+				if (isValidSave)
 				{
-					case Town:
-						Town.handleTown();
-						break;
-					case Forest:
-						Explore.handleExplore();
-						break;
-					default:
-						Game.chooseNextLocation();
+					PlayerLocation location = Game.getPlayerCharacter().getLocation();
+					switch (location)
+					{
+						case Town:
+							Town.handleTown();
+							break;
+						case Forest:
+							Explore.handleExplore();
+							break;
+						default:
+							Game.chooseNextLocation();
+					}
 				}
 			}
+			else
+			{
+				isCancelled = true;
+				break;
+			}
 		} while (!isValidSave);
+		
+		if (isCancelled)
+		{
+			handleMainMenu();
+		}
 	}
 }
