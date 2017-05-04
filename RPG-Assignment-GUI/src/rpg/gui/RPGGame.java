@@ -1,4 +1,4 @@
-package assignment.rpg.gui;
+package rpg.gui;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
