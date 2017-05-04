@@ -6,6 +6,8 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+import rpg.gui.states.MenuState;
+import rpg.gui.states.PlayState;
 
 /**
  *
@@ -50,7 +52,8 @@ public class RPGGame extends StateBasedGame
     @Override
     public void initStatesList(GameContainer gc) throws SlickException
     {
-	
+	this.addState(new MenuState());
+	this.addState(new PlayState());
     }
 
 }
