@@ -54,6 +54,8 @@ public class RPGGame extends StateBasedGame
     {
 	this.addState(new MenuState());
 	this.addState(new PlayState());
+	
+	this.enterState(STATE_GAME);
     }
 
 }
