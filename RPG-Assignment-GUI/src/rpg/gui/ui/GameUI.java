@@ -19,7 +19,7 @@ public class GameUI
     private final int LEFT_CONTAINER_WIDTH = 600;
     private final int LEFT_CONTAINER_HEIGHT = 580;
     
-    private float healthPercentage = 0.5f;
+    private float healthPercentage = 0.2f;
     
     /**
      * Renders the background of the UI
@@ -52,6 +52,6 @@ public class GameUI
      */
     public void setHealthPercentage(float percentage)
     {
-	this.healthPercentage = percentage > 1 ? percentage / 100 : percentage;
+	this.healthPercentage = percentage / 100.0f;
     }
 }
