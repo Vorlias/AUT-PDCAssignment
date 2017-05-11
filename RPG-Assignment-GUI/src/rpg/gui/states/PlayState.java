@@ -15,7 +15,6 @@ import rpg.gui.RPGGame;
 import rpg.gui.misc.Vector2;
 import rpg.gui.ui.Button;
 import rpg.gui.ui.ButtonLayoutGroup;
-import rpg.gui.ui.ButtonPressedListener;
 import rpg.gui.ui.GameUI;
 
 /**
@@ -25,11 +24,10 @@ import rpg.gui.ui.GameUI;
 public class PlayState extends BasicGameState
 {
 
-    private final GameUI ui = new GameUI();
+    private GameUI ui;
 
     int testAmount = 100;
-    ButtonLayoutGroup actionButtons;
-
+    
     @Override
     public int getID()
     {
@@ -40,16 +38,7 @@ public class PlayState extends BasicGameState
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
     {
 	gc.setShowFPS(false);
-
-	actionButtons = new ButtonLayoutGroup(gc, ButtonLayoutGroup.LayoutType.Grid);
-	actionButtons.setGridExtents(new Vector2(2, 2));
-	actionButtons.setButtons("Ayy", "Lmao", "This", "Workededededededed");
-	actionButtons.setItemPadding(new Vector2(5, 5));
-	actionButtons.onItemPressed((Button button) ->
-	{
-	    System.out.println(button.getText());
-	});
-
+	ui = new GameUI(gc);
 	ui.setHealthPercentage(100);
     }
 
@@ -61,7 +50,7 @@ public class PlayState extends BasicGameState
 	// Draw outlines
 	ui.renderBackground(gc, game, renderer);
 	ui.renderPlayerInfo(gc, game, renderer);
-	actionButtons.render(gc, renderer);
+	//actionButtons.render(gc, renderer);
     }
 
     @Override
