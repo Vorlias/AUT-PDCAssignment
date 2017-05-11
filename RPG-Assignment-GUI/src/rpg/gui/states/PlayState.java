@@ -14,6 +14,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import rpg.gui.RPGGame;
 import rpg.gui.misc.Vector2;
 import rpg.gui.ui.Button;
+import rpg.gui.ui.ButtonLayoutGroup;
 import rpg.gui.ui.ButtonPressedListener;
 import rpg.gui.ui.GameUI;
 
@@ -23,30 +24,32 @@ import rpg.gui.ui.GameUI;
  */
 public class PlayState extends BasicGameState
 {
+
     private final GameUI ui = new GameUI();
-    
+
     int testAmount = 100;
-    Button testButton;
+    ButtonLayoutGroup actionButtons;
 
     @Override
     public int getID()
     {
 	return RPGGame.STATE_GAME;
     }
-    
+
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
     {
 	gc.setShowFPS(false);
-	
-	testButton = new Button(gc, "Attack", new Vector2(10, 10));
-	//testButton.setTextPadding(new Vector2(5, 2));
-	testButton.onButtonPressed(() -> {
-	    System.out.println(testAmount);
-	    testAmount -= 5;
-	    ui.setHealthPercentage(testAmount);
+
+	actionButtons = new ButtonLayoutGroup(gc, ButtonLayoutGroup.LayoutType.Horizontal);
+	actionButtons.setGridExtents(new Vector2(2, 2));
+	actionButtons.setButtons("Ayy", "Lmao", "This", "Workededededededed");
+	actionButtons.setItemPadding(new Vector2(5, 5));
+	actionButtons.onItemPressed((Button button) ->
+	{
+	    System.out.println(button.getText());
 	});
-	
+
 	ui.setHealthPercentage(100);
     }
 
@@ -54,16 +57,16 @@ public class PlayState extends BasicGameState
     public void render(GameContainer gc, StateBasedGame game, Graphics renderer) throws SlickException
     {
 	renderer.setColor(Color.white);
-	
+
 	// Draw outlines
 	ui.renderBackground(gc, game, renderer);
 	ui.renderPlayerInfo(gc, game, renderer);
-	testButton.render(gc, renderer);
+	actionButtons.render(gc, renderer);
     }
 
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException
     {
-	
+
     }
 }
