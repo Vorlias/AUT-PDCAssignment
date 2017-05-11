@@ -41,7 +41,7 @@ public class PlayState extends BasicGameState
     {
 	gc.setShowFPS(false);
 
-	actionButtons = new ButtonLayoutGroup(gc, ButtonLayoutGroup.LayoutType.Horizontal);
+	actionButtons = new ButtonLayoutGroup(gc, ButtonLayoutGroup.LayoutType.Grid);
 	actionButtons.setGridExtents(new Vector2(2, 2));
 	actionButtons.setButtons("Ayy", "Lmao", "This", "Workededededededed");
 	actionButtons.setItemPadding(new Vector2(5, 5));

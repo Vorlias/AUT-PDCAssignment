@@ -24,6 +24,7 @@ public class Button extends AbstractComponent
     private Vector2 size;
     private Vector2 textPadding = Vector2.ZERO;
     private boolean clickState;
+    private boolean mouseOverState;
 
     public Vector2 getTextPadding()
     {
@@ -102,6 +103,30 @@ public class Button extends AbstractComponent
 	
     }
     
+    @Override
+    public void mouseMoved(int oldX, int oldY, int x, int y)
+    {
+	Rectangle boundsRectangle = new Rectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+	Rectangle mouseRectangle = new Rectangle(x, y, 2, 2);
+	
+	mouseOverState = boundsRectangle.intersects(mouseRectangle);
+    }
+    
+    public boolean isMouseOver()
+    {
+	return this.mouseOverState;
+    }
+    
+    /**
+     * Returns whether or not this GUI component is active
+     * Used for UI state handling
+     * @return True if the component is active
+     */
+    public boolean isActive()
+    {
+	return this.clickState;
+    }
+    
     public boolean isPressed()
     {
 	return this.clickState;
@@ -109,10 +134,8 @@ public class Button extends AbstractComponent
     
     @Override 
     public void mousePressed(int button, int x, int y)
-    {
-	Rectangle boundsRectangle = new Rectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-	Rectangle mouseRectangle = new Rectangle(x, y, 2, 2);
-	if (boundsRectangle.intersects(mouseRectangle))
+    {	
+	if (mouseOverState)
 	{
 	    setClickState(true);
 	    if (this.pressListener != null)
@@ -132,7 +155,7 @@ public class Button extends AbstractComponent
 	//TrueTypeFont ttf = new TrueTypeFont(new Font("Impact", 0, 15), true);
 	//graphics.setFont(ttf);
 	
-	graphics.setColor(clickState ? new Color(100, 100, 100) : new Color(50, 50, 50));
+	graphics.setColor(mouseOverState ? new Color(100, 100, 100) : new Color(50, 50, 50));
 	graphics.fillRect(position.getX(), position.getY(), size.getX(), size.getY());
 	graphics.setColor(Color.white);
 	graphics.drawString(text, position.getX() + textPadding.getX(), position.getY() + textPadding.getY());
