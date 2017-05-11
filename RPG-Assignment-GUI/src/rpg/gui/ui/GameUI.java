@@ -28,7 +28,7 @@ public class GameUI
     public GameUI(GUIContext context)
     {
 	actionLayoutGroup = new ButtonLayoutGroup(context, ButtonLayoutGroup.LayoutType.Grid);
-	actionLayoutGroup.setButtons("North", "South", "East", "West");
+	actionLayoutGroup.setButtons();
 	actionLayoutGroup.setItemPadding(new Vector2(10, 10));
 	actionLayoutGroup.setGridExtents(new Vector2(4, 4));
     }
@@ -38,6 +38,12 @@ public class GameUI
 	actionLayoutGroup.setButtons(actions);
     }
     
+    public void render(GameContainer container, StateBasedGame game, Graphics renderer) throws SlickException
+    {
+	this.renderBackground(container, game, renderer);
+	this.renderPlayerInfo(container, game, renderer);
+    }
+    
     /**
      * Renders the background of the UI
      * @param container The container
@@ -45,7 +51,7 @@ public class GameUI
      * @param renderer The renderer
      * @throws org.newdawn.slick.SlickException
      */
-    public void renderBackground(GameContainer container, StateBasedGame game, Graphics renderer) throws SlickException
+    private void renderBackground(GameContainer container, StateBasedGame game, Graphics renderer) throws SlickException
     {
 	renderer.setColor(Color.white);
 	renderer.drawRect(10, 10, LEFT_CONTAINER_WIDTH, LEFT_CONTAINER_HEIGHT);
@@ -55,7 +61,7 @@ public class GameUI
 	actionLayoutGroup.render(container, renderer);
     }
     
-    public void renderPlayerInfo(GameContainer container, StateBasedGame game, Graphics renderer)
+    private void renderPlayerInfo(GameContainer container, StateBasedGame game, Graphics renderer)
     {
 	renderer.setColor(Color.white);
 	renderer.drawString("PlayerName", 20 + LEFT_CONTAINER_WIDTH, 10);

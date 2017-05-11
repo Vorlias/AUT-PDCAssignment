@@ -12,9 +12,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import rpg.gui.RPGGame;
-import rpg.gui.misc.Vector2;
-import rpg.gui.ui.Button;
-import rpg.gui.ui.ButtonLayoutGroup;
 import rpg.gui.ui.GameUI;
 
 /**
@@ -26,8 +23,6 @@ public class PlayState extends BasicGameState
 
     private GameUI ui;
 
-    int testAmount = 100;
-    
     @Override
     public int getID()
     {
@@ -40,6 +35,7 @@ public class PlayState extends BasicGameState
 	gc.setShowFPS(false);
 	ui = new GameUI(gc);
 	ui.setHealthPercentage(100);
+	
     }
 
     @Override
@@ -47,10 +43,7 @@ public class PlayState extends BasicGameState
     {
 	renderer.setColor(Color.white);
 
-	// Draw outlines
-	ui.renderBackground(gc, game, renderer);
-	ui.renderPlayerInfo(gc, game, renderer);
-	//actionButtons.render(gc, renderer);
+	ui.render(gc, game, renderer);
     }
 
     @Override
