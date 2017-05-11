@@ -85,16 +85,19 @@ public class ButtonLayoutGroup extends AbstractComponent
 		case Grid:
 		{
 		    int pX = 0, pY = 0;
+		    int columnCount = 1;
 		    for (Button button : buttons)
 		    {
 			button.setPosition(new Vector2(position.getX() + pX, position.getY() + pY));
-			if (pX >= gridExtents.getX())
+			if (columnCount >= gridExtents.getX())
 			{
 			    pX = 0;
 			    pY += button.getHeight() + padding.getY();
+			    columnCount = 0;
 			}
 			else
 			{
+			    columnCount ++;
 			    pX += button.getWidth() + padding.getX();
 			}
 			button.render(container, g);

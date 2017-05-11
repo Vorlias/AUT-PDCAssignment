@@ -6,6 +6,7 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+import rpg.gui.states.CharacterCreationState;
 import rpg.gui.states.MenuState;
 import rpg.gui.states.PlayState;
 
@@ -18,13 +19,15 @@ public class RPGGame extends StateBasedGame
 
     public static final int STATE_MENU = 0;
     public static final int STATE_GAME = 1;
-
+    public static final int STATE_CREATION = 2;
+    
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;
     public static final int FPS = 60;
     public static final double VERSION = 0.1;
     
     public static final String TITLE = "RPG Game";
+    
 
     /**
      * @param args the command line arguments
@@ -54,6 +57,7 @@ public class RPGGame extends StateBasedGame
     {
 	this.addState(new MenuState());
 	this.addState(new PlayState());
+	this.addState(new CharacterCreationState());
 	
 	this.enterState(STATE_GAME);
     }

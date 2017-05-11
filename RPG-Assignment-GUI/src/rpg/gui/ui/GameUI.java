@@ -28,9 +28,9 @@ public class GameUI
     public GameUI(GUIContext context)
     {
 	actionLayoutGroup = new ButtonLayoutGroup(context, ButtonLayoutGroup.LayoutType.Grid);
-	actionLayoutGroup.setButtons();
-	actionLayoutGroup.setItemPadding(new Vector2(10, 10));
-	actionLayoutGroup.setGridExtents(new Vector2(4, 4));
+	actionLayoutGroup.setButtons("Go to town", "Inventory", "Something else", "Something else2", "some more text");
+	actionLayoutGroup.setItemPadding(new Vector2(5, 5));
+	actionLayoutGroup.setGridExtents(new Vector2(3, 4));
     }
     
     public void setButtons(String... actions)
