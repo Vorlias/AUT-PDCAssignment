@@ -23,14 +23,28 @@ public class GameUI
     private final int LEFT_CONTAINER_HEIGHT = 580;
     
     private float healthPercentage = 0.2f;
-    private ButtonLayoutGroup actionLayoutGroup;
+    private final ButtonLayoutGroup actionLayoutGroup;
+    private final TextDisplay testDisplay;
     
     public GameUI(GUIContext context)
     {
 	actionLayoutGroup = new ButtonLayoutGroup(context, ButtonLayoutGroup.LayoutType.Grid);
+	testDisplay = new TextDisplay(context);	
+	
 	actionLayoutGroup.setButtons("Go to town", "Inventory", "Something else", "Something else2", "some more text");
 	actionLayoutGroup.setItemPadding(new Vector2(5, 5));
 	actionLayoutGroup.setGridExtents(new Vector2(3, 4));
+	actionLayoutGroup.onItemPressed((Button b) -> {
+	    testDisplay.addSystemMessage("Action: " + b.getText());
+	});
+	
+	
+	testDisplay.addSystemMessage("Welcome to hell");
+	testDisplay.addMessage("Nathan", "I'm a huge keklord");
+	testDisplay.addErrorMessage("Cannot handle how much of a Keklord Nathan is");
+	testDisplay.addMessage("Jonathan", "You're not lying there, lol.");
+	testDisplay.setSize(new Vector2(LEFT_CONTAINER_WIDTH, LEFT_CONTAINER_HEIGHT - 180 - 20));
+	testDisplay.setPosition(new Vector2(10, 10));
     }
     
     public void setButtons(String... actions)
@@ -59,6 +73,8 @@ public class GameUI
 	
 	actionLayoutGroup.setLocation(20, LEFT_CONTAINER_HEIGHT - 180);
 	actionLayoutGroup.render(container, renderer);
+	
+	testDisplay.render(container, renderer);
     }
     
     private void renderPlayerInfo(GameContainer container, StateBasedGame game, Graphics renderer)

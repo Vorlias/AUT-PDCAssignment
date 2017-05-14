@@ -1,0 +1,106 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package rpg.gui.ui;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Font;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.gui.GUIContext;
+import rpg.gui.misc.Vector2;
+
+/**
+ *
+ * @author Jonathan
+ */
+public class TextDisplay extends GUIObject
+{
+
+    public TextDisplay(GUIContext context)
+    {
+	super(context);
+    }
+    
+    /**
+     * A message
+     */
+    private class Message
+    {
+	String prefix;
+	String message;
+	Color color;
+	
+	public Message(String prefix, String message)
+	{
+	    this.prefix = prefix;
+	    this.message = message;
+	    this.color = Color.white;
+	}
+    }
+    
+    List<Message> messages = new ArrayList<>();
+    
+    /**
+     * Adds a message to the text display
+     * e.g. [Prefix] Message here
+     * @param prefix The prefix
+     * @param message The message
+     */
+    public void addMessage(String prefix, String message)
+    {
+	Message tp = new Message("[" + prefix + "]: ", message);
+	messages.add(tp);
+    }
+    
+    public void addSystemMessage(String message)
+    {
+	Message tp = new Message("", message);
+	tp.color = Color.yellow;
+	messages.add(tp);
+    }
+    
+    public void addErrorMessage(String message)
+    {
+	Message tp = new Message("", message);
+	tp.color = Color.red;
+	messages.add(tp);	
+    }
+    
+    @Override
+    protected void renderGUI(GUIContext container, Graphics graphics)
+    {
+	Font font = graphics.getFont();
+	graphics.setClip(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+	
+	int offsetY = this.getSize().getY();
+	for (int i = messages.size() - 1; i >= 0; i--)
+	{
+	    Message m = messages.get(i);
+	    
+	    graphics.setColor(m.color);
+	    
+	    String prefix = m.prefix;
+	    
+	    int prefixWidth = font.getWidth(prefix);
+	    int messageHeight = font.getLineHeight(); //font.getHeight(m.message);
+	    // int messageWidth = font.getWidth(m.message);
+	    
+	    graphics.drawString(prefix, this.getPosition().getX(), offsetY - messageHeight);
+	    graphics.drawString(m.message, this.getPosition().getX() + prefixWidth + 5, offsetY - messageHeight);
+	    
+	    offsetY -= messageHeight;
+	}
+	
+	graphics.setColor(Color.white);
+	graphics.clearClip();
+    }
+
+    @Override
+    public void onGUIMousePressed()
+    {
+    }
+}

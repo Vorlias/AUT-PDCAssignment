@@ -17,14 +17,11 @@ import rpg.gui.misc.Vector2;
  *
  * @author Jonathan
  */
-public class Button extends AbstractComponent
+public class Button extends GUIObject
 {
     private String text;
-    private Vector2 position;
-    private Vector2 size;
     private Vector2 textPadding = Vector2.ZERO;
-    private boolean clickState;
-    private boolean mouseOverState;
+    private ButtonPressedListener pressListener;
 
     public Vector2 getTextPadding()
     {
@@ -35,7 +32,7 @@ public class Button extends AbstractComponent
     {
 	this.textPadding = textPadding;
     }
-    private ButtonPressedListener pressListener;
+    
     
     public void onButtonPressed(ButtonPressedListener listener)
     {
@@ -51,23 +48,13 @@ public class Button extends AbstractComponent
     {
 	this.text = text;
     }
-
-    public Vector2 getPosition()
-    {
-	return position;
-    }
-
-    public void setPosition(Vector2 position)
-    {
-	this.position = position;
-    }
     
     public Button(GUIContext context, String text, Vector2 position)
     {
 	super(context);
 	this.text = text;
-	this.size = new Vector2(150, 25);
-	this.position = position;
+	this.setSize(new Vector2(150, 25));
+	this.setPosition(position);
 	this.textPadding = new Vector2(10, 3);
     }
     
@@ -76,118 +63,26 @@ public class Button extends AbstractComponent
 	super(context);
 	
 	this.text = text;
-	this.size = size;
-	this.position = position;
-	
-	this.textPadding = new Vector2(this.size.getX() / 10, this.size.getY() / 10);
-    }
-    
-    public void setClickState(boolean value)
-    {
-	this.clickState = value;
-    }
-    
-    public void draw(Graphics graphics)
-    {
-	
+	this.setSize(size);
+	this.setPosition(position);
+	this.textPadding = new Vector2(this.getSize().getX() / 10, this.getSize().getY() / 10);
     }
 
-    public Vector2 getSize()
-    {
-	return size;
-    }
 
-    public void setSize(Vector2 size)
-    {
-	this.size = size;
-	
-    }
-    
-    @Override
-    public void mouseMoved(int oldX, int oldY, int x, int y)
-    {
-	Rectangle boundsRectangle = new Rectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-	Rectangle mouseRectangle = new Rectangle(x, y, 2, 2);
-	
-	mouseOverState = boundsRectangle.intersects(mouseRectangle);
-    }
-    
-    public boolean isMouseOver()
-    {
-	return this.mouseOverState;
-    }
-    
-    /**
-     * Returns whether or not this GUI component is active
-     * Used for UI state handling
-     * @return True if the component is active
-     */
-    public boolean isActive()
-    {
-	return this.clickState;
-    }
-    
-    public boolean isPressed()
-    {
-	return this.clickState;
-    }
-    
-    @Override 
-    public void mousePressed(int button, int x, int y)
-    {	
-	if (mouseOverState)
-	{
-	    setClickState(true);
-	    if (this.pressListener != null)
-		this.pressListener.pressed();
-	}
-    }
-    
-    @Override
-    public void mouseReleased(int button, int x, int y)
-    {
-	setClickState(false);
-    }
 
     @Override
-    public void render(GUIContext container, Graphics graphics) throws SlickException
+    protected void renderGUI(GUIContext container, Graphics graphics)
     {
-	//TrueTypeFont ttf = new TrueTypeFont(new Font("Impact", 0, 15), true);
-	//graphics.setFont(ttf);
-	
-	graphics.setColor(mouseOverState ? new Color(100, 100, 100) : new Color(50, 50, 50));
-	graphics.fillRect(position.getX(), position.getY(), size.getX(), size.getY());
+	graphics.setColor(this.isMouseOver() ? new Color(100, 100, 100) : new Color(50, 50, 50));
+	graphics.fillRect(this.getPosition().getX(), this.getPosition().getY(), this.getSize().getX(), this.getSize().getY());
 	graphics.setColor(Color.white);
-	graphics.drawString(text, position.getX() + textPadding.getX(), position.getY() + textPadding.getY());
+	graphics.drawString(text, this.getPosition().getX() + textPadding.getX(), this.getPosition().getY() + textPadding.getY());
     }
 
     @Override
-    public void setLocation(int x, int y)
+    public void onGUIMousePressed()
     {
-	this.setPosition(new Vector2(x, y));
-    }
-
-    @Override
-    public int getX()
-    {
-	return position.getX();
-    }
-
-    @Override
-    public int getY()
-    {
-	return position.getY();
-    }
-
-    @Override
-    public int getWidth()
-    {
-	return size.getX();
-    }
-
-    @Override
-    public int getHeight()
-    {
-	return size.getY();
+	if (this.pressListener != null)
+	    this.pressListener.pressed();
     }
 }
