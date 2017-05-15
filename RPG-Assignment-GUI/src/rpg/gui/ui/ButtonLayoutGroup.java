@@ -5,6 +5,10 @@
  */
 package rpg.gui.ui;
 
+import java.awt.FontFormatException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.gui.AbstractComponent;
@@ -62,16 +66,23 @@ public class ButtonLayoutGroup extends AbstractComponent
 	buttons = new Button[buttonNames.length];
 	for (int i = 0; i < buttonNames.length; i++)
 	{
-	    String buttonName = buttonNames[i];
-	    Button btn = new Button(this.context, buttonName, Vector2.ZERO);
-	    btn.onButtonPressed(() ->
+	    try
 	    {
-		if (itemPressedListener != null)
+		String buttonName = buttonNames[i];
+		Button btn = new Button(this.context, buttonName, Vector2.ZERO);
+		btn.onButtonPressed(() ->
 		{
-		    itemPressedListener.onItemPressed(btn);
-		}
-	    });
-	    buttons[i] = btn;
+		    if (itemPressedListener != null)
+		    {
+			itemPressedListener.onItemPressed(btn);
+		    }
+		});
+		buttons[i] = btn;
+	    }
+	    catch (FontFormatException | IOException | SlickException ex)
+	    {
+		Logger.getLogger(ButtonLayoutGroup.class.getName()).log(Level.SEVERE, null, ex);
+	    }
 	}
     }
 
