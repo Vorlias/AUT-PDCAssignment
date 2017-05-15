@@ -8,7 +8,6 @@ package rpg.gui.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,33 +17,35 @@ import java.util.logging.Logger;
  */
 public class GameDatabase
 {
-    private Connection connection;
-    private static final String DATABASE_URL = 
-	    "jdbc:derby://localhost:1527/ GameDB; create=true";
-    
-    private static final String DATABASE_USERNAME = "RPGGame";
-    private static final String DATABASE_PASSWORD = "x09348GJpR5oeiLLn";
-    
+
+    private static Connection conn;
+    private static final String DATABASE_URL = "jdbc:derby://localhost:1527/rpgdb;create=true";
+    private static final String DATABASE_USERNAME = "rpg";
+    private static final String DATABASE_PASSWORD = "rpg";
+
     private GameDatabase()
     {
 	try
 	{
-	    connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
-	    Statement statement = connection.createStatement();
-	    
+	    conn = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+	    System.out.println(DATABASE_URL + " connected.");
+
 	}
 	catch (SQLException ex)
 	{
 	    Logger.getLogger(GameDatabase.class.getName()).log(Level.SEVERE, null, ex);
 	}
     }
-    
+
     private static GameDatabase instance;
+
     public static GameDatabase getDatabaseInstance()
     {
 	if (instance == null)
+	{
 	    instance = new GameDatabase();
-	
+	}
+
 	return instance;
     }
 }
