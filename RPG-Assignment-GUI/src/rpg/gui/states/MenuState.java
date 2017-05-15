@@ -13,6 +13,9 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 import rpg.gui.RPGGame;
+import rpg.gui.misc.Vector2;
+import rpg.gui.ui.Button;
+import rpg.gui.ui.ButtonLayoutGroup;
 
 /**
  *
@@ -20,7 +23,10 @@ import rpg.gui.RPGGame;
  */
 public class MenuState extends BasicGameState
 {
+    ButtonLayoutGroup menuButtons;
+    
 
+    
     @Override
     public int getID()
     {
@@ -30,16 +36,32 @@ public class MenuState extends BasicGameState
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
     {
+	if (menuButtons == null)
+	{
+	    menuButtons = new ButtonLayoutGroup(gc, ButtonLayoutGroup.LayoutType.Vertical);
+	    menuButtons.setItemPadding(new Vector2(5, 5));
+	    menuButtons.setButtons("Play");
+	    menuButtons.setLocation(10, 10);
+	    menuButtons.onItemPressed((Button button) -> {
+		if ("Play".equals(button.getText()))
+		{
+		    sbg.enterState(RPGGame.STATE_GAME);
+		}
+	    });
+	}
     }
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException
     {
+	grphcs.clear();
+	menuButtons.render(gc, grphcs);
     }
 
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException
     {
+	
     }
 
     

@@ -121,6 +121,7 @@ public class ButtonLayoutGroup extends AbstractComponent
 		    {
 			button.setPosition(new Vector2(position.getX() + pX, position.getY() + pY));
 			pY += button.getHeight() + padding.getY();
+			button.render(container, g);
 		    }
 		    break;
 		}
