@@ -6,6 +6,7 @@
 package rpg.cui.characters;
 
 import java.util.Random;
+import rpg.cui.misc.TextColor;
 
 /**
  *
@@ -54,6 +55,9 @@ public class Monster extends Character
 	 */
 	public void attack(PlayerCharacter character)
 	{
-		character.takeDamage(random.nextInt(maxDamage));
+		int damage = random.nextInt(maxDamage);
+		character.takeDamage(damage);
+		
+		System.out.println(TextColor.Red + "** " + this.getName() + " attacked " + character.getName() + " for " + damage + " damage **");
 	}
 }

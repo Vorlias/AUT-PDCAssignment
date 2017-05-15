@@ -5,6 +5,7 @@
  */
 package rpg.cui.game;
 
+import java.util.Random;
 import java.util.Scanner;
 import rpg.cui.characters.Monster;
 import rpg.cui.characters.MonsterType;
@@ -51,9 +52,10 @@ public class Combat
 	{
 		boolean hasFled = false;
 		PlayerCharacter playerCharacter = Game.getPlayerCharacter();
+		Random random = new Random();
 		playerCharacter.setInCombat(true);
 		
-		while (enemy.isAlive() && !hasFled)
+		while (enemy.isAlive() && !hasFled && playerCharacter.isAlive())
 		{
 			playerCharacter.printHealth();
 			System.out.print("\t");
@@ -62,15 +64,9 @@ public class Combat
 			
 			System.out.println(TextColor.Yellow + "System: What would you like to do?");
 			
-			System.out.println("	attack - attack the target with your " + playerCharacter.getEquippedWeapon() + "");
+			System.out.println("	attack - attack the target with your " + playerCharacter.getEquippedWeapon().getName() + "");
 			System.out.println("	flee - flee to town (you will lose health)");
 			System.out.println("	inventory - access your inventory");
-			
-			boolean hasHealthPotion = playerCharacter.hasConsumable(ConsumableType.Health);
-			if (hasHealthPotion)
-			{
-				System.out.println("	heal - use a health potion");
-			}
 			
 			System.out.print(TextColor.Red + "Combat> " + TextColor.Default);
 			String command = scanner.next().toLowerCase();
@@ -78,18 +74,14 @@ public class Combat
 			switch (command)
 			{
 				case "attack":
-					System.out.println("attack");
+					
+					playerCharacter.attack(enemy);
+					enemy.attack(playerCharacter);
+					
 					break;
 				case "flee":
 					hasFled = true;
 					playerCharacter.setInCombat(false);
-					break;
-				case "heal":
-					if (hasHealthPotion)
-					{
-					}
-					else
-						System.err.println("You do not have any health potions.");
 					break;
 				case "inventory":
 					Inventory.handleInventory();
@@ -98,6 +90,7 @@ public class Combat
 			
 		}
 		
+		playerCharacter.setInCombat(false);
 		if (hasFled) 
 		{
 			playerCharacter.takeDamage(enemy.getMaxDamage());
@@ -108,9 +101,23 @@ public class Combat
 			playerCharacter.printHealth();
 			Town.handleTown();
 		}
+		else if (!playerCharacter.isAlive())
+		{
+			System.out.println(TextColor.Red + "System: Unfortunately " + playerCharacter.getName() + " dies to " + enemy.getName() + ", a tragic death.");
+			System.out.println(TextColor.Red + "** GAME OVER **");
+		}
 		else 
 		{
+			System.out.println(TextColor.Green + "System: You successfully defeated " + enemy.getName());
+			playerCharacter.addXP(enemy.getLevel() * 10);
+			
+			int goldToAdd = random.nextInt(9) + 1;
+			playerCharacter.setGold(playerCharacter.getGold() + goldToAdd);
+			
+			System.out.println(TextColor.Green + "System: You find " + goldToAdd + " from the enemy corpse.");
+			
 			enemy = null;
+			Explore.handleExplore();
 		}
 	}
 }

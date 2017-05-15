@@ -166,8 +166,9 @@ public class PlayerSave
 	/**
 	 * Loads the character from a file
 	 * @param file The file path
+	 * @return True if the file loaded successfully
 	 */
-	public void loadFromFile(String file)
+	public boolean loadFromFile(String file)
 	{
 		try
 		{
@@ -178,10 +179,13 @@ public class PlayerSave
 			}
 			
 			inputScanner.close();
+			return true;
 		}
 		catch (FileNotFoundException ex)
 		{
-			Logger.getLogger(PlayerSave.class.getName()).log(Level.SEVERE, null, ex);
+			//Logger.getLogger(PlayerSave.class.getName()).log(Level.SEVERE, null, ex);
+			System.err.println("Failed to find save file.");
+			return false;
 		}
 	}
 	
@@ -262,22 +266,28 @@ public class PlayerSave
 	/**
 	 * Loads a character into the game
 	 * @param saveName The name of the save to load
+	 * @return True if the loading was successful
 	 */
-	public static void loadCharacter(String saveName)
+	public static boolean loadCharacter(String saveName)
 	{
 		PlayerCharacter character = new PlayerCharacter();
-		PlayerSave.load(character, saveName);
-		Game.setPlayerCharacter(character);
+		boolean valid = PlayerSave.load(character, saveName);
+		
+		if (valid)
+			Game.setPlayerCharacter(character);
+		
+		return valid;
 	}
 	
 	/**
 	 * Loads the character
 	 * @param character The character to load to
 	 * @param saveName The name of the character to load
+	 * @return True if the save loaded successfully
 	 */
-	public static void load(PlayerCharacter character, String saveName)
+	public static boolean load(PlayerCharacter character, String saveName)
 	{
 		PlayerSave playerSave = new PlayerSave(character);
-		playerSave.loadFromFile("playersaves/" + saveName.toLowerCase() + ".save");
+		return playerSave.loadFromFile("playersaves/" + saveName.toLowerCase() + ".save");
 	}
 }
