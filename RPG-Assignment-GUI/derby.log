@@ -1,0 +1,31 @@
+Mon May 15 13:04:21 NZST 2017 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Mon May 15 13:04:22 NZST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-015c-09a2-790a-ffffeeadb33a 
+on database directory C:\Users\Nate\Documents\GitHub\PDC-Assignment\RPG-Assignment-GUI\rpgdb with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_101/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_101-b13
+user.dir=C:\Program Files\Java\jdk1.8.0_101\db
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=C:\Users\Nate\Documents\GitHub\PDC-Assignment\RPG-Assignment-GUI
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Mon May 15 13:04:23 NZST 2017:
+Shutting down instance a816c00e-015c-09a2-790a-ffffeeadb33a on database directory C:\Users\Nate\Documents\GitHub\PDC-Assignment\RPG-Assignment-GUI\rpgdb with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Mon May 15 13:04:23 NZST 2017 Thread[DRDAConnThread_3,5,main] (DATABASE = rpgdb), (DRDAID = {2}), Database 'rpgdb' shutdown.
+----------------------------------------------------------------
+Mon May 15 13:05:03 NZST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a65c80ac-015c-09a2-790a-ffffeeadb33a 
+on database directory C:\Users\Nate\Documents\GitHub\PDC-Assignment\RPG-Assignment-GUI\rpgdb with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_101/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_101-b13
+user.dir=C:\Program Files\Java\jdk1.8.0_101\db
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=C:\Users\Nate\Documents\GitHub\PDC-Assignment\RPG-Assignment-GUI
+Database Class Loader started - derby.database.classpath=''
