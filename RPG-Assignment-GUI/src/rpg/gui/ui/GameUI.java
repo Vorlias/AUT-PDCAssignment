@@ -65,11 +65,6 @@ public class GameUI
 	textDisplay.setPosition(new Vector2(10, 10));
     }
     
-    public void setButtons(String... actions)
-    {
-	actionLayoutGroup.setButtons(actions);
-    }
-    
     public void render(GameContainer container, StateBasedGame game, Graphics renderer) throws SlickException
     {
 	this.renderBottomLayer(container, game, renderer);
