@@ -12,7 +12,6 @@ import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.gui.GUIContext;
 import rpg.gui.misc.FontManager;
-import rpg.gui.misc.Vector2;
 
 /**
  *

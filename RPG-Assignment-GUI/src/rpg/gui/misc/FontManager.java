@@ -8,7 +8,6 @@ package rpg.gui.misc;
 import java.awt.FontFormatException;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.newdawn.slick.TrueTypeFont;
@@ -22,7 +21,7 @@ public class FontManager
 {
     private static FontManager instance;
     
-    private HashMap<String, java.awt.Font> fonts = new HashMap<>();
+    private final HashMap<String, java.awt.Font> fonts = new HashMap<>();
     
     /**
      * Gets the font as a TrueTypeFont

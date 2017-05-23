@@ -13,9 +13,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
-import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.gui.GUIContext;
-import org.newdawn.slick.util.ResourceLoader;
 import rpg.gui.misc.FontManager;
 import rpg.gui.misc.Vector2;
 
