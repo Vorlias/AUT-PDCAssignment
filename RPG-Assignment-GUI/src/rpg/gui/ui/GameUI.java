@@ -29,11 +29,19 @@ public class GameUI
     
     private Image backgroundImage;
     
+    /**
+     * Gets the button layout group
+     * @return The button layout group
+     */
     public ButtonLayoutGroup getActionLayoutGroup()
     {
 	return actionLayoutGroup;
     }
     
+    /**
+     * Gets the text display
+     * @return The text display
+     */
     public TextDisplay getTextDisplay()
     {
 	return textDisplay;
