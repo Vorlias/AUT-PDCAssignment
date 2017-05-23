@@ -29,6 +29,11 @@ public class GameUI
     
     private Image backgroundImage;
     
+    public ButtonLayoutGroup getActionLayoutGroup()
+    {
+	return actionLayoutGroup;
+    }
+    
     public GameUI(GUIContext context)
     {
 	try
