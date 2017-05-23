@@ -6,6 +6,7 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+import rpg.gui.misc.FontManager;
 import rpg.gui.states.CharacterCreationState;
 import rpg.gui.states.MenuState;
 import rpg.gui.states.PlayState;
@@ -33,6 +34,8 @@ public class RPGGame extends StateBasedGame
      */
     public static void main(String[] args)
     {
+	FontManager.getFontManager().loadFontToId("balthazar", "data/font/balthazar.ttf");
+	
 	try
 	{
 	    AppGameContainer app;

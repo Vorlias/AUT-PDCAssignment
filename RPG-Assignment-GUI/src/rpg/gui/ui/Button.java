@@ -29,8 +29,8 @@ public class Button extends GUIObject
     private Vector2 textPadding = Vector2.ZERO;
     private ButtonPressedListener pressListener;
     private Image buttonImage, buttonHoverImage;
-
-   
+    
+    private static TrueTypeFont buttonFont;
 
     public Vector2 getTextPadding()
     {
@@ -69,6 +69,11 @@ public class Button extends GUIObject
 	buttonImage = new Image("data/images/button.png");
 	buttonHoverImage = new Image("data/images/button_hover.png");
 	
+	if (buttonFont == null)
+	{
+	    buttonFont = FontManager.getFontManager().getTrueTypeFont("balthazar", 18.f);
+	}
+	
     }
     
     public Button(GUIContext context, String text, Vector2 position, Vector2 size)
@@ -87,7 +92,7 @@ public class Button extends GUIObject
     protected void renderGUI(GUIContext container, Graphics graphics)
     {
 	Font oldFont = graphics.getFont();
-	Font balthazar = FontManager.getFontManager().getBalthazar();
+	Font balthazar = buttonFont;
 	graphics.setFont(balthazar);
 	graphics.setColor(this.isMouseOver() ? new Color(100, 100, 100) : new Color(50, 50, 50));
 	graphics.fillRect(this.getPosition().getX(), this.getPosition().getY(), this.getSize().getX(), this.getSize().getY());

@@ -75,7 +75,7 @@ public class TextDisplay extends GUIObject
     protected void renderGUI(GUIContext container, Graphics graphics)
     {
 	Font oldFont = graphics.getFont();
-	Font balthazar = FontManager.getFontManager().getBalthazar();
+	Font balthazar = FontManager.getFontManager().getTrueTypeFont("balthazar", 18.f);
 	graphics.setFont(balthazar);
 	
 	graphics.setClip(this.getX(), this.getY(), this.getWidth(), this.getHeight());
