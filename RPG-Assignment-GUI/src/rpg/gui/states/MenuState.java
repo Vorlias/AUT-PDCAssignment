@@ -25,7 +25,7 @@ public class MenuState extends BasicGameState
 {
     ButtonLayoutGroup menuButtons;
     
-
+    public static final String PLAY_BUTTON_TEXT = "PLAY";
     
     @Override
     public int getID()
@@ -40,10 +40,10 @@ public class MenuState extends BasicGameState
 	{
 	    menuButtons = new ButtonLayoutGroup(gc, ButtonLayoutGroup.LayoutType.Vertical);
 	    menuButtons.setItemPadding(new Vector2(5, 5));
-	    menuButtons.setButtons("PLAY");
+	    menuButtons.setButtons(PLAY_BUTTON_TEXT);
 	    menuButtons.setLocation(10, 10);
 	    menuButtons.onItemPressed((Button button) -> {
-		if ("PLAY".equals(button.getText()))
+		if (PLAY_BUTTON_TEXT.equals(button.getText()))
 		{
 		    sbg.enterState(RPGGame.STATE_GAME);
 		}
