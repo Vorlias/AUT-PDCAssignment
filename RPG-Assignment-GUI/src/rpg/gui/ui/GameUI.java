@@ -67,9 +67,9 @@ public class GameUI
     
     public void render(GameContainer container, StateBasedGame game, Graphics renderer) throws SlickException
     {
-	this.renderPlayerInfo(container, game, renderer);
+	this.renderBottomLayer(container, game, renderer);
 	this.renderBackground(container, game, renderer);
-	
+	this.renderTopLayer(container, game, renderer);
     }
     
     /**
@@ -92,10 +92,15 @@ public class GameUI
 	testDisplay.render(container, renderer);
     }
     
-    private void renderPlayerInfo(GameContainer container, StateBasedGame game, Graphics renderer)
+    private void renderTopLayer(GameContainer container, StateBasedGame game, Graphics renderer)
     {
-	renderer.setColor(Color.white);
+    renderer.setColor(Color.white);
 	renderer.drawString("PlayerName", 20 + LEFT_CONTAINER_WIDTH, 10);
+    }
+    
+    private void renderBottomLayer(GameContainer container, StateBasedGame game, Graphics renderer)
+    {
+
 	
 	renderer.setColor(new Color(50, 50, 50));
 	renderer.fillRect(20 + LEFT_CONTAINER_WIDTH, 30, 170, 20);
