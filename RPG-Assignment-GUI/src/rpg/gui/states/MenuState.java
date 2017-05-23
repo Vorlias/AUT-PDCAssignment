@@ -40,10 +40,10 @@ public class MenuState extends BasicGameState
 	{
 	    menuButtons = new ButtonLayoutGroup(gc, ButtonLayoutGroup.LayoutType.Vertical);
 	    menuButtons.setItemPadding(new Vector2(5, 5));
-	    menuButtons.setButtons("Play");
+	    menuButtons.setButtons("PLAY");
 	    menuButtons.setLocation(10, 10);
 	    menuButtons.onItemPressed((Button button) -> {
-		if ("Play".equals(button.getText()))
+		if ("PLAY".equals(button.getText()))
 		{
 		    sbg.enterState(RPGGame.STATE_GAME);
 		}

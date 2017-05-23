@@ -8,6 +8,7 @@ package rpg.gui.ui;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.gui.GUIContext;
 import org.newdawn.slick.state.StateBasedGame;
@@ -26,8 +27,20 @@ public class GameUI
     private final ButtonLayoutGroup actionLayoutGroup;
     private final TextDisplay testDisplay;
     
+    private Image backgroundImage;
+    
     public GameUI(GUIContext context)
     {
+	try
+	{
+	   backgroundImage = new Image("data/images/background.png"); 
+	}
+	catch (SlickException e)
+	{
+	    
+	}
+	
+	
 	actionLayoutGroup = new ButtonLayoutGroup(context, ButtonLayoutGroup.LayoutType.Grid);
 	testDisplay = new TextDisplay(context);	
 	
@@ -43,7 +56,7 @@ public class GameUI
 	testDisplay.addMessage("Nathan", "I'm a huge keklord");
 	testDisplay.addErrorMessage("Cannot handle how much of a Keklord Nathan is");
 	testDisplay.addMessage("Jonathan", "You're not lying there, lol.");
-	testDisplay.setSize(new Vector2(LEFT_CONTAINER_WIDTH, LEFT_CONTAINER_HEIGHT - 180 - 20));
+	testDisplay.setSize(new Vector2(LEFT_CONTAINER_WIDTH, LEFT_CONTAINER_HEIGHT - 80 - 20));
 	testDisplay.setPosition(new Vector2(10, 10));
     }
     
@@ -54,8 +67,9 @@ public class GameUI
     
     public void render(GameContainer container, StateBasedGame game, Graphics renderer) throws SlickException
     {
-	this.renderBackground(container, game, renderer);
 	this.renderPlayerInfo(container, game, renderer);
+	this.renderBackground(container, game, renderer);
+	
     }
     
     /**
@@ -68,10 +82,11 @@ public class GameUI
     private void renderBackground(GameContainer container, StateBasedGame game, Graphics renderer) throws SlickException
     {
 	renderer.setColor(Color.white);
-	renderer.drawRect(10, 10, LEFT_CONTAINER_WIDTH, LEFT_CONTAINER_HEIGHT);
-	renderer.fillRect(10, LEFT_CONTAINER_HEIGHT - 190, LEFT_CONTAINER_WIDTH, 200);
+	//renderer.drawRect(10, 10, LEFT_CONTAINER_WIDTH, LEFT_CONTAINER_HEIGHT);
+	//renderer.fillRect(10, LEFT_CONTAINER_HEIGHT - 90, LEFT_CONTAINER_WIDTH, 200);
+	backgroundImage.draw(0, 0);
 	
-	actionLayoutGroup.setLocation(20, LEFT_CONTAINER_HEIGHT - 180);
+	actionLayoutGroup.setLocation(20, LEFT_CONTAINER_HEIGHT - 80);
 	actionLayoutGroup.render(container, renderer);
 	
 	testDisplay.render(container, renderer);
