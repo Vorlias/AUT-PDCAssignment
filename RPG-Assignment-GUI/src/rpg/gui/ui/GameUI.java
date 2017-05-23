@@ -25,13 +25,18 @@ public class GameUI
     
     private float healthPercentage = 0.2f;
     private final ButtonLayoutGroup actionLayoutGroup;
-    private final TextDisplay testDisplay;
+    private final TextDisplay textDisplay;
     
     private Image backgroundImage;
     
     public ButtonLayoutGroup getActionLayoutGroup()
     {
 	return actionLayoutGroup;
+    }
+    
+    public TextDisplay getTextDisplay()
+    {
+	return textDisplay;
     }
     
     public GameUI(GUIContext context)
@@ -47,22 +52,17 @@ public class GameUI
 	
 	
 	actionLayoutGroup = new ButtonLayoutGroup(context, ButtonLayoutGroup.LayoutType.Grid);
-	testDisplay = new TextDisplay(context);	
+	textDisplay = new TextDisplay(context);	
 	
 	actionLayoutGroup.setButtons("Go to town", "Inventory", "Something else", "Something else2", "some more text");
 	actionLayoutGroup.setItemPadding(new Vector2(5, 5));
 	actionLayoutGroup.setGridExtents(new Vector2(3, 4));
 	actionLayoutGroup.onItemPressed((Button b) -> {
-	    testDisplay.addSystemMessage("Action: " + b.getText());
+	    textDisplay.addSystemMessage("Action: " + b.getText());
 	});
 	
-	
-	testDisplay.addSystemMessage("Welcome to hell");
-	testDisplay.addMessage("Nathan", "I'm a huge keklord");
-	testDisplay.addErrorMessage("Cannot handle how much of a Keklord Nathan is");
-	testDisplay.addMessage("Jonathan", "You're not lying there, lol.");
-	testDisplay.setSize(new Vector2(LEFT_CONTAINER_WIDTH, LEFT_CONTAINER_HEIGHT - 80 - 20));
-	testDisplay.setPosition(new Vector2(10, 10));
+	textDisplay.setSize(new Vector2(LEFT_CONTAINER_WIDTH, LEFT_CONTAINER_HEIGHT - 80 - 20));
+	textDisplay.setPosition(new Vector2(10, 10));
     }
     
     public void setButtons(String... actions)
@@ -94,7 +94,7 @@ public class GameUI
 	actionLayoutGroup.setLocation(20, LEFT_CONTAINER_HEIGHT - 80);
 	actionLayoutGroup.render(container, renderer);
 	
-	testDisplay.render(container, renderer);
+	textDisplay.render(container, renderer);
     }
     
     private void renderTopLayer(GameContainer container, StateBasedGame game, Graphics renderer)
