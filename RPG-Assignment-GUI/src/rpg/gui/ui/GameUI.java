@@ -37,7 +37,7 @@ public class GameUI
 	}
 	catch (SlickException e)
 	{
-	    
+	    System.err.println(e.getMessage());
 	}
 	
 	
