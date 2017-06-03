@@ -60,7 +60,7 @@ public class RPGGame extends StateBasedGame
 	this.addState(new PlayState());
 	this.addState(new CharacterCreationState());
 
-	this.enterState(STATE_GAME);
+	this.enterState(STATE_MENU);
     }
 
 }

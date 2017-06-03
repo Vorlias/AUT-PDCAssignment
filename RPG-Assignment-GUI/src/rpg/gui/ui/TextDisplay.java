@@ -11,6 +11,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.gui.GUIContext;
+import rpg.gui.misc.FontManager;
 import rpg.gui.misc.Vector2;
 
 /**
@@ -73,7 +74,10 @@ public class TextDisplay extends GUIObject
     @Override
     protected void renderGUI(GUIContext container, Graphics graphics)
     {
-	Font font = graphics.getFont();
+	Font oldFont = graphics.getFont();
+	Font balthazar = FontManager.getFontManager().getBalthazar();
+	graphics.setFont(balthazar);
+	
 	graphics.setClip(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 	
 	int offsetY = this.getSize().getY();
@@ -85,11 +89,11 @@ public class TextDisplay extends GUIObject
 	    
 	    String prefix = m.prefix;
 	    
-	    int prefixWidth = font.getWidth(prefix);
-	    int messageHeight = font.getLineHeight(); //font.getHeight(m.message);
+	    int prefixWidth = balthazar.getWidth(prefix);
+	    int messageHeight = balthazar.getLineHeight(); //font.getHeight(m.message);
 	    // int messageWidth = font.getWidth(m.message);
 	    
-	    graphics.drawString(prefix, this.getPosition().getX(), offsetY - messageHeight);
+	    graphics.drawString(prefix, 5 + this.getPosition().getX(), offsetY - messageHeight);
 	    graphics.drawString(m.message, this.getPosition().getX() + prefixWidth + 5, offsetY - messageHeight);
 	    
 	    offsetY -= messageHeight;
@@ -97,6 +101,7 @@ public class TextDisplay extends GUIObject
 	
 	graphics.setColor(Color.white);
 	graphics.clearClip();
+	graphics.setFont(oldFont);
     }
 
     @Override
