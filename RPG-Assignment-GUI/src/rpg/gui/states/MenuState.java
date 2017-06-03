@@ -64,6 +64,20 @@ public class MenuState extends BasicGameState
     }
 
     @Override
+    public void leave(GameContainer container, StateBasedGame game) throws SlickException
+    {
+	menuButtons.setButtonsEnabled(false);
+    }
+
+    @Override
+    public void enter(GameContainer container, StateBasedGame game) throws SlickException
+    {
+	menuButtons.setButtonsEnabled(true);
+    }
+    
+    
+
+    @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException
     {
 	grphcs.clear();

@@ -24,6 +24,9 @@ public class ButtonLayoutGroup extends AbstractComponent
 
     private final GUIContext context;
 
+    /**
+     * The layout type of the buttons
+     */
     public enum LayoutType
     {
 	Grid,
@@ -38,6 +41,16 @@ public class ButtonLayoutGroup extends AbstractComponent
     {
 	Regular,
 	Large,
+    }
+    
+    /**
+     * Changes the enabled states of the buttons
+     * @param enabled Whether or not the buttons are enabled
+     */
+    public void setButtonsEnabled(boolean enabled)
+    {
+	for (Button b : buttons)
+	    b.setEnabled(enabled);
     }
 
     private LayoutType layoutType;

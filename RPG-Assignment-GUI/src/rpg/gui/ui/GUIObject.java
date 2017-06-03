@@ -22,6 +22,17 @@ public abstract class GUIObject extends AbstractComponent
     private Vector2 position = Vector2.ZERO;
     private boolean clickState;
     private boolean mouseOverState;
+    private boolean enabled = true;
+    
+    public boolean isEnabled()
+    {
+	return this.enabled;
+    }
+    
+    public void setEnabled(boolean enabled)
+    {
+	this.enabled = enabled;
+    }
 
     public Vector2 getSize()
     {
@@ -94,7 +105,7 @@ public abstract class GUIObject extends AbstractComponent
 	Rectangle boundsRectangle = new Rectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 	Rectangle mouseRectangle = new Rectangle(x, y, 2, 2);
 
-	mouseOverState = boundsRectangle.intersects(mouseRectangle);
+	mouseOverState = boundsRectangle.intersects(mouseRectangle) && enabled;
     }
 
     public void setClickState(boolean value)
