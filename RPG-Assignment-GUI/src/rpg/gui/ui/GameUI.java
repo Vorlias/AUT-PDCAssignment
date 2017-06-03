@@ -28,6 +28,7 @@ public class GameUI
     private final TextDisplay textDisplay;
     
     private Image backgroundImage;
+    private String playerName;
     
     /**
      * Gets the button layout group
@@ -102,8 +103,8 @@ public class GameUI
     
     private void renderTopLayer(GameContainer container, StateBasedGame game, Graphics renderer)
     {
-    renderer.setColor(Color.white);
-	renderer.drawString("PlayerName", 20 + LEFT_CONTAINER_WIDTH, 10);
+	renderer.setColor(Color.white);
+	renderer.drawString(playerName, 20 + LEFT_CONTAINER_WIDTH, 10);
     }
     
     private void renderBottomLayer(GameContainer container, StateBasedGame game, Graphics renderer)
@@ -124,5 +125,10 @@ public class GameUI
     public void setHealthPercentage(float percentage)
     {
 	this.healthPercentage = percentage / 100.0f;
+    }
+
+    public void setPlayerName(String name)
+    {
+	this.playerName = name;
     }
 }

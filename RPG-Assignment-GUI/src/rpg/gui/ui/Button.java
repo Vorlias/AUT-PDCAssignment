@@ -28,7 +28,7 @@ public class Button extends GUIObject
     private ButtonPressedListener pressListener;
     private Image buttonImage, buttonHoverImage;
     
-    private static TrueTypeFont buttonFont;
+    private TrueTypeFont buttonFont;
 
     public Vector2 getTextPadding()
     {
@@ -54,6 +54,34 @@ public class Button extends GUIObject
     public void setText(String text)
     {
 	this.text = text;
+    }
+    
+    public Button(GUIContext context, String text, Vector2 position, ButtonLayoutGroup.ButtonSize buttonSize) throws FontFormatException, IOException, SlickException
+    {
+	super(context);
+	this.text = text;
+	this.setPosition(position);
+	this.textPadding = new Vector2(10, 3);
+	
+	switch (buttonSize)
+	{
+	    case Regular:
+		buttonImage = new Image("data/images/button.png");
+		buttonHoverImage = new Image("data/images/button_hover.png");
+		this.setSize(new Vector2(150, 25));
+		
+		buttonFont = FontManager.getFontManager().getTrueTypeFont("balthazar", 18.f);
+		break;
+	    case Large:
+		buttonImage = new Image("data/images/button_large.png");
+		buttonHoverImage = new Image("data/images/button_large_hover.png");
+		this.setSize(new Vector2(200, 30));
+			
+		buttonFont = FontManager.getFontManager().getTrueTypeFont("balthazar", 22.f);
+		break;
+	}
+
+
     }
     
     public Button(GUIContext context, String text, Vector2 position) throws FontFormatException, IOException, SlickException

@@ -28,6 +28,7 @@ public class RPGGame extends StateBasedGame
     public static final double VERSION = 0.1;
 
     public static final String TITLE = "RPG Game";
+    public static PlayState playState;
 
     /**
      * @param args the command line arguments
@@ -57,8 +58,10 @@ public class RPGGame extends StateBasedGame
     @Override
     public void initStatesList(GameContainer gc) throws SlickException
     {
+	playState = new PlayState();
+	
 	this.addState(new MenuState());
-	this.addState(new PlayState());
+	this.addState(playState);
 	this.addState(new CharacterCreationState());
 
 	this.enterState(STATE_MENU);

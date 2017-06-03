@@ -12,6 +12,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import rpg.gui.RPGGame;
+import rpg.gui.characters.PlayerCharacter;
+import rpg.gui.gameplay.PlayModel;
 import rpg.gui.ui.GameUI;
 
 /**
@@ -22,7 +24,19 @@ public class PlayState extends BasicGameState
 {
 
     private GameUI ui;
+    private PlayModel model;
+    
+    public PlayModel getModel()
+    {
+	return model;
+    }
 
+    public void setup(PlayerCharacter character)
+    {
+	model = new PlayModel(character);
+	model.setView(this);
+    }
+    
     @Override
     public int getID()
     {
@@ -30,12 +44,15 @@ public class PlayState extends BasicGameState
     }
 
     @Override
+    public void enter(GameContainer container, StateBasedGame sbg)
+    {
+    }
+    
+    @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
     {
 	gc.setShowFPS(false);
 	ui = new GameUI(gc);
-	ui.setHealthPercentage(100);
-	
     }
 
     @Override
@@ -49,6 +66,8 @@ public class PlayState extends BasicGameState
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException
     {
-
+	PlayerCharacter character = model.getPlayerCharacter();
+	ui.setHealthPercentage(character.getHealth());
+	ui.setPlayerName(character.getName());
     }
 }

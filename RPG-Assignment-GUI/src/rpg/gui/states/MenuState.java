@@ -7,10 +7,12 @@ package rpg.gui.states;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import rpg.gui.RPGGame;
+import rpg.gui.characters.PlayerCharacter;
 import rpg.gui.misc.Vector2;
 import rpg.gui.ui.Button;
 import rpg.gui.ui.ButtonLayoutGroup;
@@ -23,7 +25,11 @@ public class MenuState extends BasicGameState
 {
     ButtonLayoutGroup menuButtons;
     
-    public static final String PLAY_BUTTON_TEXT = "PLAY";
+    Image menuBackground;
+    Image rpgLogo;
+    
+    public static final String NEW_GAME_TEXT = "NEW GAME";
+    public static final String LOAD_GAME_TEXT = "LOAD GAME";
     
     @Override
     public int getID()
@@ -34,15 +40,23 @@ public class MenuState extends BasicGameState
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
     {
+	menuBackground = new Image("data/images/background_menu.png");
+	rpgLogo = new Image("data/images/title.png");
+	
 	if (menuButtons == null)
 	{
-	    menuButtons = new ButtonLayoutGroup(gc, ButtonLayoutGroup.LayoutType.Vertical);
+	    menuButtons = new ButtonLayoutGroup(gc, ButtonLayoutGroup.LayoutType.Vertical, ButtonLayoutGroup.ButtonSize.Large);
 	    menuButtons.setItemPadding(new Vector2(5, 5));
-	    menuButtons.setButtons(PLAY_BUTTON_TEXT);
-	    menuButtons.setLocation(10, 10);
+	    menuButtons.setButtons(NEW_GAME_TEXT, LOAD_GAME_TEXT);
+	    menuButtons.setLocation(300, 70);
 	    menuButtons.onItemPressed((Button button) -> {
-		if (PLAY_BUTTON_TEXT.equals(button.getText()))
+		if (NEW_GAME_TEXT.equals(button.getText()))
 		{
+		    sbg.enterState(RPGGame.STATE_CREATION);
+		}
+		else if (LOAD_GAME_TEXT.equals(button.getText()))
+		{
+		    RPGGame.playState.setup(new PlayerCharacter("Paul"));
 		    sbg.enterState(RPGGame.STATE_GAME);
 		}
 	    });
@@ -53,6 +67,10 @@ public class MenuState extends BasicGameState
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException
     {
 	grphcs.clear();
+	
+	grphcs.drawImage(menuBackground, 0, 0);
+	grphcs.drawImage(rpgLogo, 300 - 0, 20);
+	
 	menuButtons.render(gc, grphcs);
     }
 

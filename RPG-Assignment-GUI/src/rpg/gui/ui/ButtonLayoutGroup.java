@@ -30,8 +30,18 @@ public class ButtonLayoutGroup extends AbstractComponent
 	Horizontal,
 	Vertical
     }
+    
+    /**
+     * The scale of the buttons
+     */
+    public enum ButtonSize
+    {
+	Regular,
+	Large,
+    }
 
     private LayoutType layoutType;
+    private ButtonSize buttonSize;
 
     private Button[] buttons;
     private Vector2 position = Vector2.ZERO;
@@ -53,12 +63,21 @@ public class ButtonLayoutGroup extends AbstractComponent
     {
 	this.itemPressedListener = listener;
     }
+    
+    public ButtonLayoutGroup(GUIContext context, LayoutType layoutType, ButtonSize buttonSize)
+    {
+	super(context);
+	this.context = context;
+	this.layoutType = layoutType;
+	this.buttonSize = buttonSize;	
+    }
 
     public ButtonLayoutGroup(GUIContext context, LayoutType layoutType)
     {
 	super(context);
 	this.context = context;
 	this.layoutType = layoutType;
+	this.buttonSize = ButtonSize.Regular;
     }
 
     public void setButtons(String... buttonNames)
@@ -69,7 +88,9 @@ public class ButtonLayoutGroup extends AbstractComponent
 	    try
 	    {
 		String buttonName = buttonNames[i];
-		Button btn = new Button(this.context, buttonName, Vector2.ZERO);
+		Button btn = new Button(this.context, buttonName, Vector2.ZERO, buttonSize);
+		
+		
 		btn.onButtonPressed(() ->
 		{
 		    if (itemPressedListener != null)
