@@ -151,12 +151,13 @@ public abstract class GUIObject extends AbstractComponent
     }
 
     @Override
-    public void mousePressed(int button, int x, int y)
+    public void mouseReleased(int button, int x, int y)
     {
 	if (mouseOverState)
 	{
-	    setClickState(true);
+	    setClickState(false);
 	    onGUIMousePressed();
+	    System.out.println("Press");
 	}
 	else
 	{
@@ -167,8 +168,8 @@ public abstract class GUIObject extends AbstractComponent
     public abstract void onGUIMousePressed();
 
     @Override
-    public void mouseReleased(int button, int x, int y)
+    public void mousePressed(int button, int x, int y)
     {
-	setClickState(false);
+	setClickState(true);
     }
 }

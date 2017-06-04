@@ -57,7 +57,7 @@ public class MenuState extends BasicGameState
 		}
 		else if (LOAD_GAME_TEXT.equals(button.getText()))
 		{
-		    RPGGame.playState.setup(new PlayerCharacter("Paul"));
+		    RPGGame.playView.setup(new PlayerCharacter("Paul"));
 		    sbg.enterState(RPGGame.STATE_GAME);
 		}
 	    });

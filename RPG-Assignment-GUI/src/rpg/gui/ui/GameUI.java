@@ -63,12 +63,8 @@ public class GameUI
 	actionLayoutGroup = new ButtonLayoutGroup(context, GUILayoutGroup.LayoutType.Grid);
 	textDisplay = new TextDisplay(context);	
 	
-	actionLayoutGroup.setButtons("Go to town", "Inventory", "Something else", "Something else2", "some more text");
 	actionLayoutGroup.setItemPadding(new Vector2(5, 5));
 	actionLayoutGroup.setGridExtents(new Vector2(3, 4));
-	actionLayoutGroup.onButtonPress((Button b) -> {
-	    textDisplay.addSystemMessage("Action: " + b.getText());
-	});
 	
 	textDisplay.setSize(new Vector2(LEFT_CONTAINER_WIDTH, LEFT_CONTAINER_HEIGHT - 80 - 20));
 	textDisplay.setPosition(new Vector2(10, 10));

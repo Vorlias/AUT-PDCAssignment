@@ -7,7 +7,8 @@ package rpg.gui.gameplay;
 
 import rpg.gui.characters.Monster;
 import rpg.gui.characters.PlayerCharacter;
-import rpg.gui.states.PlayState;
+import rpg.gui.characters.PlayerLocation;
+import rpg.gui.states.PlayView;
 
 /**
  * The game as a model
@@ -16,19 +17,18 @@ import rpg.gui.states.PlayState;
  */
 public class PlayModel
 {
-    private PlayState view;
+    private PlayView view;
     private PlayController controller;
     private PlayerCharacter playerCharacter;
     private Monster targetMonster;
-    private Location playerLocation;
     private boolean inCombat;
     
-    public PlayState getView()
+    public PlayView getView()
     {
 	return view;
     }
 
-    public void setView(PlayState view)
+    public void setView(PlayView view)
     {
 	this.view = view;
     }
@@ -73,18 +73,18 @@ public class PlayModel
 	this.playerCharacter = playerCharacter;
     }
 
-    public Location getPlayerLocation()
+    public PlayerLocation getPlayerLocation()
     {
-	return playerLocation;
+	return playerCharacter.getLocation();
     }
 
     /**
      * Sets the location of the player
      * @param playerLocation 
      */
-    public void setPlayerLocation(Location playerLocation)
+    public void setPlayerLocation(PlayerLocation playerLocation)
     {
-	this.playerLocation = playerLocation;
+	playerCharacter.setLocation(playerLocation);
     }
 
     public PlayModel(PlayerCharacter playerCharacter)

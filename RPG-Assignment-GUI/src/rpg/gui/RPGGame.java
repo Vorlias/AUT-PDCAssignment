@@ -9,7 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import rpg.gui.misc.FontManager;
 import rpg.gui.states.CharacterCreationState;
 import rpg.gui.states.MenuState;
-import rpg.gui.states.PlayState;
+import rpg.gui.states.PlayView;
 
 /**
  *
@@ -28,7 +28,7 @@ public class RPGGame extends StateBasedGame
     public static final double VERSION = 0.1;
 
     public static final String TITLE = "RPG Game";
-    public static PlayState playState;
+    public static PlayView playView;
 
     /**
      * @param args the command line arguments
@@ -58,10 +58,10 @@ public class RPGGame extends StateBasedGame
     @Override
     public void initStatesList(GameContainer gc) throws SlickException
     {
-	playState = new PlayState();
+	playView = new PlayView(gc);
 	
 	this.addState(new MenuState());
-	this.addState(playState);
+	this.addState(playView);
 	this.addState(new CharacterCreationState());
 
 	this.enterState(STATE_MENU);
