@@ -33,7 +33,6 @@ public class GameDatabase
 	    conn = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
 	    System.out.println(DATABASE_URL + " connected.");
 	    checkDatabaseTables();
-	    getQuery();
 	}
 	catch (SQLException ex)
 	{
@@ -162,28 +161,57 @@ public class GameDatabase
 	}
     }
     
-    public static void getQuery()
+    public static int getWeaponDamage(int weaponId)
     {
 	ResultSet rs = null;
+	int weaponDamage = 0;
 	
-	System.out.println("Querying Database for Consumable Item Names...");
+	System.out.println("Querying Database for Weapon Damage...");
 	
 	try
 	{
 	    Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-	    String someQuery = "SELECT * FROM CONSUMABLES";
+	    String weapon = "SELECT ITEMDAMAGE FROM WEAPONS WHERE ITEMID = " + weaponId;
 	    
-	    rs=statement.executeQuery(someQuery);
+	    rs = statement.executeQuery(weapon);
 	    rs.beforeFirst();
             while(rs.next())
             {
-                String model=rs.getString(2);              
-                System.out.println(model);            
+                weaponDamage = rs.getInt(1);           
             }
 	}
 	catch(SQLException ex)
 	{
 	    Logger.getLogger(GameDatabase.class.getName()).log(Level.SEVERE, null, ex);
 	}
+	
+	return weaponDamage;
+    }
+    
+    public static int getConsumableModifier(int consumableId)
+    {
+	ResultSet rs = null;
+	int consumableModifier = 0;
+	
+	System.out.println("Querying Database for Consumable Modifier...");
+	
+	try
+	{
+	    Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	    String consumable = "SELECT ITEMMODIFIER FROM CONSUMABLES WHERE ITEMID = " + consumableId;
+	    
+	    rs = statement.executeQuery(consumable);
+	    rs.beforeFirst();
+            while(rs.next())
+            {
+                consumableModifier = rs.getInt(1);           
+            }
+	}
+	catch(SQLException ex)
+	{
+	    Logger.getLogger(GameDatabase.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	
+	return consumableModifier;
     }
 }
