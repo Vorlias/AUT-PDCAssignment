@@ -14,4 +14,5 @@ public enum PlayerLocation
     Wilds,
     Town,
     Forest,
+    Combat,
 }

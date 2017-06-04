@@ -41,6 +41,7 @@ public class RPGGame extends StateBasedGame
 	{
 	    AppGameContainer app;
 	    app = new AppGameContainer(new RPGGame());
+
 	    app.setDisplayMode(WIDTH, HEIGHT, false);
 	    app.start();
 	}

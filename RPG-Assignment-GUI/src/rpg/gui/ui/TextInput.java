@@ -23,7 +23,6 @@ public class TextInput extends GUIObject
 {
 
     String input;
-    boolean focused = false;
     Image textInputBackground;
     private TrueTypeFont textInputFont;
 
@@ -37,7 +36,7 @@ public class TextInput extends GUIObject
     }
 
     @Override
-    public void onGUIMousePressedOutside()
+    public void onGUIFocusLost()
     {
 	if (focused)
 	    focused = false;

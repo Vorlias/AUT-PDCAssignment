@@ -63,7 +63,7 @@ public class TextDisplay extends GUIObject
 	messages.add(tp);
     }
     
-    public void addErrorMessage(String message)
+    public void addRedMessage(String message)
     {
 	Message tp = new Message("", message);
 	tp.color = Color.red;

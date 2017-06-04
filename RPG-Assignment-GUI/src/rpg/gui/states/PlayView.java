@@ -12,6 +12,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import rpg.gui.RPGGame;
+import rpg.gui.characters.Monster;
 import rpg.gui.characters.PlayerCharacter;
 import rpg.gui.characters.PlayerLocation;
 import rpg.gui.gameplay.PlayController;
@@ -89,5 +90,19 @@ public class PlayView extends BasicGameState
 	PlayerCharacter character = model.getPlayerCharacter();
 	ui.setHealthPercentage(character.getHealth());
 	ui.setPlayerName(character.getName());
+	ui.update();
+	
+	Monster enemy = model.getTargetMonster();
+
+	if (enemy != null)
+	{
+	    ui.setEnemyHealthPercentage(enemy.getHealth() / enemy.getMaxHealth() * 100.f);
+	    ui.setEnemyName(enemy.getName());
+	}
+	else
+	{
+	    ui.setEnemyHealthPercentage(0);
+	    ui.setEnemyName("");	    
+	}
     }
 }

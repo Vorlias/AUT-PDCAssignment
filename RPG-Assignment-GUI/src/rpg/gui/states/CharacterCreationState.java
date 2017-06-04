@@ -98,7 +98,7 @@ public class CharacterCreationState extends BasicGameState
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException
     {
-
+	characterCreationLayout.update();
     }
 
 }

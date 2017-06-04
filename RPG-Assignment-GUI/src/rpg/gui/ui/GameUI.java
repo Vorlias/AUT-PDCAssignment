@@ -23,12 +23,13 @@ public class GameUI
     private final int LEFT_CONTAINER_WIDTH = 600;
     private final int LEFT_CONTAINER_HEIGHT = 580;
     
-    private float healthPercentage = 0.2f;
+    private float healthPercentage;
+    private float enemyHealthPercentage;
     private final ButtonLayoutGroup actionLayoutGroup;
     private final TextDisplay textDisplay;
     
-    private Image backgroundImage;
-    private String playerName;
+    private Image backgroundImage, foregroundImage;
+    private String playerName, enemyName = "";
     
     /**
      * Gets the button layout group
@@ -53,6 +54,8 @@ public class GameUI
 	try
 	{
 	   backgroundImage = new Image("data/images/background.png"); 
+	   foregroundImage = new Image("data/images/foreground.png");
+	   
 	}
 	catch (SlickException e)
 	{
@@ -64,10 +67,10 @@ public class GameUI
 	textDisplay = new TextDisplay(context);	
 	
 	actionLayoutGroup.setItemPadding(new Vector2(5, 5));
-	actionLayoutGroup.setGridExtents(new Vector2(3, 4));
+	actionLayoutGroup.setGridExtents(new Vector2(2, 6));
 	
-	textDisplay.setSize(new Vector2(LEFT_CONTAINER_WIDTH, LEFT_CONTAINER_HEIGHT - 80 - 20));
-	textDisplay.setPosition(new Vector2(10, 10));
+	textDisplay.setSize(new Vector2(776 + 12, 407 + 33));
+	textDisplay.setPosition(new Vector2(12, 33));
     }
     
     public void render(GameContainer container, StateBasedGame game, Graphics renderer) throws SlickException
@@ -75,6 +78,11 @@ public class GameUI
 	this.renderBottomLayer(container, game, renderer);
 	this.renderBackground(container, game, renderer);
 	this.renderTopLayer(container, game, renderer);
+    }
+    
+    public void update()
+    {
+	actionLayoutGroup.update();
     }
     
     /**
@@ -91,27 +99,43 @@ public class GameUI
 	//renderer.fillRect(10, LEFT_CONTAINER_HEIGHT - 90, LEFT_CONTAINER_WIDTH, 200);
 	backgroundImage.draw(0, 0);
 	
-	actionLayoutGroup.setLocation(20, LEFT_CONTAINER_HEIGHT - 80);
+	actionLayoutGroup.setLocation(196, 444);
 	actionLayoutGroup.render(container, renderer);
 	
 	textDisplay.render(container, renderer);
+	
+	
+	
     }
     
     private void renderTopLayer(GameContainer container, StateBasedGame game, Graphics renderer)
     {
 	renderer.setColor(Color.white);
-	renderer.drawString(playerName, 20 + LEFT_CONTAINER_WIDTH, 10);
+	renderer.drawString(playerName, 16, 447);
+	
+	renderer.setColor(Color.white);
+	renderer.drawString(enemyName, 613, 447);
+	
+	renderer.setColor(new Color(50, 50, 50));
+	renderer.fillRect(17, 468, 170, 20);
+	
+	renderer.setColor(new Color(50, 50, 50));
+	renderer.fillRect(613, 468, 170, 20);
+	
+	renderer.setColor(Color.green);
+	renderer.fillRect(17, 468, healthPercentage * 170, 20);
+
+	renderer.setColor(Color.red);
+	renderer.fillRect(613, 468, enemyHealthPercentage * 170, 20);
+	
+	renderer.drawImage(foregroundImage, 0, 0);
     }
     
     private void renderBottomLayer(GameContainer container, StateBasedGame game, Graphics renderer)
     {
 
 	
-	renderer.setColor(new Color(50, 50, 50));
-	renderer.fillRect(20 + LEFT_CONTAINER_WIDTH, 30, 170, 20);
-	
-	renderer.setColor(Color.green);
-	renderer.fillRect(20 + LEFT_CONTAINER_WIDTH, 30, healthPercentage * 170, 20);
+
     }
     
     /**
@@ -121,6 +145,16 @@ public class GameUI
     public void setHealthPercentage(float percentage)
     {
 	this.healthPercentage = percentage / 100.0f;
+    }
+    
+    public void setEnemyHealthPercentage(float percentage)
+    {
+	this.enemyHealthPercentage = percentage / 100.0f;
+    }
+    
+    public void setEnemyName(String name)
+    {
+	this.enemyName = name;
     }
 
     public void setPlayerName(String name)

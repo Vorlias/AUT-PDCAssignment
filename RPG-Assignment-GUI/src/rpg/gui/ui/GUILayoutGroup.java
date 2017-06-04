@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.gui.AbstractComponent;
@@ -113,9 +114,21 @@ public class GUILayoutGroup extends AbstractComponent
 	}
     }
     
+    public void update()
+    {
+	for (GUIObject object : guiObjects)
+	{
+	    object.update();
+	}
+    }
+    
     public void clear()
     {
-	guiObjects.clear();
+	for (GUIObject object : guiObjects)
+	{
+	    object.setEnabled(false);
+	}
+	guiObjects = new ArrayList<>();
     }
     
     public void add(GUIObject object)
