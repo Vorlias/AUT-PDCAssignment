@@ -66,8 +66,12 @@ public class CharacterCreationState extends BasicGameState
 	    }
 	    else if (CREATE_BUTTON.equals(button.getText()))
 	    {
-		RPGGame.playState.setup(new PlayerCharacter(characterName.getText()));
-		sbg.enterState(RPGGame.STATE_GAME);
+		if (characterName.getText().matches("([A-z]+|[A-z]+ [A-z\\-]+)"))
+		{
+		    RPGGame.playView.setup(new PlayerCharacter(characterName.getText()));
+		    sbg.enterState(RPGGame.STATE_GAME);
+		}
+
 	    }
 	});
     }

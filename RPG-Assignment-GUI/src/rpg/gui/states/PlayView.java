@@ -13,6 +13,8 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import rpg.gui.RPGGame;
 import rpg.gui.characters.PlayerCharacter;
+import rpg.gui.characters.PlayerLocation;
+import rpg.gui.gameplay.PlayController;
 import rpg.gui.gameplay.PlayModel;
 import rpg.gui.ui.GameUI;
 
@@ -20,11 +22,17 @@ import rpg.gui.ui.GameUI;
  *
  * @author Jonathan
  */
-public class PlayState extends BasicGameState
+public class PlayView extends BasicGameState
 {
 
     private GameUI ui;
     private PlayModel model;
+    private PlayController controller;
+    
+    public GameUI getUI()
+    {
+	return ui;
+    }
     
     public PlayModel getModel()
     {
@@ -35,6 +43,7 @@ public class PlayState extends BasicGameState
     {
 	model = new PlayModel(character);
 	model.setView(this);
+	controller.setModel(model);
     }
     
     @Override
@@ -46,13 +55,24 @@ public class PlayState extends BasicGameState
     @Override
     public void enter(GameContainer container, StateBasedGame sbg)
     {
+	controller.startGame();
+    }
+    
+    public PlayView(GameContainer gc)
+    {
+	ui = new GameUI(gc);
+	controller = new PlayController();
+	controller.setView(this);
+	
+	
+	
+	ui.getActionLayoutGroup().onButtonPress(controller::onActionButtonPressed);	
     }
     
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
     {
-	gc.setShowFPS(false);
-	ui = new GameUI(gc);
+	gc.setShowFPS(false);	
     }
 
     @Override
