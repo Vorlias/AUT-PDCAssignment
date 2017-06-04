@@ -10,6 +10,7 @@ import rpg.gui.misc.FontManager;
 import rpg.gui.states.CharacterCreationState;
 import rpg.gui.states.MenuState;
 import rpg.gui.states.PlayView;
+import rpg.gui.database.GameDatabase;
 
 /**
  *
@@ -36,6 +37,7 @@ public class RPGGame extends StateBasedGame
     public static void main(String[] args)
     {
 	FontManager.getFontManager().loadFontToId("balthazar", "data/font/balthazar.ttf");
+	GameDatabase.getDatabaseInstance(); //Establish game database connection
 	
 	try
 	{
