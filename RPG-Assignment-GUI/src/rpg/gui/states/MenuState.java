@@ -16,6 +16,7 @@ import rpg.gui.characters.PlayerCharacter;
 import rpg.gui.misc.Vector2;
 import rpg.gui.ui.Button;
 import rpg.gui.ui.ButtonLayoutGroup;
+import rpg.gui.ui.GUILayoutGroup;
 
 /**
  *
@@ -45,11 +46,11 @@ public class MenuState extends BasicGameState
 	
 	if (menuButtons == null)
 	{
-	    menuButtons = new ButtonLayoutGroup(gc, ButtonLayoutGroup.LayoutType.Vertical, ButtonLayoutGroup.ButtonSize.Large);
+	    menuButtons = new ButtonLayoutGroup(gc, GUILayoutGroup.LayoutType.Vertical, Button.Size.Large);
 	    menuButtons.setItemPadding(new Vector2(5, 5));
 	    menuButtons.setButtons(NEW_GAME_TEXT, LOAD_GAME_TEXT);
 	    menuButtons.setLocation(300, 70);
-	    menuButtons.onItemPressed((Button button) -> {
+	    menuButtons.onButtonPress((Button button) -> {
 		if (NEW_GAME_TEXT.equals(button.getText()))
 		{
 		    sbg.enterState(RPGGame.STATE_CREATION);

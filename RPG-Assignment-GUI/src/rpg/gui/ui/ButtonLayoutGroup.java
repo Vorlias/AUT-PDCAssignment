@@ -16,32 +16,16 @@ import org.newdawn.slick.gui.GUIContext;
 import rpg.gui.misc.Vector2;
 
 /**
- *
+ * @deprecated Use GUILayoutGroup instead. :c
  * @author Jonathan
  */
-public class ButtonLayoutGroup extends AbstractComponent
+@Deprecated
+public class ButtonLayoutGroup extends GUILayoutGroup
 {
 
     private final GUIContext context;
+    private Button.Size buttonSize;
 
-    /**
-     * The layout type of the buttons
-     */
-    public enum LayoutType
-    {
-	Grid,
-	Horizontal,
-	Vertical
-    }
-    
-    /**
-     * The scale of the buttons
-     */
-    public enum ButtonSize
-    {
-	Regular,
-	Large,
-    }
     
     /**
      * Changes the enabled states of the buttons
@@ -49,37 +33,21 @@ public class ButtonLayoutGroup extends AbstractComponent
      */
     public void setButtonsEnabled(boolean enabled)
     {
-	for (Button b : buttons)
+	for (GUIObject b : guiObjects)
 	    b.setEnabled(enabled);
     }
 
-    private LayoutType layoutType;
-    private ButtonSize buttonSize;
 
-    private Button[] buttons;
-    private Vector2 position = Vector2.ZERO;
-    private Vector2 gridExtents = Vector2.ZERO;
-    private Vector2 padding = Vector2.ZERO;
-    private ButtonLayoutGroupItemPressed itemPressedListener;
-
-    public void setItemPadding(Vector2 padding)
+    public void setButtons(String... buttons)
     {
-	this.padding = padding;
+	this.clear();
+	this.addButtons(buttonSize, buttons);
     }
 
-    public void setGridExtents(Vector2 extents)
-    {
-	this.gridExtents = extents;
-    }
-
-    public void onItemPressed(ButtonLayoutGroupItemPressed listener)
-    {
-	this.itemPressedListener = listener;
-    }
     
-    public ButtonLayoutGroup(GUIContext context, LayoutType layoutType, ButtonSize buttonSize)
+    public ButtonLayoutGroup(GUIContext context, LayoutType layoutType, Button.Size buttonSize)
     {
-	super(context);
+	super(context, layoutType);
 	this.context = context;
 	this.layoutType = layoutType;
 	this.buttonSize = buttonSize;	
@@ -87,123 +55,12 @@ public class ButtonLayoutGroup extends AbstractComponent
 
     public ButtonLayoutGroup(GUIContext context, LayoutType layoutType)
     {
-	super(context);
+	super(context, layoutType);
 	this.context = context;
 	this.layoutType = layoutType;
-	this.buttonSize = ButtonSize.Regular;
+	this.buttonSize = Button.Size.Regular;
     }
 
-    public void setButtons(String... buttonNames)
-    {
-	buttons = new Button[buttonNames.length];
-	for (int i = 0; i < buttonNames.length; i++)
-	{
-	    try
-	    {
-		String buttonName = buttonNames[i];
-		Button btn = new Button(this.context, buttonName, Vector2.ZERO, buttonSize);
-		
-		
-		btn.onButtonPressed(() ->
-		{
-		    if (itemPressedListener != null)
-		    {
-			itemPressedListener.onItemPressed(btn);
-		    }
-		});
-		buttons[i] = btn;
-	    }
-	    catch (FontFormatException | IOException | SlickException ex)
-	    {
-		Logger.getLogger(ButtonLayoutGroup.class.getName()).log(Level.SEVERE, null, ex);
-	    }
-	}
-    }
 
-    @Override
-    public void render(GUIContext container, Graphics g) throws SlickException
-    {
-	if (null != layoutType)
-	{
-	    switch (layoutType)
-	    {
-		case Grid:
-		{
-		    int pX = 0, pY = 0;
-		    int columnCount = 1;
-		    for (Button button : buttons)
-		    {
-			button.setPosition(new Vector2(position.getX() + pX, position.getY() + pY));
-			if (columnCount >= gridExtents.getX())
-			{
-			    pX = 0;
-			    pY += button.getHeight() + padding.getY();
-			    columnCount = 0;
-			}
-			else
-			{
-			    columnCount ++;
-			    pX += button.getWidth() + padding.getX();
-			}
-			button.render(container, g);
-		    }
-		    break;
-		}
-		case Horizontal:
-		{
-		    int pX = 0, pY = 0;
-		    for (Button button : buttons)
-		    {
-			button.setPosition(new Vector2(position.getX() + pX, position.getY() + pY));
-			pX += button.getWidth() + padding.getX();
-		    }
-		    break;
-		}
-		case Vertical:
-		{
-		    int pX = 0, pY = 0;
-		    for (Button button : buttons)
-		    {
-			button.setPosition(new Vector2(position.getX() + pX, position.getY() + pY));
-			pY += button.getHeight() + padding.getY();
-			button.render(container, g);
-		    }
-		    break;
-		}
-		default:
-		    break;
-	    }
-	}
-    }
-
-    @Override
-    public void setLocation(int x, int y)
-    {
-	this.position = new Vector2(x, y);
-    }
-
-    @Override
-    public int getX()
-    {
-	return 0;
-    }
-
-    @Override
-    public int getY()
-    {
-	return 0;
-    }
-
-    @Override
-    public int getWidth()
-    {
-	return 0;
-    }
-
-    @Override
-    public int getHeight()
-    {
-	return 0;
-    }
 
 }

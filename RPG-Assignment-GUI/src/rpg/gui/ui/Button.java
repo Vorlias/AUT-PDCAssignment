@@ -23,6 +23,17 @@ import rpg.gui.misc.Vector2;
  */
 public class Button extends GUIObject
 {
+        /**
+     * The scale of the buttons
+     */
+    public enum Size
+    {
+	Regular,
+	Large,
+    }
+    
+    private Size buttonSize;
+    
     private String text;
     private Vector2 textPadding = Vector2.ZERO;
     private ButtonPressedListener pressListener;
@@ -56,7 +67,7 @@ public class Button extends GUIObject
 	this.text = text;
     }
     
-    public Button(GUIContext context, String text, Vector2 position, ButtonLayoutGroup.ButtonSize buttonSize) throws FontFormatException, IOException, SlickException
+    public Button(GUIContext context, String text, Vector2 position, Size buttonSize) throws FontFormatException, IOException, SlickException
     {
 	super(context);
 	this.text = text;

@@ -23,6 +23,17 @@ public abstract class GUIObject extends AbstractComponent
     private boolean clickState;
     private boolean mouseOverState;
     private boolean enabled = true;
+    private GUILayoutGroup layoutGroup;
+    
+    public GUILayoutGroup getLayoutGroup()
+    {
+	return layoutGroup;
+    }
+    
+    public void setLayoutGroup(GUILayoutGroup layoutGroup)
+    {
+	this.layoutGroup = layoutGroup;
+    }
     
     public boolean isEnabled()
     {
@@ -133,6 +144,11 @@ public abstract class GUIObject extends AbstractComponent
     {
 	return this.clickState;
     }
+    
+    public void onGUIMousePressedOutside()
+    {
+	
+    }
 
     @Override
     public void mousePressed(int button, int x, int y)
@@ -141,6 +157,10 @@ public abstract class GUIObject extends AbstractComponent
 	{
 	    setClickState(true);
 	    onGUIMousePressed();
+	}
+	else
+	{
+	    onGUIMousePressedOutside();
 	}
     }
 
