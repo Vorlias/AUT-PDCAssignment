@@ -22,7 +22,7 @@ public class GameDatabase
 {
 
     private static Connection conn;
-    private static final String DATABASE_URL = "jdbc:derby://localhost:1527/rpgdb;create=true";
+    private static final String DATABASE_URL = "jdbc:derby:rpgdb;create=true";
     private static final String DATABASE_USERNAME = "rpg";
     private static final String DATABASE_PASSWORD = "rpg";
 
