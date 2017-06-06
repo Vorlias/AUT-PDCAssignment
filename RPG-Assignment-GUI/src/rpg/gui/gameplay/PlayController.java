@@ -86,8 +86,19 @@ public class PlayController
 	switch (action)
 	{
 	    case BUTTON_ATTACK:
-		playerCharacter.attack(targetMonster);
-		targetMonster.attack(playerCharacter);
+		float playerDamage = playerCharacter.attack(targetMonster);
+		int monsterDamage = targetMonster.attack(playerCharacter);
+		
+		textDisplay.addSystemMessage("[" + playerCharacter.getName() + "] attacks [" + targetMonster.getName() + "] for " + playerDamage + " damage", Color.green);
+		textDisplay.addSystemMessage("[" + targetMonster.getName() + "] attacks [" + playerCharacter.getName() + "] for " + monsterDamage + " damage", Color.red);
+		
+		if (!targetMonster.isAlive())
+		{
+		    textDisplay.addSystemMessage("You successfully defeated the " + targetMonster.getName() + "!");
+		    model.setTargetMonster(null);
+		}
+		
+		updateOptions();
 		
 		break;
 		
