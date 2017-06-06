@@ -6,6 +6,7 @@
 package rpg.gui.characters;
 
 import java.util.ArrayList;
+import rpg.gui.database.GameDatabase;
 import rpg.gui.items.Consumable;
 import rpg.gui.items.ConsumableType;
 import rpg.gui.items.Item;
@@ -217,8 +218,7 @@ public class PlayerCharacter extends Character
      */
     public void addItemById(int id)
     {
-	//this.items.add(ItemDatabase.database.getItemById(id));
-	// TODO: Implement
+	this.items.add(GameDatabase.getItem(id));
     }
 
     /**

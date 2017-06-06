@@ -11,6 +11,7 @@ import rpg.gui.states.CharacterCreationState;
 import rpg.gui.states.MenuState;
 import rpg.gui.states.PlayView;
 import rpg.gui.database.GameDatabase;
+import rpg.gui.states.LoadSaveState;
 
 /**
  *
@@ -22,6 +23,8 @@ public class RPGGame extends StateBasedGame
     public static final int STATE_MENU = 0;
     public static final int STATE_CREATION = 1;
     public static final int STATE_GAME = 2;
+    public static final int STATE_LOAD = 3;
+    public static final int STATE_INVENTORY = 4;
 
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;
@@ -66,6 +69,7 @@ public class RPGGame extends StateBasedGame
 	this.addState(new MenuState());
 	this.addState(playView);
 	this.addState(new CharacterCreationState());
+	this.addState(new LoadSaveState());
 
 	this.enterState(STATE_MENU);
     }

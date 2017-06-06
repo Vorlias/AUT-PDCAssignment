@@ -11,8 +11,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import rpg.gui.items.Item;
@@ -132,6 +130,7 @@ public class GameDatabase
 		Item item;
 		String type = rs.getString("ITEMTYPE");
 		String name = rs.getString("ITEMNAME");
+		int itemId = rs.getInt("ITEMID");
 		
 		if ("Weapon".equals(type))
 		{
@@ -143,6 +142,7 @@ public class GameDatabase
 			int damage = weaponInfo.getInt("WEAPONDAMAGE");
 		    
 			item = new Weapon(name, damage);
+			item.setId(itemId);
 			return item;		
 		    }
 		    else
@@ -160,6 +160,7 @@ public class GameDatabase
 			int modifier = consumableInfo.getInt("CONSUMABLEMODIFIER");
 		    
 			item = new Consumable(name, ConsumableType.valueOf(consumableInfo.getString("CONSUMABLETYPE")), modifier);
+			item.setId(itemId);
 			return item;		
 		    }
 		    else

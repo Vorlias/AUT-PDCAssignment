@@ -17,6 +17,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import rpg.gui.RPGGame;
 import rpg.gui.characters.PlayerCharacter;
+import rpg.gui.database.GameDatabase;
 import rpg.gui.misc.Vector2;
 import rpg.gui.ui.Button;
 import rpg.gui.ui.GUILayoutGroup;
@@ -42,6 +43,8 @@ public class CharacterCreationState extends BasicGameState
 
     public static final String CREATE_BUTTON = "Create";
     public static final String MENU_BUTTON = "Menu";
+    
+    public static final int ITEM_DAGGER = 1;
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
@@ -68,7 +71,11 @@ public class CharacterCreationState extends BasicGameState
 	    {
 		if (characterName.getText().matches("([A-z]+|[A-z]+ [A-z\\-]+)"))
 		{
-		    RPGGame.playView.setup(new PlayerCharacter(characterName.getText()));
+		    PlayerCharacter character = new PlayerCharacter(characterName.getText());
+		    character.addItem(GameDatabase.getItem(ITEM_DAGGER)); // Add dagger
+		    character.equipItemById(1);
+		    
+		    RPGGame.playView.setup(character);
 		    sbg.enterState(RPGGame.STATE_GAME);
 		}
 

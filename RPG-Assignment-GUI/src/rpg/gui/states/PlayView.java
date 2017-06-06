@@ -14,7 +14,6 @@ import org.newdawn.slick.state.StateBasedGame;
 import rpg.gui.RPGGame;
 import rpg.gui.characters.Monster;
 import rpg.gui.characters.PlayerCharacter;
-import rpg.gui.characters.PlayerLocation;
 import rpg.gui.gameplay.PlayController;
 import rpg.gui.gameplay.PlayModel;
 import rpg.gui.ui.GameUI;
@@ -45,6 +44,7 @@ public class PlayView extends BasicGameState
 	model = new PlayModel(character);
 	model.setView(this);
 	controller.setModel(model);
+	
     }
     
     @Override
