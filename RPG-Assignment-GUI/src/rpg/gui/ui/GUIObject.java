@@ -5,7 +5,10 @@
  */
 package rpg.gui.ui;
 
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.gui.AbstractComponent;
@@ -18,10 +21,35 @@ import rpg.gui.misc.Vector2;
  */
 public abstract class GUIObject extends AbstractComponent
 {
+
     private Vector2 size = Vector2.ZERO;
     private Vector2 position = Vector2.ZERO;
     private boolean clickState;
     private boolean mouseOverState;
+    private boolean enabled = true;
+    private GUILayoutGroup layoutGroup;
+
+    private static boolean globalClickState;
+
+    public GUILayoutGroup getLayoutGroup()
+    {
+	return layoutGroup;
+    }
+
+    public void setLayoutGroup(GUILayoutGroup layoutGroup)
+    {
+	this.layoutGroup = layoutGroup;
+    }
+
+    public boolean isEnabled()
+    {
+	return this.enabled;
+    }
+
+    public void setEnabled(boolean enabled)
+    {
+	this.enabled = enabled;
+    }
 
     public Vector2 getSize()
     {
@@ -42,8 +70,6 @@ public abstract class GUIObject extends AbstractComponent
     {
 	this.position = position;
     }
-
-
 
     protected abstract void renderGUI(GUIContext container, Graphics graphics);
 
@@ -91,10 +117,7 @@ public abstract class GUIObject extends AbstractComponent
     @Override
     public void mouseMoved(int oldX, int oldY, int x, int y)
     {
-	Rectangle boundsRectangle = new Rectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-	Rectangle mouseRectangle = new Rectangle(x, y, 2, 2);
 
-	mouseOverState = boundsRectangle.intersects(mouseRectangle);
     }
 
     public void setClickState(boolean value)
@@ -123,21 +146,62 @@ public abstract class GUIObject extends AbstractComponent
 	return this.clickState;
     }
 
-    @Override
-    public void mousePressed(int button, int x, int y)
+    public void onGUIFocusLost()
     {
-	if (mouseOverState)
-	{
-	    setClickState(true);
-	    onGUIMousePressed();
-	}
+
     }
 
     public abstract void onGUIMousePressed();
 
+    protected boolean focused;
+    
     @Override
-    public void mouseReleased(int button, int x, int y)
+    public void mouseClicked(int button, int x, int y, int clickCount)
     {
-	setClickState(false);
+	if (enabled)
+	{
+	    if (clickState)
+	    {
+		onGUIMousePressed();
+	    }
+	    else if (focused)
+	    {
+		onGUIFocusLost();
+	    }
+	}
+    }
+
+    public void update()
+    {
+	int x = Mouse.getX();
+	int y = Display.getHeight() - Mouse.getY();
+
+	Rectangle boundsRectangle = new Rectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+	Rectangle mouseRectangle = new Rectangle(x, y, 2, 2);
+
+	mouseOverState = boundsRectangle.intersects(mouseRectangle) && enabled;
+
+	boolean leftButtonDown = Mouse.getEventButton() == Input.MOUSE_LEFT_BUTTON && Mouse.getEventButtonState();
+
+	if (mouseOverState && leftButtonDown)
+	{
+	    if (!clickState)
+	    {
+		setClickState(true);
+	    }
+	}
+	else
+	{
+	    if (clickState)
+	    {
+		setClickState(false);
+	    }
+
+	    if (leftButtonDown && !clickState && this.hasFocus())
+
+	    {
+		
+	    }
+	}
     }
 }

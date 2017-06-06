@@ -51,4 +51,17 @@ public class Monster extends Character
     {
 	return maxDamage;
     }
+    
+    /**
+     * Attack the player's character
+     * @param character The player character
+     * @return The damage dealt to the player
+     */
+    public int attack(PlayerCharacter character)
+    {
+	int damage = random.nextInt(maxDamage);
+	character.takeDamage(damage);
+
+	return damage;
+    }
 }
