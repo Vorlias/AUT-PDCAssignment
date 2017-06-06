@@ -16,6 +16,8 @@ import rpg.gui.characters.Monster;
 import rpg.gui.characters.MonsterType;
 import rpg.gui.characters.PlayerCharacter;
 import rpg.gui.characters.PlayerLocation;
+import rpg.gui.characters.PlayerSave;
+import rpg.gui.items.Weapon;
 import rpg.gui.misc.Vector2;
 import rpg.gui.states.PlayView;
 import rpg.gui.ui.Button;
@@ -66,11 +68,17 @@ public class PlayController
     public void onMenuButtonPressed(Button button)
     {
 	String action = button.getText();
+	GameUI ui = view.getUI();
+	TextDisplay textDisplay = ui.getTextDisplay();
 	
 	switch (action)
 	{
 	    case BUTTON_MENU:
 		stateBasedGame.enterState(RPGGame.STATE_MENU);
+		break;
+	    case BUTTON_SAVE:
+		PlayerSave.save(model.getPlayerCharacter());
+		textDisplay.addSystemMessage("Saved " + model.getPlayerCharacter().getName() + " successfully.");
 		break;
 	}
     }
@@ -88,8 +96,9 @@ public class PlayController
 	    case BUTTON_ATTACK:
 		float playerDamage = playerCharacter.attack(targetMonster);
 		int monsterDamage = targetMonster.attack(playerCharacter);
+		Weapon weapon = playerCharacter.getEquippedWeapon();
 		
-		textDisplay.addSystemMessage("[" + playerCharacter.getName() + "] attacks [" + targetMonster.getName() + "] for " + playerDamage + " damage", Color.green);
+		textDisplay.addSystemMessage("[" + playerCharacter.getName() + "] attacks [" + targetMonster.getName() + "] with " + (weapon != null ? weapon.getName() : "fists") + " for " + playerDamage + " damage", Color.green);
 		textDisplay.addSystemMessage("[" + targetMonster.getName() + "] attacks [" + playerCharacter.getName() + "] for " + monsterDamage + " damage", Color.red);
 		
 		if (!targetMonster.isAlive())
@@ -114,6 +123,10 @@ public class PlayController
 		playerCharacter.setLocation(PlayerLocation.Town);
 		textDisplay.addSystemMessage("You have entered the town of Tarrin.");
 		updateOptions();
+		break;
+		
+	    case BUTTON_INVENTORY:
+		System.out.println(playerCharacter.getItems());
 		break;
 		
 	    case BUTTON_FOREST:
@@ -194,7 +207,7 @@ public class PlayController
 	GameUI ui = view.getUI();
 	GUILayoutGroup actionButtons = ui.getActionLayoutGroup();
 	PlayerLocation location = model.getPlayerLocation();
-
+	
 	if (target != null)
 	{
 	    if (!inCombat)
@@ -219,6 +232,7 @@ public class PlayController
 		    case Forest:
 			actionButtons.clear();
 			actionButtons.addButtons(Button.Size.Large, BUTTON_EXPLORE_FOREST, BUTTON_TOWN, BUTTON_INVENTORY);
+			
 			break;
 		    case Wilds:
 			actionButtons.clear();
