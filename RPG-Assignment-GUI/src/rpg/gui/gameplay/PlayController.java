@@ -27,7 +27,7 @@ import rpg.gui.ui.GameUI;
 import rpg.gui.ui.TextDisplay;
 
 /**
- *
+ * 
  * @author Jonathan
  */
 public class PlayController
@@ -51,7 +51,8 @@ public class PlayController
 	    BUTTON_INVENTORY = "View Inventory",
 	    BUTTON_ATTACK = "Attack",
 	    BUTTON_FLEE = "Flee",
-	    BUTTON_EXPLORE_FOREST = "Explore Forest";
+	    BUTTON_EXPLORE_FOREST = "Explore Forest",
+	    BUTTON_CLERIC = "Visit Healer";
     
     public static final String BUTTON_SAVE = "Save",
 	    BUTTON_MENU = "Menu";
@@ -98,13 +99,27 @@ public class PlayController
 		int monsterDamage = targetMonster.attack(playerCharacter);
 		Weapon weapon = playerCharacter.getEquippedWeapon();
 		
-		textDisplay.addSystemMessage("[" + playerCharacter.getName() + "] attacks [" + targetMonster.getName() + "] with " + (weapon != null ? weapon.getName() : "fists") + " for " + playerDamage + " damage", Color.green);
+		textDisplay.addSystemMessage("[" + playerCharacter.getName() + "] attacks [" + targetMonster.getName() + "] with " + (weapon != null ? weapon.getName() : "fists") + " for " + (int)playerDamage + " damage", Color.green);
 		textDisplay.addSystemMessage("[" + targetMonster.getName() + "] attacks [" + playerCharacter.getName() + "] for " + monsterDamage + " damage", Color.red);
 		
 		if (!targetMonster.isAlive())
 		{
 		    textDisplay.addSystemMessage("You successfully defeated the " + targetMonster.getName() + "!");
 		    model.setTargetMonster(null);
+		    playerCharacter.addXP(targetMonster.getLevel() * 10);
+
+		    int goldToAdd = random.nextInt(9) + 1;
+		    playerCharacter.setGold(playerCharacter.getGold() + goldToAdd);
+		    textDisplay.addSystemMessage("You picked up " + goldToAdd + " gold.");
+		}
+		else if (!playerCharacter.isAlive())
+		{
+		    playerCharacter.setLocation(PlayerLocation.Dead);
+		    model.setTargetMonster(null);
+		    textDisplay.addEmpty();
+		    textDisplay.addEmpty();
+		    textDisplay.addEmpty();
+		    textDisplay.addSystemMessage("You died. How unfortunate.", Color.red);
 		}
 		
 		updateOptions();
@@ -125,8 +140,17 @@ public class PlayController
 		updateOptions();
 		break;
 		
-	    case BUTTON_INVENTORY:
-		System.out.println(playerCharacter.getItems());
+	    case BUTTON_CLERIC:
+		if (playerCharacter.getGold() >= 10)
+		{
+		    playerCharacter.setHealth(playerCharacter.getMaxHealth());
+		    playerCharacter.setGold(playerCharacter.getGold() - 10);
+		    textDisplay.addMessage("Healer", "There you go, all healed up " + playerCharacter.getName() + ".");
+		}
+		else
+		{
+		    textDisplay.addMessage("Healer", "Sorry, you need 10 gold to heal yourself. You have " + playerCharacter.getGold());
+		}
 		break;
 		
 	    case BUTTON_FOREST:
@@ -214,7 +238,7 @@ public class PlayController
 	    {
 		actionButtons.clear();
 		lastLocation = PlayerLocation.Combat;
-		actionButtons.addButtons(Button.Size.Large, BUTTON_ATTACK, BUTTON_FLEE, BUTTON_INVENTORY);
+		actionButtons.addButtons(Button.Size.Large, BUTTON_ATTACK, BUTTON_FLEE);
 	    }
 		
 	    
@@ -225,13 +249,17 @@ public class PlayController
 	    {
 		switch (location)
 		{
+		    case Dead:
+			actionButtons.clear();
+			break;
+		    
 		    case Town:
 			actionButtons.clear();
-			actionButtons.addButtons(Button.Size.Large, BUTTON_BLACKSMITH, BUTTON_ALCHEMIST, BUTTON_FOREST, BUTTON_INVENTORY);
+			actionButtons.addButtons(Button.Size.Large, BUTTON_CLERIC, BUTTON_FOREST);
 			break;
 		    case Forest:
 			actionButtons.clear();
-			actionButtons.addButtons(Button.Size.Large, BUTTON_EXPLORE_FOREST, BUTTON_TOWN, BUTTON_INVENTORY);
+			actionButtons.addButtons(Button.Size.Large, BUTTON_EXPLORE_FOREST, BUTTON_TOWN);
 			
 			break;
 		    case Wilds:

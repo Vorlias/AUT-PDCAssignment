@@ -94,6 +94,7 @@ public class PlayView extends BasicGameState
 	PlayerCharacter character = model.getPlayerCharacter();
 	ui.setHealthPercentage(character.getHealth());
 	ui.setPlayerName(character.getName());
+	ui.setPlayerLevel(character.getLevel());
 	ui.update();
 	
 	Monster enemy = model.getTargetMonster();
@@ -102,11 +103,13 @@ public class PlayView extends BasicGameState
 	{
 	    ui.setEnemyHealthPercentage(enemy.getHealth() / enemy.getMaxHealth() * 100.f);
 	    ui.setEnemyName(enemy.getName());
+	    ui.setEnemyLevel(enemy.getLevel());
 	}
 	else
 	{
 	    ui.setEnemyHealthPercentage(0);
-	    ui.setEnemyName("");	    
+	    ui.setEnemyName("");	
+	    ui.setEnemyLevel(0);
 	}
     }
 }

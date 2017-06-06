@@ -38,12 +38,23 @@ public class Button extends GUIObject
     private Vector2 textPadding = Vector2.ZERO;
     private ButtonPressedListener pressListener;
     private Image buttonImage, buttonHoverImage;
+    private int index = -1;
     
     private TrueTypeFont buttonFont;
 
     public Vector2 getTextPadding()
     {
 	return textPadding;
+    }
+    
+    public void setIndex(int index)
+    {
+	this.index = index;
+    }
+    
+    public int getIndex()
+    {
+	return this.index;
     }
 
     public void setTextPadding(Vector2 textPadding)

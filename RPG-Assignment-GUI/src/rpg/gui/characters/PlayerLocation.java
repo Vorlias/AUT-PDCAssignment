@@ -15,4 +15,5 @@ public enum PlayerLocation
     Town,
     Forest,
     Combat,
+    Dead,
 }
