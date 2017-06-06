@@ -79,12 +79,16 @@ public class PlayController
     {
 	String action = button.getText();
 	PlayerCharacter playerCharacter = model.getPlayerCharacter();
+	Monster targetMonster = model.getTargetMonster();
 	GameUI ui = view.getUI();
 	TextDisplay textDisplay = ui.getTextDisplay();
 	
 	switch (action)
 	{
 	    case BUTTON_ATTACK:
+		playerCharacter.attack(targetMonster);
+		targetMonster.attack(playerCharacter);
+		
 		break;
 		
 	    case BUTTON_FLEE:

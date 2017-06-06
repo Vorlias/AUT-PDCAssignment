@@ -6,6 +6,7 @@
 # Package Files #
 *.war
 *.ear
+*.dat
 
 /.metadata
 /.metadata/.plugins/
@@ -16,6 +17,7 @@ hs_err_pid*
 /RPG-Assignment-CUI/build/
 /RPG-Assignment-GUI/lib/Slick2D/javadoc/
 /RPG-Assignment-GUI/rpgdb/
+derby.log
 
 
 

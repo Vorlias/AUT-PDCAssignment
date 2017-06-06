@@ -260,12 +260,14 @@ public class PlayerCharacter extends Character
      * Attacks the target
      *
      * @param target The target to attack
+     * @return The damage done to the target
      */
-    public void attack(Character target)
+    public float attack(Character target)
     {
 	if (target == this)
 	{
 	    System.err.println("Player cannot attack themself.");
+	    return 0;
 	}
 	else
 	{
@@ -276,10 +278,12 @@ public class PlayerCharacter extends Character
 		float damage = Utility.randomFloat(min, max);
 
 		target.takeDamage(damage);
+		return damage;
 	    }
 	    else
 	    {
 		target.takeDamage(FIST_DAMAGE);
+		return FIST_DAMAGE;
 	    }
 	}
     }
