@@ -91,6 +91,8 @@ public class GUILayoutGroup extends AbstractComponent
     }
     
     // Add buttons
+    int buttonIndex = 0;
+    
     public void addButtons(Button.Size size, String... buttonNames)
     {
 
@@ -100,7 +102,7 @@ public class GUILayoutGroup extends AbstractComponent
 	    {
 		String buttonName = buttonNames[i];
 		Button btn = new Button(this.context, buttonName, Vector2.ZERO, size);
-		
+		btn.setIndex(buttonIndex);
 		
 		btn.onButtonPressed(() ->
 		{
@@ -112,6 +114,8 @@ public class GUILayoutGroup extends AbstractComponent
 
 		btn.setLayoutGroup(this);
 		guiObjects.add(btn);
+		
+		buttonIndex++;
 	    }
 	    catch (FontFormatException | IOException | SlickException ex)
 	    {
@@ -137,6 +141,7 @@ public class GUILayoutGroup extends AbstractComponent
 	    object.setEnabled(false);
 	}
 	guiObjects = new ArrayList<>();
+	buttonIndex = 0;
     }
     
     // Add group

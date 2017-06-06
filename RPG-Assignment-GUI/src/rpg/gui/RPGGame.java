@@ -11,6 +11,7 @@ import rpg.gui.states.CharacterCreationState;
 import rpg.gui.states.MenuState;
 import rpg.gui.states.PlayView;
 import rpg.gui.database.GameDatabase;
+import rpg.gui.states.InventoryState;
 import rpg.gui.states.LoadSaveState;
 
 /**
@@ -33,6 +34,7 @@ public class RPGGame extends StateBasedGame
 
     public static final String TITLE = "RPG Game"; // Program title
     public static PlayView playView;
+    public static RPGGame game;
 
     /**
      * @param args the command line arguments
@@ -59,7 +61,8 @@ public class RPGGame extends StateBasedGame
     // Constructor
     public RPGGame()
     {
-	super(TITLE); // Game title
+	super(TITLE);
+	game = this;
     }
 
     @Override
@@ -70,6 +73,7 @@ public class RPGGame extends StateBasedGame
 	this.addState(new MenuState());
 	this.addState(playView);
 	this.addState(new CharacterCreationState());
+	this.addState(new InventoryState());
 	this.addState(new LoadSaveState());
 
 	this.enterState(STATE_MENU);
