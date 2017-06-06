@@ -9,7 +9,7 @@ import java.util.HashMap;
 import rpg.gui.characters.PlayerCharacter;
 
 /**
- *
+ * Items class
  * @author Jonathan
  */
 public abstract class Item
@@ -17,20 +17,20 @@ public abstract class Item
 
     public static final int INVALID_ID = -1;
 
+    // Item enums
     public enum ItemType
     {
 	Weapon,
 	Consumable,
     }
 
-    protected String name;
-    private final ItemType type;
+    protected String name; // Item name
+    private final ItemType type; // Item type
 
     protected int id = INVALID_ID;
 
     /**
      * Gets the item's ID
-     *
      * @return The item id
      */
     public int getId()
@@ -40,7 +40,6 @@ public abstract class Item
 
     /**
      * Set the item Id
-     *
      * @param id The id of the item
      */
     public void setId(int id)
@@ -50,7 +49,6 @@ public abstract class Item
 
     /**
      * Creates a new item
-     *
      * @param name The name of the item
      * @param type The type of the item
      */
@@ -62,7 +60,6 @@ public abstract class Item
 
     /**
      * Gets the name of the item
-     *
      * @return The name of the item
      */
     public String getName()
@@ -72,7 +69,6 @@ public abstract class Item
 
     /**
      * Get the type of the item
-     *
      * @return The type of the item
      */
     public ItemType getType()
@@ -88,7 +84,6 @@ public abstract class Item
 
     /**
      * Use the item (equip, consume etc.)
-     *
      * @param character The character to use the item on
      */
     public abstract void use(PlayerCharacter character);
@@ -97,6 +92,7 @@ public abstract class Item
 
     public abstract void setAttributes(HashMap<String, Object> attributes);
 
+    // Encode the item
     public String encode()
     {
 	StringBuilder builder = new StringBuilder();

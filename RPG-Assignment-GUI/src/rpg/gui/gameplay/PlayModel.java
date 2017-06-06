@@ -12,7 +12,6 @@ import rpg.gui.states.PlayView;
 
 /**
  * The game as a model
- *
  * @author Jonathan
  */
 public class PlayModel
@@ -23,56 +22,67 @@ public class PlayModel
     private Monster targetMonster;
     private boolean inCombat;
     
+    // Get the view
     public PlayView getView()
     {
 	return view;
     }
 
+    // Set the view
     public void setView(PlayView view)
     {
 	this.view = view;
     }
 
+    // Get controller
     public PlayController getController()
     {
 	return controller;
     }
 
+    // Set controller
     public void setController(PlayController controller)
     {
 	this.controller = controller;
     }
 
+    // Get playercharacter
     public PlayerCharacter getPlayerCharacter()
     {
 	return playerCharacter;
     }
     
+    // Get target monster
     public Monster getTargetMonster()
     {
 	return targetMonster;
     }
     
+    // Set target monster
     public void setTargetMonster(Monster monster)
     {
 	this.targetMonster = monster;
     }
     
+    // Set player in combat
     public void setInCombat(boolean inCombat)
     {
 	this.inCombat = inCombat;
     }
     
+    // Check if player in combat
     public boolean isInCombat()
     {
 	return inCombat;
     }
 
+    // Set playercharacter
     public void setPlayerCharacter(PlayerCharacter playerCharacter)
     {
 	this.playerCharacter = playerCharacter;
     }
 
+    // Get player location
     public PlayerLocation getPlayerLocation()
     {
 	return playerCharacter.getLocation();
@@ -87,6 +97,7 @@ public class PlayModel
 	playerCharacter.setLocation(playerLocation);
     }
 
+    // PlayModel constructor
     public PlayModel(PlayerCharacter playerCharacter)
     {
 	this.playerCharacter = playerCharacter;

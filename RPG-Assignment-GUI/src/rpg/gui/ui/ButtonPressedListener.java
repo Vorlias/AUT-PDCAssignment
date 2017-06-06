@@ -6,7 +6,7 @@
 package rpg.gui.ui;
 
 /**
- *
+ * Button press listener
  * @author Jonathan
  */
 public interface ButtonPressedListener

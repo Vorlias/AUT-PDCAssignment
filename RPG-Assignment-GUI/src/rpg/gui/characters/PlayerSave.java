@@ -16,8 +16,8 @@ import rpg.gui.items.Item;
 import rpg.gui.items.Weapon;
 
 /**
- *
- * @author Jonathan
+ * Class to handle player saving
+ * @author Jonathan & Nathan
  */
 public class PlayerSave
 {
@@ -25,6 +25,7 @@ public class PlayerSave
     PlayerCharacter character;
     Scanner inputScanner;
 
+    // Private constructor
     private PlayerSave(PlayerCharacter character)
     {
 	this.character = character;
@@ -32,7 +33,6 @@ public class PlayerSave
 
     /**
      * Parses a string attribute E.g. 'Name Test'
-     *
      * @param attribute The attribute's name
      * @param scanner The scanner parsing the line
      */
@@ -51,7 +51,6 @@ public class PlayerSave
 
     /**
      * Parses an integer array attribute E.g. 'Inventory 0 1 2 3'
-     *
      * @param attribute The attribute's name
      * @param scanner The scanner parsing the line
      */
@@ -74,7 +73,6 @@ public class PlayerSave
 
     /**
      * Parses a constrained float attribute E.g. 'Health 50.0 100.0'
-     *
      * @param attribute The attribute's name
      * @param scanner The scanner parsing the line
      */
@@ -104,7 +102,6 @@ public class PlayerSave
 
     /**
      * Parses an integer attribute E.g. 'Gold 100'
-     *
      * @param attribute The attribute's name
      * @param scanner The scanner parsing the line
      */
@@ -133,7 +130,6 @@ public class PlayerSave
 
     /**
      * Parses a save file line
-     *
      * @param line The line to parse
      */
     private void parseLine(String line)
@@ -166,7 +162,6 @@ public class PlayerSave
 
     /**
      * Loads the character from a file
-     *
      * @param file The file path
      * @return True if the file loaded successfully
      */
@@ -193,7 +188,6 @@ public class PlayerSave
 
     /**
      * Write the character to a file
-     *
      * @param file The file path
      */
     public void writeToFile(String file)
@@ -239,7 +233,6 @@ public class PlayerSave
 
     /**
      * Get all the available player saves
-     *
      * @return A list of the player saves
      */
     public static String[] getPlayerSaveList()
@@ -261,7 +254,6 @@ public class PlayerSave
 
     /**
      * Saves the character
-     *
      * @param character The character to save
      */
     public static void save(PlayerCharacter character)
@@ -272,7 +264,6 @@ public class PlayerSave
 
     /**
      * Loads a character into the game
-     *
      * @param saveName The name of the save to load
      * @return True if the loading was successful
      */
@@ -291,7 +282,6 @@ public class PlayerSave
 
     /**
      * Loads the character
-     *
      * @param character The character to load to
      * @param saveName The name of the character to load
      * @return True if the save loaded successfully

@@ -15,24 +15,24 @@ import rpg.gui.states.InventoryState;
 import rpg.gui.states.LoadSaveState;
 
 /**
- *
- * @author Jonathan
+ * The main class to start the game
+ * @author Jonathan Holmes & Nathan Cross
  */
 public class RPGGame extends StateBasedGame
 {
 
-    public static final int STATE_MENU = 0;
-    public static final int STATE_CREATION = 1;
-    public static final int STATE_GAME = 2;
-    public static final int STATE_LOAD = 3;
-    public static final int STATE_INVENTORY = 4;
+    public static final int STATE_MENU = 0; // Menu state
+    public static final int STATE_CREATION = 1; // Creation state
+    public static final int STATE_GAME = 2; // Game state
+    public static final int STATE_LOAD = 3; // Load state
+    public static final int STATE_INVENTORY = 4; // Inventory state
 
-    public static final int WIDTH = 800;
-    public static final int HEIGHT = 600;
-    public static final int FPS = 60;
-    public static final double VERSION = 0.1;
+    public static final int WIDTH = 800; // Program width
+    public static final int HEIGHT = 600; // Program height
+    public static final int FPS = 60; // Program FPS (Frames Per Second)
+    public static final double VERSION = 0.1; // Program version
 
-    public static final String TITLE = "RPG Game";
+    public static final String TITLE = "RPG Game"; // Program title
     public static PlayView playView;
     public static RPGGame game;
 
@@ -58,6 +58,7 @@ public class RPGGame extends StateBasedGame
 	}
     }
 
+    // Constructor
     public RPGGame()
     {
 	super(TITLE);

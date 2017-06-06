@@ -37,14 +37,14 @@ public class ButtonLayoutGroup extends GUILayoutGroup
 	    b.setEnabled(enabled);
     }
 
-
+    // Set buttons
     public void setButtons(String... buttons)
     {
 	this.clear();
 	this.addButtons(buttonSize, buttons);
     }
 
-    
+    // Button layout group
     public ButtonLayoutGroup(GUIContext context, LayoutType layoutType, Button.Size buttonSize)
     {
 	super(context, layoutType);
@@ -53,6 +53,7 @@ public class ButtonLayoutGroup extends GUILayoutGroup
 	this.buttonSize = buttonSize;	
     }
 
+    // Button layout group
     public ButtonLayoutGroup(GUIContext context, LayoutType layoutType)
     {
 	super(context, layoutType);
@@ -60,7 +61,4 @@ public class ButtonLayoutGroup extends GUILayoutGroup
 	this.layoutType = layoutType;
 	this.buttonSize = Button.Size.Regular;
     }
-
-
-
 }

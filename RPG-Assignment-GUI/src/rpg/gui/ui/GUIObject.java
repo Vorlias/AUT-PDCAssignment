@@ -16,7 +16,7 @@ import org.newdawn.slick.gui.GUIContext;
 import rpg.gui.misc.Vector2;
 
 /**
- *
+ * Handle Game Object
  * @author Jonathan
  */
 public abstract class GUIObject extends AbstractComponent
@@ -36,36 +36,43 @@ public abstract class GUIObject extends AbstractComponent
 	return layoutGroup;
     }
 
+    // Set group layout
     public void setLayoutGroup(GUILayoutGroup layoutGroup)
     {
 	this.layoutGroup = layoutGroup;
     }
 
+    // Check group enabled
     public boolean isEnabled()
     {
 	return this.enabled;
     }
 
+    // Set group enabled
     public void setEnabled(boolean enabled)
     {
 	this.enabled = enabled;
     }
 
+    // Get size
     public Vector2 getSize()
     {
 	return size;
     }
 
+    // Set size
     public void setSize(Vector2 size)
     {
 	this.size = size;
     }
 
+    // Get position
     public Vector2 getPosition()
     {
 	return position;
     }
 
+    // Set position
     public void setPosition(Vector2 position)
     {
 	this.position = position;
@@ -73,58 +80,68 @@ public abstract class GUIObject extends AbstractComponent
 
     protected abstract void renderGUI(GUIContext container, Graphics graphics);
 
+    // GUI Object constructor
     public GUIObject(GUIContext context)
     {
 	super(context);
     }
 
+    // Render
     @Override
     public void render(GUIContext container, Graphics graphics) throws SlickException
     {
 	renderGUI(container, graphics);
     }
 
+    // Set location
     @Override
     public void setLocation(int x, int y)
     {
 	this.position = new Vector2(x, y);
     }
 
+    // Get x co-ordinate
     @Override
     public int getX()
     {
 	return this.position.getX();
     }
 
+    // Get y co-ordinate
     @Override
     public int getY()
     {
 	return this.position.getY();
     }
 
+    // Get width
     @Override
     public int getWidth()
     {
 	return this.size.getX();
     }
 
+    // Get height
     @Override
     public int getHeight()
     {
 	return this.size.getY();
     }
 
+    // Mouse moved
     @Override
     public void mouseMoved(int oldX, int oldY, int x, int y)
     {
 
     }
 
+    // Click state
     public void setClickState(boolean value)
     {
 	this.clickState = value;
     }
 
+    // Check if mouse over
     public boolean isMouseOver()
     {
 	return this.mouseOverState;
@@ -133,7 +150,6 @@ public abstract class GUIObject extends AbstractComponent
     /**
      * Returns whether or not this GUI component is active Used for UI state
      * handling
-     *
      * @return True if the component is active
      */
     public boolean isActive()
@@ -141,11 +157,13 @@ public abstract class GUIObject extends AbstractComponent
 	return this.clickState;
     }
 
+    // Is pressed
     public boolean isPressed()
     {
 	return this.clickState;
     }
 
+    // Gui focus lost
     public void onGUIFocusLost()
     {
 
@@ -155,6 +173,7 @@ public abstract class GUIObject extends AbstractComponent
 
     protected boolean focused;
     
+    // Mouse clicked
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount)
     {
@@ -170,7 +189,8 @@ public abstract class GUIObject extends AbstractComponent
 	    }
 	}
     }
-
+ 
+    // Update
     public void update()
     {
 	int x = Mouse.getX();

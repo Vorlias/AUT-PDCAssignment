@@ -14,7 +14,7 @@ import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.util.ResourceLoader;
 
 /**
- *
+ * Game font manager
  * @author Jonathan
  */
 public class FontManager

@@ -15,7 +15,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import rpg.gui.misc.Vector2;
 
 /**
- *
+ * Handle GameUI
  * @author Jonathan
  */
 public class GameUI
@@ -45,11 +45,13 @@ public class GameUI
 	return menuGroup;
     }
 
+    // Set enemy level
     public void setEnemyLevel(int enemyLevel)
     {
 	this.enemyLevel = enemyLevel;
     }
 
+    // Set player level
     public void setPlayerLevel(int playerLevel)
     {
 	this.playerLevel = playerLevel;
@@ -75,6 +77,7 @@ public class GameUI
 	return textDisplay;
     }
 
+    // Game UI Constructor
     public GameUI(GUIContext context)
     {
 	try
@@ -100,6 +103,7 @@ public class GameUI
 	menuGroup = new GUILayoutGroup(context, GUILayoutGroup.LayoutType.Horizontal);
     }
 
+    // Render
     public void render(GameContainer container, StateBasedGame game, Graphics renderer) throws SlickException
     {
 	this.renderBottomLayer(container, game, renderer);
@@ -107,6 +111,7 @@ public class GameUI
 	this.renderTopLayer(container, game, renderer);
     }
 
+    // Update
     public void update()
     {
 	actionLayoutGroup.update();
@@ -136,6 +141,7 @@ public class GameUI
 	menuGroup.render(container, renderer);
     }
 
+    // Render top layer
     private void renderTopLayer(GameContainer container, StateBasedGame game, Graphics renderer)
     {
 	renderer.setColor(Color.white);
@@ -166,6 +172,7 @@ public class GameUI
 	renderer.drawImage(foregroundImage, 0, 0);
     }
 
+    // Render bottom layer
     private void renderBottomLayer(GameContainer container, StateBasedGame game, Graphics renderer)
     {
 
@@ -181,16 +188,19 @@ public class GameUI
 	this.healthPercentage = percentage / 100.0f;
     }
 
+    // Set enemy health
     public void setEnemyHealthPercentage(float percentage)
     {
 	this.enemyHealthPercentage = percentage / 100.0f;
     }
 
+    // Set enemy name
     public void setEnemyName(String name)
     {
 	this.enemyName = name;
     }
 
+    // Set player name
     public void setPlayerName(String name)
     {
 	this.playerName = name;

@@ -6,7 +6,7 @@
 package rpg.gui.items;
 
 /**
- *
+ * Consumable type enums
  * @author Jonathan
  */
 public enum ConsumableType
