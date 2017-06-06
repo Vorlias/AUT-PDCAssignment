@@ -16,7 +16,7 @@ import rpg.gui.misc.FontManager;
 import rpg.gui.misc.Vector2;
 
 /**
- *
+ * Handle text input
  * @author Jonathan
  */
 public class TextInput extends GUIObject
@@ -26,6 +26,7 @@ public class TextInput extends GUIObject
     Image textInputBackground;
     private TrueTypeFont textInputFont;
 
+    // Text input constructor
     public TextInput(GUIContext context) throws SlickException
     {
 	super(context);
@@ -35,6 +36,7 @@ public class TextInput extends GUIObject
 	this.setSize(new Vector2(200, 30));
     }
 
+    // Gui focus lost
     @Override
     public void onGUIFocusLost()
     {
@@ -42,8 +44,7 @@ public class TextInput extends GUIObject
 	    focused = false;
     }
 
-    
-    
+    // Render gui
     @Override
     protected void renderGUI(GUIContext container, Graphics graphics)
     {
@@ -59,16 +60,19 @@ public class TextInput extends GUIObject
 	}
     }
 
+    // Set focused
     public void setFocused(boolean focused)
     {
 	this.focused = focused;
     }
 
+    // Is focused
     public boolean isFocused()
     {
 	return focused;
     }
 
+    // Key pressed
     @Override
     public void keyPressed(int key, char c)
     {
@@ -95,6 +99,7 @@ public class TextInput extends GUIObject
 	}
     }
 
+    // Mouse press gui
     @Override
     public void onGUIMousePressed()
     {
@@ -107,6 +112,7 @@ public class TextInput extends GUIObject
 
     }
 
+    // Get text
     public String getText()
     {
 	return input;

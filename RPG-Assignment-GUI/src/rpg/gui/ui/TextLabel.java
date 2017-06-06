@@ -12,7 +12,7 @@ import rpg.gui.misc.FontManager;
 import rpg.gui.misc.Vector2;
 
 /**
- *
+ * Handle text label
  * @author Jonathan
  */
 public class TextLabel extends GUIObject
@@ -21,16 +21,19 @@ public class TextLabel extends GUIObject
     String text;
     private final TrueTypeFont textFont;
 
+    // Set text
     public void setText(String text)
     {
 	this.text = text;
     }
 
+    // Get text
     public String getText()
     {
 	return this.text;
     }
 
+    // Text label constructor
     public TextLabel(GUIContext context, String text, float size)
     {
 	super(context);
@@ -39,6 +42,7 @@ public class TextLabel extends GUIObject
 	this.setSize(new Vector2(textFont.getWidth(text), textFont.getHeight(text)));
     }
 
+    // Render gui
     @Override
     protected void renderGUI(GUIContext container, Graphics graphics)
     {

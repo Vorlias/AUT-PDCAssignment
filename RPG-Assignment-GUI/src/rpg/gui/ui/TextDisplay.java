@@ -14,7 +14,7 @@ import org.newdawn.slick.gui.GUIContext;
 import rpg.gui.misc.FontManager;
 
 /**
- *
+ * Handle game text display
  * @author Jonathan
  */
 public class TextDisplay extends GUIObject
