@@ -19,7 +19,7 @@ import rpg.gui.ui.ButtonLayoutGroup;
 import rpg.gui.ui.GUILayoutGroup;
 
 /**
- *
+ * Handle menu state
  * @author Jonathan
  */
 public class MenuState extends BasicGameState
@@ -32,12 +32,14 @@ public class MenuState extends BasicGameState
     public static final String NEW_GAME_TEXT = "NEW GAME";
     public static final String LOAD_GAME_TEXT = "LOAD GAME";
     
+    // Get menu state id
     @Override
     public int getID()
     {
 	return RPGGame.STATE_MENU;
     }
 
+    // Inital state
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
     {
@@ -63,20 +65,21 @@ public class MenuState extends BasicGameState
 	}
     }
 
+    // Leave state
     @Override
     public void leave(GameContainer container, StateBasedGame game) throws SlickException
     {
 	menuButtons.setButtonsEnabled(false);
     }
 
+    // Enter state
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException
     {
 	menuButtons.setButtonsEnabled(true);
-    }
+    } 
     
-    
-
+    // Render state
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException
     {
@@ -88,11 +91,10 @@ public class MenuState extends BasicGameState
 	menuButtons.render(gc, grphcs);
     }
 
+    // Update state
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException
     {
 	menuButtons.update();
     }
-
-    
 }

@@ -6,29 +6,28 @@
 package rpg.gui.characters;
 
 /**
- *
- * @author Jonathan
+ * Character class that contains all the character information
+ * @author Jonathan & Nathan
  */
 public abstract class Character
 {
 
-    private float stamina;
-    private float maxStamina;
+    private float stamina; // Character stamina
+    private float maxStamina; // Character max stamina
 
-    private float mana;
-    private float maxMana;
+    private float mana; // Character mana
+    private float maxMana; // Character max mana
 
-    private float health;
-    private float maxHealth;
+    private float health; // Character health
+    private float maxHealth; // Character max health
 
-    private int level = 1;
-    private int gold = 0;
+    private int level = 1; // Character level
+    private int gold = 0; // Character gold
 
-    private String name;
+    private String name; // Character name
 
     /**
      * Gets the name of the character
-     *
      * @return The name of the character
      */
     public String getName()
@@ -38,7 +37,6 @@ public abstract class Character
 
     /**
      * Sets the name of this character
-     *
      * @param name The name of this character
      */
     public void setName(String name)
@@ -48,7 +46,6 @@ public abstract class Character
 
     /**
      * Creates a character
-     *
      * @param name The name of the character
      */
     protected Character(String name)
@@ -58,7 +55,6 @@ public abstract class Character
 
     /**
      * Takes away health from this character
-     *
      * @param amount The amount to take away
      */
     public void takeDamage(float amount)
@@ -68,7 +64,6 @@ public abstract class Character
 
     /**
      * Returns whether or not the character is alive
-     *
      * @return True if the character is alive
      */
     public boolean isAlive()
@@ -78,7 +73,6 @@ public abstract class Character
 
     /**
      * Sets the character's level
-     *
      * @param level The level of the character
      */
     public void setLevel(int level)
@@ -88,7 +82,6 @@ public abstract class Character
 
     /**
      * Sets the character's amount of gold
-     *
      * @param gold The amount of gold the character has
      */
     public void setGold(int gold)
@@ -98,7 +91,6 @@ public abstract class Character
 
     /**
      * Gets the character's max health
-     *
      * @return The max health of this character
      */
     public float getMaxHealth()
@@ -108,7 +100,6 @@ public abstract class Character
 
     /**
      * Gets the character's max mana
-     *
      * @return The max mana of this character
      */
     public float getMaxMana()
@@ -118,7 +109,6 @@ public abstract class Character
 
     /**
      * Gets the character's max stamina
-     *
      * @return The max stamina of this character
      */
     public float getMaxStamina()
@@ -128,7 +118,6 @@ public abstract class Character
 
     /**
      * Gets the level of this character
-     *
      * @return The level of this character
      */
     public int getLevel()
@@ -138,7 +127,6 @@ public abstract class Character
 
     /**
      * Gets the amount of gold the character has
-     *
      * @return The gold amount of the character
      */
     public int getGold()
@@ -148,7 +136,6 @@ public abstract class Character
 
     /**
      * Gets the current health of this character
-     *
      * @return The current health of the character
      */
     public float getHealth()
@@ -158,7 +145,6 @@ public abstract class Character
 
     /**
      * Gets the current stamina of this character
-     *
      * @return The current stamina of this character
      */
     public float getStamina()
@@ -168,7 +154,6 @@ public abstract class Character
 
     /**
      * Gets the mana of this character
-     *
      * @return The mana of this character
      */
     public float getMana()
@@ -178,7 +163,6 @@ public abstract class Character
 
     /**
      * Sets the max stamina of this character
-     *
      * @param value The max stamina of this character
      */
     public final void setMaxStamina(float value)
@@ -189,7 +173,6 @@ public abstract class Character
 
     /**
      * Sets the max mana of this character
-     *
      * @param value The max mana of this character
      */
     public final void setMaxMana(float value)
@@ -200,7 +183,6 @@ public abstract class Character
 
     /**
      * Sets the max health of this character
-     *
      * @param value The max health of the character
      */
     public final void setMaxHealth(float value)
@@ -211,7 +193,6 @@ public abstract class Character
 
     /**
      * Sets the current mana of this character
-     *
      * @param value The current mana of this character
      */
     public void setMana(float value)
@@ -221,7 +202,6 @@ public abstract class Character
 
     /**
      * Sets the current stamina of this character
-     *
      * @param value The current stamina of this character
      */
     public void setStamina(float value)
@@ -231,7 +211,6 @@ public abstract class Character
 
     /**
      * Sets the current health of this character
-     *
      * @param value The current health of this character
      */
     public void setHealth(float value)

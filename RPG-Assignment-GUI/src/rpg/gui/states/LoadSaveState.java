@@ -18,7 +18,7 @@ import rpg.gui.ui.Button;
 import rpg.gui.ui.GUILayoutGroup;
 
 /**
- *
+ * Handle game save loading
  * @author Jonathan
  */
 public class LoadSaveState extends BasicGameState
@@ -26,12 +26,14 @@ public class LoadSaveState extends BasicGameState
 
     GUILayoutGroup loadSaveLayout;
 
+    // Get load state id
     @Override
     public int getID()
     {
 	return RPGGame.STATE_LOAD;
     }
 
+    // Inital load state
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
     {
@@ -69,6 +71,7 @@ public class LoadSaveState extends BasicGameState
 	});
     }
 
+    // Enter state
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException
     {
@@ -88,12 +91,14 @@ public class LoadSaveState extends BasicGameState
 	loadSaveLayout.addButtons(Button.Size.Large, "Menu");
     }
 
+    // Render state
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException
     {
 	loadSaveLayout.render(gc, grphcs);
     }
 
+    // Update state
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException
     {

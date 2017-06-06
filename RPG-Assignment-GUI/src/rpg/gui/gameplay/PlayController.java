@@ -27,7 +27,7 @@ import rpg.gui.ui.GameUI;
 import rpg.gui.ui.TextDisplay;
 
 /**
- *
+ * Handle the play controller
  * @author Jonathan
  */
 public class PlayController
@@ -56,6 +56,7 @@ public class PlayController
     public static final String BUTTON_SAVE = "Save",
 	    BUTTON_MENU = "Menu";
 
+    // Menu inital
     public void menuInit()
     {
 	GameUI ui = view.getUI();
@@ -65,6 +66,9 @@ public class PlayController
 	menuGroup.addButtons(Button.Size.Regular, BUTTON_MENU, BUTTON_SAVE);
     }
     
+    /**
+     * Handle menu button press
+     */
     public void onMenuButtonPressed(Button button)
     {
 	String action = button.getText();
@@ -83,6 +87,9 @@ public class PlayController
 	}
     }
     
+    /**
+     * Handle action button press
+     */
     public void onActionButtonPressed(Button button)
     {
 	String action = button.getText();
@@ -165,21 +172,25 @@ public class PlayController
 	}
     }
 
+    // Get the model
     public PlayModel getModel()
     {
 	return model;
     }
 
+    // Set the model
     public void setModel(PlayModel model)
     {
 	this.model = model;
     }
 
+    // Get the view
     public PlayView getView()
     {
 	return view;
     }
 
+    // Set the view
     public void setView(PlayView view)
     {
 	this.view = view;
@@ -200,6 +211,7 @@ public class PlayController
     PlayerLocation lastLocation;
     boolean inCombat;
 
+    // Update the options
     public void updateOptions()
     {
 	PlayerCharacter PlayerCharacter = model.getPlayerCharacter();
@@ -245,6 +257,7 @@ public class PlayController
 	}
     }
 
+    // Start the game
     public void startGame()
     {
 	updateOptions();

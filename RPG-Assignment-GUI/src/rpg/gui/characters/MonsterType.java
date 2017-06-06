@@ -12,35 +12,51 @@ import java.util.Random;
 import rpg.gui.misc.WeightedRandom;
 
 /**
- *
- * @author Jonathan
+ * Monster type class that contains all the monster types and stats
+ * @author Jonathan & Nathan
  */
 public enum MonsterType
 {
-    Goblin(2, 10, 5, 25, "Gaargla blarrg flarg"),
-    Snake(1, 3, 2, 25, "Sssssssss...."),
-    Elf(3, 15, 15, 15, "You don't belong here, Human."),
-    Bandit(3, 15, 15, 15, "Hand over all your money!"),
-    Dragon(10, 50, 50, 5, "ROOOOOOOOOAAAAAAAAAAR!!");
+    Goblin(2, 10, 5, 25, "Gaargla blarrg flarg"), // Goblin stats
+    Snake(1, 3, 2, 25, "Sssssssss...."), // Snake stats
+    Elf(3, 15, 15, 15, "You don't belong here, Human."), // Elf stats
+    Bandit(3, 15, 15, 15, "Hand over all your money!"), // Bandit stats
+    Dragon(10, 50, 50, 5, "ROOOOOOOOOAAAAAAAAAAR!!"); // Dragon stats
 
-    final String name;
-    final float maxHealth;
-    final int maxDamage;
-    final int maxGold;
-    final float weight;
-    final int level;
-    final String greeting;
+    final String name; // Monster name
+    final float maxHealth; // Monster max health
+    final int maxDamage; // Monster max damage
+    final int maxGold; // Monster max gold
+    final float weight; // Random weight
+    final int level; // Monster level
+    final String greeting; // Monster greeting
     
+    /**
+     * Get monster greeting
+     * @return the monster greeting
+     */
     public String getGreeting()
     {
 	return greeting;
     }
     
+    /**
+     * Get monster name
+     * @return the monster name
+     */
     public String getName()
     {
 	return name;
     }
 
+    /**
+     * The type of monster
+     * @param level monsters level
+     * @param maxDamage monsters max damage
+     * @param maxGold monsters max gold
+     * @param weight monsters random weight
+     * @param greeting monsters greeting
+     */
     MonsterType(int level, int maxDamage, int maxGold, float weight, String greeting)
     {
 	this.name = this.toString();
@@ -52,7 +68,6 @@ public enum MonsterType
 	this.greeting = greeting;
     }
 
-    // TODO: Weighted random instead of regular random
     private static final List<MonsterType> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
     private static final int SIZE = VALUES.size();
     private static final Random RANDOM = new Random();
@@ -62,7 +77,6 @@ public enum MonsterType
 
     /**
      * Returns a monster through weighted random
-     *
      * @return A monster
      */
     public static MonsterType random()
@@ -78,9 +92,4 @@ public enum MonsterType
 
 	return weightedMonsters.next();
     }
-
-    /*public static MonsterType random()
-	{
-		return VALUES.get(RANDOM.nextInt(SIZE));
-	}*/
 }

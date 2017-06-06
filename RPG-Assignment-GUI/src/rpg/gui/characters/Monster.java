@@ -8,19 +8,18 @@ package rpg.gui.characters;
 import java.util.Random;
 
 /**
- *
- * @author Nate
+ * Monster class that contains all the monster information
+ * @author Jonathan & Nathan
  */
 public class Monster extends Character
 {
 
-    static Random random = new Random();
-    private final int maxDamage;
-    private final MonsterType type;
+    static Random random = new Random(); // New random
+    private final int maxDamage; // Monster max damage
+    private final MonsterType type; // Monster type
 
     /**
      * Gets the type of monster this is
-     *
      * @return The type of monster
      */
     public MonsterType getType()
@@ -30,7 +29,6 @@ public class Monster extends Character
 
     /**
      * Creates a new monster of the specified type
-     *
      * @param type The type of monster
      */
     public Monster(MonsterType type)
@@ -44,7 +42,6 @@ public class Monster extends Character
 
     /**
      * Gets the max damage this monster does
-     *
      * @return The maximum damage the monster does
      */
     public int getMaxDamage()

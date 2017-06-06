@@ -9,7 +9,7 @@ import java.util.HashMap;
 import rpg.gui.characters.PlayerCharacter;
 
 /**
- *
+ * Consumable class
  * @author Jonathan
  */
 public class Consumable extends Item
@@ -18,6 +18,7 @@ public class Consumable extends Item
     private ConsumableType type;
     private int modifier;
 
+    // Get the consumable type
     public ConsumableType getConsumableType()
     {
 	return type;
@@ -37,6 +38,7 @@ public class Consumable extends Item
 	this.modifier = modifier;
     }
 
+    // Consumable constructor
     public Consumable()
     {
 	super("", ItemType.Consumable);
@@ -48,6 +50,7 @@ public class Consumable extends Item
 	return "Consumable	| " + this.getName() + ", type: " + this.type.toString() + ", modifier: " + this.modifier;
     }
 
+    // Get attributes
     @Override
     public HashMap<String, Object> getAttributes()
     {
@@ -58,6 +61,7 @@ public class Consumable extends Item
 	return attributes;
     }
 
+    // Set attributes
     @Override
     public void setAttributes(HashMap<String, Object> attributes)
     {
@@ -80,6 +84,7 @@ public class Consumable extends Item
 	});
     }
 
+    // Handle using a consumable item
     @Override
     public void use(PlayerCharacter character)
     {

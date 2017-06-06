@@ -20,12 +20,12 @@ import org.newdawn.slick.gui.GUIContext;
 import rpg.gui.misc.Vector2;
 
 /**
- *
+ * Handle GUI Layout Group
  * @author Jonathan
  */
 public class GUILayoutGroup extends AbstractComponent
 {
-
+    // Layout enum
     public enum LayoutType
     {
 	Grid,
@@ -35,16 +35,19 @@ public class GUILayoutGroup extends AbstractComponent
     
     private ButtonLayoutGroupItemPressed buttonPressedListener;
 
+    // On button press
     public void onButtonPress(ButtonLayoutGroupItemPressed listener)
     {
 	this.buttonPressedListener = listener;
     }
     
+    // Set item padding
     public void setItemPadding(Vector2 padding)
     {
 	this.padding = padding;
     }
 
+    // Set grid extents
     public void setGridExtents(Vector2 extents)
     {
 	this.gridExtents = extents;
@@ -57,26 +60,28 @@ public class GUILayoutGroup extends AbstractComponent
     protected Vector2 padding = Vector2.ZERO;
     protected GUIContext context;
     
-    //public void addButton(String text, )
-    
+    // Gui layout group constructor
     public GUILayoutGroup(GUIContext container, LayoutType layoutType)
     {
 	super(container);
 	context = container;
 	this.layoutType = layoutType;
     }
-    
+   
+    // Add inputs
     public void addInputs(TextInput... inputs)
     {
 	guiObjects.addAll(Arrays.asList(inputs));
     }
     
+    // Add labels
     public void addLabels(float size, String... labels)
     {
 	for (String label : labels)
 	    guiObjects.add(new TextLabel(this.context, label, size));
     }
     
+    // Enable group
     public void setEnabled(boolean value)
     {
 	for (GUIObject object : guiObjects)
@@ -85,6 +90,7 @@ public class GUILayoutGroup extends AbstractComponent
 	}
     }
     
+    // Add buttons
     public void addButtons(Button.Size size, String... buttonNames)
     {
 
@@ -114,6 +120,7 @@ public class GUILayoutGroup extends AbstractComponent
 	}
     }
     
+    // Update group
     public void update()
     {
 	for (GUIObject object : guiObjects)
@@ -122,6 +129,7 @@ public class GUILayoutGroup extends AbstractComponent
 	}
     }
     
+    // Clear group
     public void clear()
     {
 	for (GUIObject object : guiObjects)
@@ -131,11 +139,13 @@ public class GUILayoutGroup extends AbstractComponent
 	guiObjects = new ArrayList<>();
     }
     
+    // Add group
     public void add(GUIObject object)
     {
 	guiObjects.add(object);
     }
 
+    // Render
     @Override
     public void render(GUIContext guic, Graphics graphics) throws SlickException
     {
@@ -195,30 +205,35 @@ public class GUILayoutGroup extends AbstractComponent
 	    System.err.println("fuck");
     }
 
+    // Set group location
     @Override
     public void setLocation(int x, int y)
     {
 	position = new Vector2(x, y);
     }
 
+    // Get group x co-ordinate
     @Override
     public int getX()
     {
 	return position.getX();
     }
 
+    // Get group y co-orindate
     @Override
     public int getY()
     {
 	return position.getY();
     }
 
+    // Get width
     @Override
     public int getWidth()
     {
 	return 0;
     }
 
+    // Get height
     @Override
     public int getHeight()
     {

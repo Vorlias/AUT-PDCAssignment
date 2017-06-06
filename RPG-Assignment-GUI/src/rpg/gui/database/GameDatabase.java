@@ -19,17 +19,20 @@ import rpg.gui.items.ConsumableType;
 import rpg.gui.items.Weapon;
 
 /**
- *
- * @author Jonathan
+ * Handle database setup and fetching information
+ * @author Jonathan & Nathan
  */
 public class GameDatabase
 {
 
-    private static Connection conn;
-    private static final String DATABASE_URL = "jdbc:derby:rpgdb;create=true";
-    private static final String DATABASE_USERNAME = "rpg";
-    private static final String DATABASE_PASSWORD = "rpg";
+    private static Connection conn; // New connection
+    private static final String DATABASE_URL = "jdbc:derby:rpgdb;create=true"; // The database url
+    private static final String DATABASE_USERNAME = "rpg"; // The database username
+    private static final String DATABASE_PASSWORD = "rpg"; // The database password
 
+    /**
+     * Database constructor
+     */
     private GameDatabase()
     {
 	try
@@ -44,8 +47,10 @@ public class GameDatabase
 	}
     }
 
+    // Database instance
     private static GameDatabase instance;
 
+    // Create a new database instance if there isnt one
     public static GameDatabase getDatabaseInstance()
     {
 	if (instance == null)
@@ -56,6 +61,7 @@ public class GameDatabase
 	return instance;
     }
 
+    // Check if database tables exist
     public static void checkDatabaseTables()
     {
 	try
@@ -178,6 +184,7 @@ public class GameDatabase
 	return null;
     }
     
+    // Insert weapon into database
     private static void insertWeapon(Statement statement, String name, int damage) throws SQLException
     {
 	statement.executeUpdate("INSERT INTO items (ItemId, ItemName, ItemType) VALUES(" + currentItemIndex + ", '" + name + "', 'Weapon')");
@@ -186,6 +193,7 @@ public class GameDatabase
 	currentItemIndex++;
     }
     
+    // Insert consumable into database
     private static void insertConsumable(Statement statement, String name, ConsumableType consumableType, int modifier) throws SQLException
     {
 	statement.executeUpdate("INSERT INTO items (ItemId, ItemName, ItemType) VALUES(" + currentItemIndex + ", '" + name + "', 'Consumable')");
@@ -194,6 +202,7 @@ public class GameDatabase
 	currentItemIndex++;
     }
     
+    // Create database tables
     public static void createTables()
     {
 	try
@@ -228,6 +237,7 @@ public class GameDatabase
 	}
     }
     
+    // Insert database table data
     public static void insertTableData()
     {
 	try
@@ -252,86 +262,5 @@ public class GameDatabase
 	{
 	    Logger.getLogger(GameDatabase.class.getName()).log(Level.SEVERE, null, ex);
 	}
-    }
-    
-    /*public static Item[] getItemList()
-    {
-	ResultSet rs = null;
-	List<Item> items = new ArrayList<>();
-	
-	try
-	{
-	    Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-	    
-	    String weaponStatement = "SELECT * FROM WEAPONS";
-	    String consumableStatement = "SELECT * FROM CONSUMABLES";
-	    
-	    rs = statement.executeQuery(weaponStatement);
-	    
-	    rs.beforeFirst();
-            while(rs.next())
-            {
-		Weapon weapon = new Weapon(rs.getString("ITEMNAME"), rs.getInt("ITEMDAMAGE"));
-		items.set(rs.getInt("ITEMID"), weapon);
-            }
-	}
-	catch(SQLException ex)
-	{
-	    Logger.getLogger(GameDatabase.class.getName()).log(Level.SEVERE, null, ex);
-	}
-    }*/
-    
-    public static int getWeaponDamage(int weaponId)
-    {
-	ResultSet rs = null;
-	int weaponDamage = 0;
-	
-	System.out.println("Querying Database for Weapon Damage...");
-	
-	try
-	{
-	    Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-	    String weapon = "SELECT ITEMDAMAGE FROM WEAPONS WHERE ITEMID = " + weaponId;
-	    
-	    rs = statement.executeQuery(weapon);
-	    rs.beforeFirst();
-            while(rs.next())
-            {
-                weaponDamage = rs.getInt(1);           
-            }
-	}
-	catch(SQLException ex)
-	{
-	    Logger.getLogger(GameDatabase.class.getName()).log(Level.SEVERE, null, ex);
-	}
-	
-	return weaponDamage;
-    }
-    
-    public static int getConsumableModifier(int consumableId)
-    {
-	ResultSet rs = null;
-	int consumableModifier = 0;
-	
-	System.out.println("Querying Database for Consumable Modifier...");
-	
-	try
-	{
-	    Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-	    String consumable = "SELECT ITEMMODIFIER FROM CONSUMABLES WHERE ITEMID = " + consumableId;
-	    
-	    rs = statement.executeQuery(consumable);
-	    rs.beforeFirst();
-            while(rs.next())
-            {
-                consumableModifier = rs.getInt(1);           
-            }
-	}
-	catch(SQLException ex)
-	{
-	    Logger.getLogger(GameDatabase.class.getName()).log(Level.SEVERE, null, ex);
-	}
-	
-	return consumableModifier;
     }
 }

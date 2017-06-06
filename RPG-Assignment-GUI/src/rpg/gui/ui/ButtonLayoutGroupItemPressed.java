@@ -6,7 +6,7 @@
 package rpg.gui.ui;
 
 /**
- *
+ * Button layout group
  * @author Jonathan
  */
 public interface ButtonLayoutGroupItemPressed

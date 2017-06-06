@@ -41,27 +41,31 @@ public class Button extends GUIObject
     
     private TrueTypeFont buttonFont;
 
+    // Get text padding
     public Vector2 getTextPadding()
     {
 	return textPadding;
     }
 
+    // Set text padding
     public void setTextPadding(Vector2 textPadding)
     {
 	this.textPadding = textPadding;
     }
     
-    
+    // On button press
     public void onButtonPressed(ButtonPressedListener listener)
     {
 	this.pressListener = listener;
     }
     
+    // Get text
     public String getText()
     {
 	return text;
     }
 
+    // Set text
     public void setText(String text)
     {
 	this.text = text;
@@ -123,8 +127,7 @@ public class Button extends GUIObject
 	this.textPadding = new Vector2(this.getSize().getX() / 10, this.getSize().getY() / 10);
     }
 
-
-
+    // Render GUI
     @Override
     protected void renderGUI(GUIContext container, Graphics graphics)
     {
@@ -145,6 +148,7 @@ public class Button extends GUIObject
 	graphics.setFont(oldFont);
     }
 
+    // On GUI press
     @Override
     public void onGUIMousePressed()
     {

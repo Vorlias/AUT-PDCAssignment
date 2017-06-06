@@ -8,12 +8,12 @@ package rpg.gui.misc;
 import java.util.Random;
 
 /**
- *
+ * Utility functions
  * @author Nathan
  */
 public class Utility
 {
-	static Random random = new Random();
+	static Random random = new Random(); // New random
 	
 	/**
 	 * Print a specified amount of a character to console

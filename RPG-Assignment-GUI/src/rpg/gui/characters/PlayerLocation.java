@@ -6,8 +6,8 @@
 package rpg.gui.characters;
 
 /**
- *
- * @author Jonathan
+ * PlayerLocation enums
+ * @author Jonathan & Nathan
  */
 public enum PlayerLocation
 {

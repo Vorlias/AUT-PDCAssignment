@@ -14,23 +14,22 @@ import rpg.gui.items.Weapon;
 import rpg.gui.misc.Utility;
 
 /**
- *
- * @author Jonathan
+ * PlayerCharacter class
+ * @author Jonathan & Nathan
  */
 public class PlayerCharacter extends Character
 {
 
-    static final int FIST_DAMAGE = 1;
+    static final int FIST_DAMAGE = 1; // No weapon equipped use fists
 
-    private int xp = 0;
+    private int xp = 0; // Player experience points
     private final ArrayList<Item> items = new ArrayList<>();
-    private Weapon equippedWeapon;
-    private PlayerLocation location = PlayerLocation.Wilds;
-    private boolean combat = false;
+    private Weapon equippedWeapon; // Players equipped weapon
+    private PlayerLocation location = PlayerLocation.Wilds; // Players inital location
+    private boolean combat = false; // Is the player in combat
 
     /**
      * Returns whether or not the player is in combat
-     *
      * @return True if the player is in combat
      */
     public boolean inCombat()
@@ -40,7 +39,6 @@ public class PlayerCharacter extends Character
 
     /**
      * Sets whether or not the player is in combat
-     *
      * @param combat True if the player is in combat
      */
     public void setInCombat(boolean combat)
@@ -50,7 +48,6 @@ public class PlayerCharacter extends Character
 
     /**
      * Sets the location of the player
-     *
      * @param location The location of the player
      */
     public void setLocation(PlayerLocation location)
@@ -60,7 +57,6 @@ public class PlayerCharacter extends Character
 
     /**
      * Gets the location of the player
-     *
      * @return The location of the player
      */
     public PlayerLocation getLocation()
@@ -70,7 +66,6 @@ public class PlayerCharacter extends Character
 
     /**
      * Removes the item from the player's inventory
-     *
      * @param item The item to remove
      * @param amount The amount to remove
      */
@@ -93,6 +88,11 @@ public class PlayerCharacter extends Character
 	}
     }
 
+    /**
+     * Does the player have a consumable
+     * @param type the type of consumable
+     * @return true if the player has consumable otherwise false
+     */
     public boolean hasConsumable(ConsumableType type)
     {
 	for (Item i : items)
@@ -112,7 +112,6 @@ public class PlayerCharacter extends Character
 
     /**
      * Gets the equipped weapon
-     *
      * @return The equipped weapon
      */
     public Weapon getEquippedWeapon()
@@ -120,6 +119,10 @@ public class PlayerCharacter extends Character
 	return equippedWeapon;
     }
 
+    /**
+     * ArrayList of items
+     * @return items
+     */
     public final ArrayList<Item> getItems()
     {
 	return items;
@@ -127,7 +130,6 @@ public class PlayerCharacter extends Character
 
     /**
      * Gets the character's XP
-     *
      * @return The XP of this character
      */
     public int getXP()
@@ -135,6 +137,9 @@ public class PlayerCharacter extends Character
 	return xp;
     }
 
+    /**
+     * PlayerCharacter constructor
+     */
     public PlayerCharacter()
     {
 	super("");
@@ -145,7 +150,6 @@ public class PlayerCharacter extends Character
 
     /**
      * Creates a new Player Character
-     *
      * @param name The name of the Player's Character
      */
     public PlayerCharacter(String name)
@@ -158,7 +162,6 @@ public class PlayerCharacter extends Character
 
     /**
      * Gets the amount of XP to the next level
-     *
      * @return The amount of XP to the next level
      */
     private int getLevelupXP()
@@ -168,7 +171,6 @@ public class PlayerCharacter extends Character
 
     /**
      * Returns whether or not the user has leveled up
-     *
      * @return True if the user has leveled up
      */
     private boolean hasUserLevelledUp()
@@ -192,7 +194,6 @@ public class PlayerCharacter extends Character
 
     /**
      * Adds XP to this character
-     *
      * @param amount The amount of XP to add
      */
     public void addXP(int amount)
@@ -203,7 +204,6 @@ public class PlayerCharacter extends Character
 
     /**
      * Adds the specified item to the player's inventory
-     *
      * @param item The item to add
      */
     public void addItem(Item item)
@@ -213,7 +213,6 @@ public class PlayerCharacter extends Character
 
     /**
      * Adds the specified item to the player by id
-     *
      * @param id The id of the item to add
      */
     public void addItemById(int id)
@@ -223,7 +222,6 @@ public class PlayerCharacter extends Character
 
     /**
      * Equips an item by a specified id
-     *
      * @param id
      */
     public void equipItemById(int id)
@@ -239,7 +237,6 @@ public class PlayerCharacter extends Character
 
     /**
      * Attempts to equip the item to the player
-     *
      * @param item The item to equip
      */
     public void equipItem(Item item)
@@ -258,7 +255,6 @@ public class PlayerCharacter extends Character
 
     /**
      * Attacks the target
-     *
      * @param target The target to attack
      * @return The damage done to the target
      */

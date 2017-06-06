@@ -19,7 +19,7 @@ import rpg.gui.gameplay.PlayModel;
 import rpg.gui.ui.GameUI;
 
 /**
- *
+ * Handle playview
  * @author Jonathan
  */
 public class PlayView extends BasicGameState
@@ -29,16 +29,19 @@ public class PlayView extends BasicGameState
     private PlayModel model;
     private PlayController controller;
     
+    // Get game ui
     public GameUI getUI()
     {
 	return ui;
     }
     
+    // Get play model
     public PlayModel getModel()
     {
 	return model;
     }
 
+    // Setup player character
     public void setup(PlayerCharacter character)
     {
 	model = new PlayModel(character);
@@ -47,18 +50,21 @@ public class PlayView extends BasicGameState
 	
     }
     
+    // Get state id
     @Override
     public int getID()
     {
 	return RPGGame.STATE_GAME;
     }
 
+    // Enter state
     @Override
     public void enter(GameContainer container, StateBasedGame sbg)
     {
 	controller.startGame();
     }
     
+    // Playview constructor
     public PlayView(GameContainer gc)
     {
 	ui = new GameUI(gc);
@@ -73,6 +79,7 @@ public class PlayView extends BasicGameState
 	controller.menuInit();
     }
     
+    // Inital state
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
     {
@@ -80,6 +87,7 @@ public class PlayView extends BasicGameState
 	gc.setShowFPS(false);	
     }
 
+    // Render state
     @Override
     public void render(GameContainer gc, StateBasedGame game, Graphics renderer) throws SlickException
     {
@@ -88,6 +96,7 @@ public class PlayView extends BasicGameState
 	ui.render(gc, game, renderer);
     }
 
+    // Update state
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException
     {

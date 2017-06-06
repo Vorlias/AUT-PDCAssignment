@@ -9,20 +9,22 @@ import java.util.HashMap;
 import rpg.gui.characters.PlayerCharacter;
 
 /**
- *
+ * Weapon class
  * @author Jonathan
  */
 public class Weapon extends Item
 {
 
-    private int damage;
+    private int damage; // Weapon damage
 
+    // Weapon constructor
     public Weapon(String name, int damage)
     {
 	super(name, ItemType.Weapon);
 	this.damage = damage;
     }
 
+    // Weapon constructor
     public Weapon()
     {
 	super("", ItemType.Weapon);
@@ -31,7 +33,6 @@ public class Weapon extends Item
 
     /**
      * Gets the damage this weapon does
-     *
      * @return The damage the weapon does
      */
     public int getDamage()
@@ -45,6 +46,7 @@ public class Weapon extends Item
 	return "Weapon	| " + this.getName() + " <" + this.getDamage() + ">";
     }
 
+    // Handle using the weapon
     @Override
     public void use(PlayerCharacter character)
     {
@@ -60,6 +62,7 @@ public class Weapon extends Item
 	return attributes;
     }
 
+    // Set weapon attributes
     @Override
     public void setAttributes(HashMap<String, Object> attributes)
     {

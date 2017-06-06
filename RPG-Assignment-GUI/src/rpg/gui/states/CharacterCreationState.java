@@ -24,7 +24,7 @@ import rpg.gui.ui.GUILayoutGroup;
 import rpg.gui.ui.TextInput;
 
 /**
- *
+ * Handle character creation state
  * @author Jonathan
  */
 public class CharacterCreationState extends BasicGameState
@@ -35,6 +35,7 @@ public class CharacterCreationState extends BasicGameState
     private TextInput characterName;
     //private Button createButton;
 
+    // Get state id
     @Override
     public int getID()
     {
@@ -46,6 +47,7 @@ public class CharacterCreationState extends BasicGameState
     
     public static final int ITEM_DAGGER = 1;
 
+    // Inital state
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
     {
@@ -83,18 +85,21 @@ public class CharacterCreationState extends BasicGameState
 	});
     }
 
+    // Leave state
     @Override
     public void leave(GameContainer container, StateBasedGame game) throws SlickException
     {
 	characterCreationLayout.setEnabled(false);
     }
 
+    // Enter state
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException
     {
 	characterCreationLayout.setEnabled(true);
     }
 
+    // Render state
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException
     {
@@ -102,6 +107,7 @@ public class CharacterCreationState extends BasicGameState
 	characterCreationLayout.render(gc, grphcs);
     }
 
+    // Update state
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException
     {
