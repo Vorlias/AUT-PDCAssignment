@@ -68,11 +68,15 @@ public class PlayView extends BasicGameState
 	
 	
 	ui.getActionLayoutGroup().onButtonPress(controller::onActionButtonPressed);	
+	ui.getMenuButtonGroup().onButtonPress(controller::onMenuButtonPressed);
+	
+	controller.menuInit();
     }
     
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
     {
+	controller.setStateBasedGame(sbg);
 	gc.setShowFPS(false);	
     }
 

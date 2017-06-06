@@ -8,12 +8,15 @@ package rpg.gui.gameplay;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
+import rpg.gui.RPGGame;
 import rpg.gui.characters.Monster;
 import rpg.gui.characters.MonsterType;
 import rpg.gui.characters.PlayerCharacter;
 import rpg.gui.characters.PlayerLocation;
+import rpg.gui.misc.Vector2;
 import rpg.gui.states.PlayView;
 import rpg.gui.ui.Button;
 import rpg.gui.ui.ButtonLayoutGroupItemPressed;
@@ -32,6 +35,12 @@ public class PlayController
     private PlayView view;
     public ButtonLayoutGroupItemPressed onActionButtonPressed;
     Random random = new Random();
+    StateBasedGame stateBasedGame;
+    
+    public void setStateBasedGame(StateBasedGame stateBasedGame)
+    {
+	this.stateBasedGame = stateBasedGame;
+    }
 
     public static final String BUTTON_TOWN = "Go to Town",
 	    BUTTON_FOREST = "Go to Forest",
@@ -41,46 +50,84 @@ public class PlayController
 	    BUTTON_ATTACK = "Attack",
 	    BUTTON_FLEE = "Flee",
 	    BUTTON_EXPLORE_FOREST = "Explore Forest";
+    
+    public static final String BUTTON_SAVE = "Save",
+	    BUTTON_MENU = "Menu";
 
+    public void menuInit()
+    {
+	GameUI ui = view.getUI();
+	GUILayoutGroup menuGroup = ui.getMenuButtonGroup();
+	menuGroup.setLocation(15, 3);
+	menuGroup.setItemPadding(new Vector2(5, 5));
+	menuGroup.addButtons(Button.Size.Regular, BUTTON_MENU, BUTTON_SAVE);
+    }
+    
+    public void onMenuButtonPressed(Button button)
+    {
+	String action = button.getText();
+	
+	switch (action)
+	{
+	    case BUTTON_MENU:
+		stateBasedGame.enterState(RPGGame.STATE_MENU);
+		break;
+	}
+    }
+    
     public void onActionButtonPressed(Button button)
     {
 	String action = button.getText();
 	PlayerCharacter playerCharacter = model.getPlayerCharacter();
 	GameUI ui = view.getUI();
 	TextDisplay textDisplay = ui.getTextDisplay();
-
-	System.out.println(action);
-
+	
 	switch (action)
 	{
+	    case BUTTON_ATTACK:
+		break;
+		
+	    case BUTTON_FLEE:
+		playerCharacter.setLocation(PlayerLocation.Town);
+		textDisplay.addSystemMessage("You escape to town... but not unscathed.");
+		playerCharacter.takeDamage(25.f);
+		model.setTargetMonster(null);
+		updateOptions();
+		break; 
+		
 	    case BUTTON_TOWN:
 		playerCharacter.setLocation(PlayerLocation.Town);
-		ui.getTextDisplay().addSystemMessage("You have entered the town of Tarrin.");
+		textDisplay.addSystemMessage("You have entered the town of Tarrin.");
 		updateOptions();
 		break;
+		
 	    case BUTTON_FOREST:
 		playerCharacter.setLocation(PlayerLocation.Forest);
-		ui.getTextDisplay().addSystemMessage("You have entered the forest of Kreahx.");
+		textDisplay.addSystemMessage("You have entered the forest of Kreahx.");
 		updateOptions();
 		break;
+		
 	    case BUTTON_EXPLORE_FOREST:
-		ui.getTextDisplay().addSystemMessage("You proceed to explore the forest...");
-		// TODO: Random events ;-)
+		textDisplay.addSystemMessage("You proceed to explore the forest...");
+
 		int randomNum = random.nextInt(2) + 1;
 		switch (randomNum)
 		{
 		    case 1:
+			textDisplay.addEmpty();
 			textDisplay.addSystemMessage("The first few days pass by quickly as you explore the forest.");
 			textDisplay.addSystemMessage("You find yourself at the entrance to the forest having done nothing but walk a big loop.");
 			break;
+			
 		    case 2:
+			textDisplay.addEmpty();
 			Monster newMonster = new Monster(MonsterType.random());
 			model.setTargetMonster(newMonster);
 
 			textDisplay.addMessage(newMonster.getName(), newMonster.getType().getGreeting());
-			textDisplay.addRedMessage("PREPARE FOR COMBAT!");
-
+			textDisplay.addSystemMessage("PREPARE FOR COMBAT!", Color.red);
 			break;
+			
 		    case 3:
 			break;
 		}

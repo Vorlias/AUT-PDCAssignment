@@ -26,10 +26,20 @@ public class GameUI
     private float healthPercentage;
     private float enemyHealthPercentage;
     private final ButtonLayoutGroup actionLayoutGroup;
+    private final GUILayoutGroup menuGroup;
     private final TextDisplay textDisplay;
     
     private Image backgroundImage, foregroundImage;
     private String playerName, enemyName = "";
+    
+    /**
+     * Gets the menu button group
+     * @return The menu button group
+     */
+    public GUILayoutGroup getMenuButtonGroup()
+    {
+	return menuGroup;
+    }
     
     /**
      * Gets the button layout group
@@ -71,6 +81,8 @@ public class GameUI
 	
 	textDisplay.setSize(new Vector2(776 + 12, 407 + 33));
 	textDisplay.setPosition(new Vector2(12, 33));
+	
+	menuGroup = new GUILayoutGroup(context, GUILayoutGroup.LayoutType.Horizontal);
     }
     
     public void render(GameContainer container, StateBasedGame game, Graphics renderer) throws SlickException
@@ -83,6 +95,7 @@ public class GameUI
     public void update()
     {
 	actionLayoutGroup.update();
+	menuGroup.update();
     }
     
     /**
@@ -105,7 +118,7 @@ public class GameUI
 	textDisplay.render(container, renderer);
 	
 	
-	
+	menuGroup.render(container, renderer);
     }
     
     private void renderTopLayer(GameContainer container, StateBasedGame game, Graphics renderer)

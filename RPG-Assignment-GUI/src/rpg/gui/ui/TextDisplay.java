@@ -56,16 +56,43 @@ public class TextDisplay extends GUIObject
 	messages.add(tp);
     }
     
-    public void addSystemMessage(String message)
+    /**
+     * Adds an empty message to the text display
+     */
+    public void addEmpty()
     {
-	Message tp = new Message("", message);
-	tp.color = Color.yellow;
+	Message tp = new Message(" ", " ");
 	messages.add(tp);
     }
     
-    public void addRedMessage(String message)
+    /**
+     * Adds a system message to the display
+     * @param message The message to display
+     * @param color The color of the message
+     */
+    public void addSystemMessage(String message, Color color)
     {
 	Message tp = new Message("", message);
+	tp.color = color;
+	messages.add(tp);	
+    }
+    
+    /**
+     * Adds a yellow system message to the text display
+     * @param message The message
+     */
+    public void addSystemMessage(String message)
+    {
+	addSystemMessage(message, Color.yellow);
+    }
+    
+    /**
+     * Adds an error message to the text display
+     * @param message The error message
+     */
+    public void addErrorMessage(String message)
+    {
+	Message tp = new Message("[ERROR] ", message.toUpperCase());
 	tp.color = Color.red;
 	messages.add(tp);	
     }
