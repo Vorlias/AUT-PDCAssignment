@@ -17,8 +17,7 @@ hs_err_pid*
 /RPG-Assignment-CUI/build/
 /RPG-Assignment-GUI/lib/Slick2D/javadoc/
 /RPG-Assignment-GUI/rpgdb/
-derby.log
-
+/RPG-Assignment-GUI/rpgdb/seg0/
 
 
 
@@ -80,3 +79,7 @@ local.properties
 .worksheet
 /RPG-Assignment-GUI/nbproject/private/
 /RPG-Assignment-GUI/build/
+/RPG-Assignment-GUI/dist/
+*.dat
+*.ctrl
+*.txt
