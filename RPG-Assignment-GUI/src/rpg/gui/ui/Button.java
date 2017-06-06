@@ -13,9 +13,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
-import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.gui.GUIContext;
-import org.newdawn.slick.util.ResourceLoader;
 import rpg.gui.misc.FontManager;
 import rpg.gui.misc.Vector2;
 
@@ -25,12 +23,23 @@ import rpg.gui.misc.Vector2;
  */
 public class Button extends GUIObject
 {
+        /**
+     * The scale of the buttons
+     */
+    public enum Size
+    {
+	Regular,
+	Large,
+    }
+    
+    private Size buttonSize;
+    
     private String text;
     private Vector2 textPadding = Vector2.ZERO;
     private ButtonPressedListener pressListener;
     private Image buttonImage, buttonHoverImage;
-
-   
+    
+    private TrueTypeFont buttonFont;
 
     public Vector2 getTextPadding()
     {
@@ -58,6 +67,34 @@ public class Button extends GUIObject
 	this.text = text;
     }
     
+    public Button(GUIContext context, String text, Vector2 position, Size buttonSize) throws FontFormatException, IOException, SlickException
+    {
+	super(context);
+	this.text = text;
+	this.setPosition(position);
+	this.textPadding = new Vector2(10, 3);
+	
+	switch (buttonSize)
+	{
+	    case Regular:
+		buttonImage = new Image("data/images/button.png");
+		buttonHoverImage = new Image("data/images/button_hover.png");
+		this.setSize(new Vector2(150, 25));
+		
+		buttonFont = FontManager.getFontManager().getTrueTypeFont("balthazar", 18.f);
+		break;
+	    case Large:
+		buttonImage = new Image("data/images/button_large.png");
+		buttonHoverImage = new Image("data/images/button_large_hover.png");
+		this.setSize(new Vector2(200, 30));
+			
+		buttonFont = FontManager.getFontManager().getTrueTypeFont("balthazar", 22.f);
+		break;
+	}
+
+
+    }
+    
     public Button(GUIContext context, String text, Vector2 position) throws FontFormatException, IOException, SlickException
     {
 	super(context);
@@ -68,6 +105,11 @@ public class Button extends GUIObject
 	
 	buttonImage = new Image("data/images/button.png");
 	buttonHoverImage = new Image("data/images/button_hover.png");
+	
+	if (buttonFont == null)
+	{
+	    buttonFont = FontManager.getFontManager().getTrueTypeFont("balthazar", 18.f);
+	}
 	
     }
     
@@ -87,7 +129,7 @@ public class Button extends GUIObject
     protected void renderGUI(GUIContext container, Graphics graphics)
     {
 	Font oldFont = graphics.getFont();
-	Font balthazar = FontManager.getFontManager().getBalthazar();
+	Font balthazar = buttonFont;
 	graphics.setFont(balthazar);
 	graphics.setColor(this.isMouseOver() ? new Color(100, 100, 100) : new Color(50, 50, 50));
 	graphics.fillRect(this.getPosition().getX(), this.getPosition().getY(), this.getSize().getX(), this.getSize().getY());

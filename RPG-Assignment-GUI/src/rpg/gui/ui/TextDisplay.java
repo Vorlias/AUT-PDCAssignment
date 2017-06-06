@@ -12,7 +12,6 @@ import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.gui.GUIContext;
 import rpg.gui.misc.FontManager;
-import rpg.gui.misc.Vector2;
 
 /**
  *
@@ -57,16 +56,43 @@ public class TextDisplay extends GUIObject
 	messages.add(tp);
     }
     
-    public void addSystemMessage(String message)
+    /**
+     * Adds an empty message to the text display
+     */
+    public void addEmpty()
     {
-	Message tp = new Message("", message);
-	tp.color = Color.yellow;
+	Message tp = new Message(" ", " ");
 	messages.add(tp);
     }
     
-    public void addErrorMessage(String message)
+    /**
+     * Adds a system message to the display
+     * @param message The message to display
+     * @param color The color of the message
+     */
+    public void addSystemMessage(String message, Color color)
     {
 	Message tp = new Message("", message);
+	tp.color = color;
+	messages.add(tp);	
+    }
+    
+    /**
+     * Adds a yellow system message to the text display
+     * @param message The message
+     */
+    public void addSystemMessage(String message)
+    {
+	addSystemMessage(message, Color.yellow);
+    }
+    
+    /**
+     * Adds an error message to the text display
+     * @param message The error message
+     */
+    public void addErrorMessage(String message)
+    {
+	Message tp = new Message("[ERROR] ", message.toUpperCase());
 	tp.color = Color.red;
 	messages.add(tp);	
     }
@@ -75,7 +101,7 @@ public class TextDisplay extends GUIObject
     protected void renderGUI(GUIContext container, Graphics graphics)
     {
 	Font oldFont = graphics.getFont();
-	Font balthazar = FontManager.getFontManager().getBalthazar();
+	Font balthazar = FontManager.getFontManager().getTrueTypeFont("balthazar", 18.f);
 	graphics.setFont(balthazar);
 	
 	graphics.setClip(this.getX(), this.getY(), this.getWidth(), this.getHeight());

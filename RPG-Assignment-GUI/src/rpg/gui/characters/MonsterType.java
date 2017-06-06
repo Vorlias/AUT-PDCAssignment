@@ -17,11 +17,11 @@ import rpg.gui.misc.WeightedRandom;
  */
 public enum MonsterType
 {
-    Goblin(2, 10, 5, 25),
-    Snake(1, 3, 2, 25),
-    Elf(3, 15, 15, 15),
-    Bandit(3, 15, 15, 15),
-    Dragon(10, 50, 50, 5);
+    Goblin(2, 10, 5, 25, "Gaargla blarrg flarg"),
+    Snake(1, 3, 2, 25, "Sssssssss...."),
+    Elf(3, 15, 15, 15, "You don't belong here, Human."),
+    Bandit(3, 15, 15, 15, "Hand over all your money!"),
+    Dragon(10, 50, 50, 5, "ROOOOOOOOOAAAAAAAAAAR!!");
 
     final String name;
     final float maxHealth;
@@ -29,8 +29,19 @@ public enum MonsterType
     final int maxGold;
     final float weight;
     final int level;
+    final String greeting;
+    
+    public String getGreeting()
+    {
+	return greeting;
+    }
+    
+    public String getName()
+    {
+	return name;
+    }
 
-    MonsterType(int level, int maxDamage, int maxGold, float weight)
+    MonsterType(int level, int maxDamage, int maxGold, float weight, String greeting)
     {
 	this.name = this.toString();
 	this.maxHealth = level * 25.f;
@@ -38,6 +49,7 @@ public enum MonsterType
 	this.maxGold = maxGold;
 	this.weight = weight;
 	this.level = level;
+	this.greeting = greeting;
     }
 
     // TODO: Weighted random instead of regular random
